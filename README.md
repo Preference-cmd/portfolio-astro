@@ -1,43 +1,143 @@
-# Astro Starter Kit: Minimal
+# Portfolio Website (Astro)
 
-```sh
-pnpm create astro@latest -- --template minimal
+A modern personal portfolio website built with Astro, React, and Tailwind CSS. This is a migration from the original Next.js version, now using Astro for better static site performance.
+
+## Features
+
+- **Astro** - Static site generator for optimal performance
+- **React** - Interactive UI components with client-side hydration
+- **Tailwind CSS 3** - Utility-first CSS framework
+- **shadcn/ui style components** - Reusable UI components
+- **Dark/Light Theme** - Theme toggle with system preference detection
+- **Internationalization (i18n)** - Support for English and Chinese
+- **Responsive Design** - Mobile-first approach
+
+## Tech Stack
+
+- **Framework**: Astro 5.x
+- **UI Library**: React 19
+- **Styling**: Tailwind CSS 3
+- **Components**: Radix UI + custom shadcn/ui-style components
+- **Icons**: Lucide React
+- **Language**: TypeScript
+- **Package Manager**: pnpm
+
+## Project Structure
+
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
+portfolio-astro/
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/       # React components
+│   │   ├── ui/          # shadcn/ui-style components
+│   │   ├── Header.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Hero.tsx
+│   │   ├── About.tsx
+│   │   ├── Projects.tsx
+│   │   ├── Contact.tsx
+│   │   ├── Resume.tsx
+│   │   └── PortfolioContent.tsx
+│   ├── i18n/            # Internationalization
+│   │   ├── en.json      # English translations
+│   │   ├── zh.json      # Chinese translations
+│   │   └── index.ts    # i18n utilities
+│   ├── layouts/         # Astro layouts
+│   │   └── Layout.astro
+│   ├── lib/             # Utilities
+│   │   └── utils.ts    # cn() function
+│   ├── pages/           # Astro pages
+│   │   ├── index.astro      # English home
+│   │   ├── resume.astro    # English resume
+│   │   └── zh/             # Chinese pages
+│   │       ├── index.astro
+│   │       └── resume.astro
+│   └── styles/          # Global styles
+│       └── global.css
+├── public/              # Static assets
+├── astro.config.mjs     # Astro configuration
+├── tailwind.config.mjs  # Tailwind configuration
+└── tsconfig.json        # TypeScript configuration
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Getting Started
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Prerequisites
 
-Any static assets, like images, can be placed in the `public/` directory.
+- Node.js 18+
+- pnpm 9+
 
-## 🧞 Commands
+### Installation
 
-All commands are run from the root of the project, from a terminal:
+```bash
+# Install dependencies
+pnpm install
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+### Development
 
-## 👀 Want to learn more?
+```bash
+# Start development server
+pnpm dev
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Open [http://localhost:4321](http://localhost:4321) to view the site.
+
+### Build
+
+```bash
+# Build for production
+pnpm build
+
+# Preview production build
+pnpm preview
+```
+
+## Pages
+
+| Route | Description |
+|-------|-------------|
+| `/` | English homepage |
+| `/zh` | Chinese homepage |
+| `/resume` | English resume |
+| `/zh/resume` | Chinese resume |
+
+## Theme
+
+The site supports light and dark themes. The theme is stored in localStorage and respects system preferences by default.
+
+## Internationalization
+
+Translations are stored in `src/i18n/` as JSON files:
+- `en.json` - English
+- `zh.json` - Chinese (Simplified)
+
+The locale is by the URL path. Switching determined between locales is done through the language toggle in the header.
+
+## Design System
+
+The design follows the trien-ui style with:
+- OKLCH color system
+- Smooth transitions (0.2s cubic-bezier)
+- Backdrop blur effects
+- Mobile-first responsive design
+
+### Color Palette
+
+| Token | Light | Dark |
+|-------|-------|------|
+| Background | oklch(1 0 0) | oklch(0.145 0 0) |
+| Foreground | oklch(0.145 0 0) | oklch(0.985 0 0) |
+| Primary | oklch(0.205 0 0) | oklch(0.922 0 0) |
+
+## Migration from Next.js
+
+This project was migrated from Next.js (portfolio-website-nextjs). Key changes:
+
+1. **File-based routing** - Pages are in `src/pages/` instead of `app/`
+2. **Component islands** - Use `client:load` or `client:visible` for interactive components
+3. **Static by default** - Astro generates static HTML by default
+4. **No server components** - All components are client-side rendered
+
+## License
+
+MIT

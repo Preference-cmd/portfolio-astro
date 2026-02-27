@@ -1,0 +1,136 @@
+{
+  "hero": {
+    "greeting": "你好，我是单林",
+    "title": "AI/WEB 开发者",
+    "subtitle": "使用现代技术构建可扩展的AI与Web应用程序",
+    "cta": "查看我的项目",
+    "contactMe": "联系我"
+  },
+  "navigation": {
+    "home": "首页",
+    "about": "关于",
+    "projects": "项目",
+    "experience": "经历",
+    "contact": "联系"
+  },
+  "about": {
+    "title": "关于我",
+    "subtitle": "aboutMe",
+    "paragraphs": {
+      "para1": "我是一名专注于 AI 原生产品与高性能后端的全栈工程师，近期的代表性项目涵盖 AI 原生 TRPG 平台、Rust/Python 微服务 API、3D 重建应用、ROS2 自动驾驶系统，以及控制理论与计算机视觉的工程实践。",
+      "para2": "在技术栈方面，我在前端/全栈领域使用 Next.js、TypeScript、Tailwind CSS 与 shadcn-UI；在后端领域构建 Rust tokio/Axum 与 Python FastAPI 的微服务，结合 PostgreSQL、Redis、Docker 与 Github Action 的 CI/CD；在 AI 与计算机视觉领域实践 LangChain/LangGraph、YOLOv5、OpenCV、Meta SAM2、Colmap 与 OpenMVS；在机器人与控制方面使用 ROS2、VINS-Fusion、Navigation2，并应用 LQR、Luenberger 等控制方法。",
+      "para3": "我致力于将可靠的工程实践与卓越的用户体验结合起来 原生产品、：持续打磨 AI构建可扩展的微服务与数据基础设施、探索自动化 3D 生成与自治系统，并不断提升系统的性能与可维护性。"
+    },
+    "skillsTitle": "我使用的技术",
+    "skills": [
+      "Next.js", "TypeScript", "Tailwind CSS", "shadcn-UI",
+      "Rust", "tokio/Axum", "Python", "FastAPI", "Data Analysis", "DL/ML",
+      "PostgreSQL", "Redis", "Docker", "CI/CD",
+      "LangChain/LangGraph", "OpenCV", "Computer Vision",
+      "ROS2", "System Modeling","Real-time Processing"
+    ],
+    "stats": {
+      "experience": {
+        "value": "5+",
+        "label": "年工作经验"
+      },
+      "projects": {
+        "value": "6+",
+        "label": "完成项目"
+      }
+    }
+  },
+  "projects": {
+    "title": "我的项目",
+    "subtitle": "featuredProjects",
+    "featured": "精选项目",
+    "all": "所有项目",
+    "viewDetails": "查看详情",
+    "technologies": "技术栈",
+    "duration": "时间",
+    "team": "团队规模",
+    "role": "角色",
+    "status": "状态",
+    "overview": "项目概述",
+    "features": "功能特点",
+    "challenges": "技术挑战",
+    "outcomes": "项目成果",
+    "live": "在线演示",
+    "github": "源代码"
+  },
+  "resume": {
+    "title": "简历",
+    "downloadPDF": "下载 PDF",
+    "downloading": "生成中...",
+    "personalInfo": "个人信息",
+    "contact": "联系方式",
+    "skills": "技能",
+    "tools": "工具与技术",
+    "workExperience": "工作经历",
+    "education": "教育背景",
+    "present": "至今"
+  },
+  "contact": {
+    "title": "联系我",
+    "subtitle": "letsWorkTogether",
+    "description": "我总是对新的机会和有趣的项目感兴趣。无论您是想讨论潜在的合作、需要技术咨询，还是只是想打个招呼，我都很乐意听到您的声音。",
+    "getInTouch": "联系我",
+    "contactInfo": {
+      "email": {
+        "label": "邮箱",
+        "value": "noreply@example.com"
+      },
+      "phone": {
+        "label": "电话",
+        "value": "+86 13798093084"
+      },
+      "location": {
+        "label": "位置",
+        "value": "REDACTED"
+      },
+      "github": {
+        "label": "GitHub",
+        "value": "github.com/Preference-cmd"
+      }
+    },
+    "availableFor": {
+      "title": "可提供的服务",
+      "services": [
+        "AI/ML集成",
+        "全栈开发",
+        "计算机视觉",
+        "技术咨询"
+      ]
+    },
+    "form": {
+      "title": "发送消息",
+      "fields": {
+        "name": {
+          "label": "姓名",
+          "placeholder": ""
+        },
+        "email": {
+          "label": "邮箱",
+          "placeholder": "example@example.com"
+        },
+        "subject": {
+          "label": "主题",
+          "placeholder": "项目咨询"
+        },
+        "message": {
+          "label": "消息",
+          "placeholder": "告诉我您的项目详情..."
+        }
+      },
+      "submitButton": "发送消息",
+      "submitting": "发送中...",
+      "success": "消息发送成功！",
+      "error": "发送失败，请重试。"
+    }
+  },
+  "footer": {
+    "description": "AI/全栈开发者，构建可扩展应用",
+    "copyright": "版权所有。",
+    "social": "联系我"
+  }
+}

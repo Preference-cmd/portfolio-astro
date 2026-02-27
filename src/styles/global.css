@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors - using CSS variables */
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  /* Border Radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  /* Font Family */
+  --font-sans: 'MiSans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+/* Dark mode selector */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    /* Swiss Design System - Light Mode */
+    --background: #F2F2F2;
+    --foreground: #161616;
+
+    /* Card & Popover */
+    --card: #FFFFFF;
+    --card-foreground: #161616;
+    --popover: #FFFFFF;
+    --popover-foreground: #161616;
+
+    /* Primary (Swiss Orange) */
+    --primary: #FF3D00;
+    --primary-foreground: #FFFFFF;
+
+    /* Secondary */
+    --secondary: #FFFFFF;
+    --secondary-foreground: #161616;
+
+    /* Muted */
+    --muted: #E5E5E5;
+    --muted-foreground: #999999;
+
+    /* Accent */
+    --accent: #E5E5E5;
+    --accent-foreground: #161616;
+
+    /* Destructive */
+    --destructive: #FF3D00;
+    --destructive-foreground: #FFFFFF;
+
+    /* Borders & Inputs */
+    --border: #E5E5E5;
+    --input: #FFFFFF;
+    --ring: #FF3D00;
+
+    /* Radius */
+    --radius: 0.625rem;
+  }
+
+  .dark {
+    /* Swiss Design System - Dark Mode */
+    --background: #161616;
+    --foreground: #FFFFFF;
+
+    /* Card & Popover */
+    --card: #1C1C1C;
+    --card-foreground: #FFFFFF;
+    --popover: #1C1C1C;
+    --popover-foreground: #FFFFFF;
+
+    /* Primary (Swiss Orange - stays the same) */
+    --primary: #FF3D00;
+    --primary-foreground: #FFFFFF;
+
+    /* Secondary */
+    --secondary: #2C2C2C;
+    --secondary-foreground: #FFFFFF;
+
+    /* Muted */
+    --muted: #2C2C2C;
+    --muted-foreground: #999999;
+
+    /* Accent */
+    --accent: #2C2C2C;
+    --accent-foreground: #FFFFFF;
+
+    /* Destructive */
+    --destructive: #7f1d1d;
+    --destructive-foreground: #FFFFFF;
+
+    /* Borders & Inputs */
+    --border: #2C2C2C;
+    --input: #2C2C2C;
+    --ring: #FF3D00;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

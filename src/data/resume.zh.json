@@ -1,0 +1,95 @@
+{
+  "personalInfo": {
+    "name": "单林",
+    "title": "AI/Web 开发者",
+    "subtitle": "全栈开发者 & AI 爱好者"
+  },
+  "contact": {
+    "website": "pref2rence.inceptae.com",
+    "email": "noreply@example.com",
+    "phone": "+86 REDACTED",
+    "location": "REDACTED",
+    "github": "github.com/Preference-cmd"
+  },
+  "skills": [
+    "AI/ML 集成",
+    "数据分析",
+    "系统架构",
+    "计算机视觉",
+    "RPA"
+  ],
+  "tools": [
+    "Rust",
+    "Python",
+    "TypeScript",
+    "Docker",
+    "CI/CD"
+  ],
+  "languages": [
+    "中文（母语）",
+    "英语（CET6）"
+  ],
+  "workExperience": [
+    {
+      "company": "重庆市江津区美图农业专业合作社",
+      "position": "华润三九野菊花项目，信息分析工程师",
+      "period": "2024年9月 - 2025年4月",
+      "responsibilities": [
+        "使用RPA工具（钉钉、飞书）管理工作流程，优化仓库、人员、生产管理流程",
+        "使用目标检测方法收集作物生长相关数据，使用Numpy、Pandas等工具处理数据"
+      ]
+    },
+    {
+      "company": "桂林英智智能科技有限公司",
+      "position": "机器人研发助理工程师",
+      "period": "2022年12月 - 2023年4月",
+      "responsibilities": [
+        "使用OpenCV和ROS开发图像处理模块：图像滤波、增强、语义分割等",
+        "使用Kalibr工具完成视觉传感器标定并进行算法测试"
+      ]
+    }
+  ],
+  "keyProjects": [
+    {
+      "name": "Rust Axum/Python FastAPI 微服务后端",
+      "period": "2025年5月 - 至今",
+      "description": [
+        "使用 Rust Axum + PostgreSQL + Redis 构建高性能微服务后端，实现认证、授权等基础服务",
+        "集成 Python FastAPI 与 LangGraph 构建大语言模型后端服务"
+      ]
+    },
+    {
+      "name": "商品预览3D重建应用",
+      "period": "2025年5月",
+      "description": [
+        "基于 Meta SAM2 开发自动对象标注和图像遮罩生成模块",
+        "Python 自动化 Colmap-OpenMVS 构建密集重建流水线，实现从图像/视频到高保真 3D 模型的重建"
+      ]
+    },
+    {
+      "name": "ROS2 自主探索无人车",
+      "period": "2023年2月 - 2023年6月",
+      "description": [
+        "基于 ROS2 系统完成边缘平台与 PC 平台的通信和分布式计算",
+        "使用 VINS-Fusion 和 Octomap 完成机器人视觉定位和建图",
+        "使用 Navigation2 完成机器人导航功能"
+      ]
+    },
+    {
+      "name": "机器视觉目标跟踪系统",
+      "period": "2021年7月 - 2022年3月",
+      "description": [
+        "使用 OpenCV 和 YOLOv5 实现目标检测功能",
+        "构建基于目标检测的反馈控制算法，驱动电机实现相机对目标的持续跟踪"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "桂林航天工业学院",
+      "degree": "学士学位 机器人工程",
+      "period": "2019年9月 - 2023年6月",
+      "description": []
+    }
+  ]
+}
