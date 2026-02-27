@@ -1,0 +1,95 @@
+{
+  "personalInfo": {
+    "name": "SHAN LIN",
+    "title": "AI/Web Developer",
+    "subtitle": "Full-Stack Developer & AI Enthusiast"
+  },
+  "contact": {
+    "website": "pref2rence.inceptae.com",
+    "email": "sq103832@outlook.com",
+    "phone": "+86 137 9809 3084",
+    "location": "Guangzhou, China",
+    "github": "github.com/Preference-cmd"
+  },
+  "skills": [
+    "AI/ML Integration",
+    "Data Analysis",
+    "System Architecture",
+    "Computer Vision",
+    "RPA"
+  ],
+  "tools": [
+    "Rust",
+    "Python",
+    "TypeScript",
+    "Docker",
+    "CI/CD"
+  ],
+  "languages": [
+    "Chinese (Native)",
+    "English (CET6)"
+  ],
+  "workExperience": [
+    {
+      "company": "Chongqing Jiangjin District Meitu Agricultural Professional Cooperative",
+      "position": "Huarun Sanjiu Wild Chrysanthemum Project, Management & Information Analysis Engineer",
+      "period": "SEP 2024 - APR 2025",
+      "responsibilities": [
+        "Managed workflows using RPA tools like YingDao and Feishu, optimizing warehouse, personnel, and production management processes",
+        "Collected crop growth-related data using object detection methods and processed data using Numpy, Pandas and other tools"
+      ]
+    },
+    {
+      "company": "Guilin Yingzhi Intelligent Technology Co., Ltd.",
+      "position": "Robot R&D Assistant Engineer",
+      "period": "DEC 2022 - APR 2023",
+      "responsibilities": [
+        "Developed image processing modules using OpenCV and ROS: image filtering, enhancement, semantic segmentation, etc.",
+        "Completed visual sensor calibration using Kalibr toolkit and conducted algorithm testing"
+      ]
+    }
+  ],
+  "keyProjects": [
+    {
+      "name": "Rust Axum/Python FastAPI Microservice Backend",
+      "period": "MAY 2025 - PRESENT",
+      "description": [
+        "High-performance microservice backend with Rust Axum + PostgreSQL + Redis, building authentication, authorization and other basic services",
+        "Integrated Python FastAPI with LangGraph to build large language model backend services"
+      ]
+    },
+    {
+      "name": "Product Preview Visual 3D Reconstruction Application",
+      "period": "MAY 2025 - MAY 2025",
+      "description": [
+        "Developed automatic object annotation and image mask generation module based on Meta SAM2",
+        "Python automated Colmap-OpenMVS to build dense reconstruction pipeline, achieving reconstruction from images/videos to high-fidelity 3D models"
+      ]
+    },
+    {
+      "name": "ROS2 Autonomous Exploration Unmanned Vehicle",
+      "period": "FEB 2023 - JUN 2023",
+      "description": [
+        "Completed communication and distributed computing between edge platform and PC platform based on ROS2 system",
+        "Used VINS-Fusion and Octomap to complete robot visual localization and mapping",
+        "Used Navigation2 to complete robot navigation functionality"
+      ]
+    },
+    {
+      "name": "Machine Vision-based Target Tracking System",
+      "period": "JUL 2021 - MAR 2022",
+      "description": [
+        "Implemented target detection functionality using OpenCV and YOLOv5",
+        "Built feedback control algorithms using target detection to drive motors for continuous camera tracking of targets"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Guilin University of Aerospace Technology",
+      "degree": "BSc Robotics&Automation",
+      "period": "SEP 2019 - JUN 2023",
+      "description": []
+    }
+  ]
+}
