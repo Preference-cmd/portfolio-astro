@@ -55,7 +55,7 @@ export function Projects({ locale }: ProjectsProps) {
                   {project.description}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="flex-grow">
+              <CardContent className="grow">
                 <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
                   {project.overview}
                 </p>
