@@ -10,16 +10,11 @@ interface ProjectsProps {
   locale: "en" | "zh";
 }
 
+type ProjectType = ReturnType<typeof getProjects>[0];
+
 export function Projects({ locale }: ProjectsProps) {
   const projects = getProjects();
-  const sectionRef = React.useRef<HTMLElement>(null);
   const [activeId, setActiveId] = React.useState(projects[0]?.id || "");
-  const [isAnimating, setIsAnimating] = React.useState(false);
-  const isAnimatingRef = React.useRef(false);
-  const [direction, setDirection] = React.useState<"up" | "down">("down");
-  const [isInView, setIsInView] = React.useState(false);
-  const isLastProjectRef = React.useRef(false);
-  const isFirstProjectRef = React.useRef(true);
 
   const getStatusLabel = (status: string): string => {
     if (status === "completed") return locale === "en" ? "Completed" : "已完成";
@@ -27,101 +22,36 @@ export function Projects({ locale }: ProjectsProps) {
     return locale === "en" ? "Prototype" : "原型";
   };
 
-  const currentIndex = projects.findIndex((p) => p.id === activeId);
-  isLastProjectRef.current = currentIndex === projects.length - 1;
-  isFirstProjectRef.current = currentIndex === 0;
-
-  const handleProjectSelect = React.useCallback((id: string, dir: "up" | "down" = "down") => {
-    if (id === activeId || isAnimatingRef.current) return;
-    setDirection(dir);
-    isAnimatingRef.current = true;
-    setIsAnimating(true);
-    setTimeout(() => {
-      setActiveId(id);
-      isAnimatingRef.current = false;
-      setIsAnimating(false);
-    }, 300);
-  }, [activeId]);
-
-  const goToNext = React.useCallback(() => {
-    if (isLastProjectRef.current) return false;
-    const nextIndex = currentIndex + 1;
-    handleProjectSelect(projects[nextIndex].id, "down");
-    return true;
-  }, [currentIndex, handleProjectSelect, projects]);
-
-  const goToPrev = React.useCallback(() => {
-    if (isFirstProjectRef.current) return false;
-    const prevIndex = currentIndex - 1;
-    handleProjectSelect(projects[prevIndex].id, "up");
-    return true;
-  }, [currentIndex, handleProjectSelect, projects]);
-
-  // Handle scroll within section
   React.useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    let scrollTimeout: NodeJS.Timeout;
-
-    const handleWheel = (e: WheelEvent) => {
-      // Only handle vertical scroll and when in view - require larger scroll delta
-      if (!isInView || Math.abs(e.deltaY) < 50) return;
-
-      // Wait for animation to complete before allowing next scroll
-      if (isAnimatingRef.current) return;
-
-      // If at last project and scrolling down, allow natural scroll to next section
-      if (e.deltaY > 0 && isLastProjectRef.current) return;
-
-      // If at first project and scrolling up, allow natural scroll to previous section
-      if (e.deltaY < 0 && isFirstProjectRef.current) return;
-
-      // Prevent default scroll and handle project switch
-      e.preventDefault();
-      clearTimeout(scrollTimeout);
-
-      scrollTimeout = setTimeout(() => {
-        if (e.deltaY > 0) {
-          goToNext();
-        } else {
-          goToPrev();
-        }
-      }, 50);
-    };
-
-    section.addEventListener("wheel", handleWheel, { passive: false });
-    return () => {
-      section.removeEventListener("wheel", handleWheel);
-      clearTimeout(scrollTimeout);
-    };
-  }, [isInView, goToNext, goToPrev]);
-
-  // Track if section is in view
-  React.useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting);
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("data-id");
+            if (id) {
+              setActiveId(id);
+            }
+          }
+        });
       },
-      { threshold: 0.3 }
+      {
+        root: null,
+        rootMargin: "-40% 0px -50% 0px", // Trigger when element is within the middle 10%
+      }
     );
 
-    observer.observe(section);
+    const items = document.querySelectorAll(".project-timeline-item");
+    items.forEach((item) => observer.observe(item));
+
     return () => observer.disconnect();
   }, []);
-
-  const activeProject = projects.find((p) => p.id === activeId) || projects[0];
 
   return (
     <section
       id="projects"
-      ref={sectionRef}
-      className="py-24 scroll-mt-16 bg-muted/30 min-h-screen flex items-center justify-center"
+      className="py-24 bg-muted/30 relative"
     >
-      <div className="container px-8 w-full max-w-7xl">
+      <div className="container px-8 w-full max-w-7xl mx-auto">
         {/* Section Title */}
         <div className="text-center mb-20">
           <h2 className="text-4xl font-bold mb-4">
@@ -132,130 +62,148 @@ export function Projects({ locale }: ProjectsProps) {
           </p>
         </div>
 
-        {/* Carousel Layout */}
-        <div className="flex flex-col lg:flex-row gap-24 items-start">
-          {/* Left: Project Timeline */}
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-24 items-start relative">
+          {/* Left: Project Timeline list (Scroll Area) */}
           <div className="lg:w-2/5 w-full">
             <div className="relative">
               {/* Vertical Line */}
-              <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-border" />
+              <div className="absolute left-[27px] lg:left-4 top-0 bottom-0 w-0.5 bg-border hidden lg:block" />
 
-              {/* Project List */}
-              <div className="space-y-4">
-                {projects.map((project) => (
-                  <button
+              <div className="space-y-0">
+                {projects.map((project, index) => (
+                  <div
                     key={project.id}
-                    onClick={() => handleProjectSelect(project.id, project.id > activeId ? "down" : "up")}
-                    disabled={isAnimating}
+                    data-id={project.id}
                     className={cn(
-                      "relative w-full text-left pl-12 py-4 pr-4 rounded-lg transition-all duration-300 group",
-                      activeId === project.id
-                        ? "bg-primary/10"
-                        : "hover:bg-muted/50"
+                      "project-timeline-item relative w-full text-left pl-0 lg:pl-12 py-12 lg:py-32 pr-0 lg:pr-4 flex flex-col justify-center",
+                      "min-h-[auto] lg:min-h-[60vh]",
+                      index === 0 ? "lg:mt-0" : "",
+                      index === projects.length - 1 ? "lg:mb-[30vh]" : ""
                     )}
                   >
-                    {/* Timeline Dot */}
+                    {/* Timeline Dot (Desktop only) */}
                     <span
                       className={cn(
-                        "absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 transition-all duration-300",
+                        "absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 transition-all duration-500 hidden lg:block",
                         activeId === project.id
                           ? "bg-primary border-primary scale-125"
-                          : "bg-background border-muted-foreground/30 group-hover:border-muted-foreground"
+                          : "bg-background border-muted-foreground/30"
                       )}
                     />
-                    {/* Project Title */}
-                    <div className="font-medium text-base">
-                      {project.title}
+
+                    {/* Timeline Info (Desktop only) text wrapper */}
+                    <div className={cn(
+                      "transition-all duration-500 hidden lg:block",
+                      activeId === project.id ? "opacity-100 translate-x-0" : "opacity-40 -translate-x-4"
+                    )}>
+                      <div className="font-bold text-3xl mb-2">
+                        {project.title}
+                      </div>
+                      <div className="text-lg text-muted-foreground mt-2">
+                        {project.duration}
+                      </div>
                     </div>
-                    {/* Duration */}
-                    <div className="text-sm text-muted-foreground mt-1">
-                      {project.duration}
+
+                    {/* Mobile Project Card (Visible only on mobile/tablet) */}
+                    <div className="block lg:hidden w-full mb-8">
+                      <ProjectCard project={project} getStatusLabel={getStatusLabel} locale={locale} />
                     </div>
-                  </button>
+                  </div>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Right: Project Preview with Flip Animation */}
-          <div className="lg:w-3/5 w-full">
-            <div className="relative min-h-150 flex items-center overflow-hidden">
-              <div
-                className={cn(
-                  "w-full transition-all duration-300",
-                  isAnimating
-                    ? direction === "down"
-                      ? "opacity-0 -translate-y-12"
-                      : "opacity-0 translate-y-12"
-                    : "opacity-100 translate-y-0"
-                )}
-              >
-                {activeProject && (
-                  <Card className="hover:shadow-lg transition-shadow border-2 border-transparent hover:border-primary/20 p-6">
-                    <CardHeader>
-                      <div className="flex justify-between items-start gap-4 flex-wrap mb-4">
-                        <CardTitle className="text-2xl">{activeProject.title}</CardTitle>
-                        <Badge
-                          variant={
-                            activeProject.status === "completed"
-                              ? "default"
-                              : activeProject.status === "in progress"
-                              ? "secondary"
-                              : "outline"
-                          }
-                          className={activeProject.status === "completed" ? "bg-primary text-primary-foreground" : ""}
-                        >
-                          {getStatusLabel(activeProject.status)}
-                        </Badge>
-                      </div>
-                      <CardDescription className="text-lg">
-                        {activeProject.description}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-6">
-                      <p className="text-base text-muted-foreground leading-relaxed">
-                        {activeProject.overview}
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {activeProject.technologies.map((tech) => (
-                          <Badge key={tech} variant="outline" className="text-sm px-3 py-1">
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                      <div className="flex gap-4 text-xs text-muted-foreground">
-                        <span>{activeProject.duration}</span>
-                        <span>|</span>
-                        <span>{activeProject.teamSize}</span>
-                        <span>|</span>
-                        <span>{activeProject.role}</span>
-                      </div>
-                    </CardContent>
-                    <CardFooter className="gap-2">
-                      {activeProject.liveUrl && (
-                        <Button variant="outline" size="sm" asChild>
-                          <a href={activeProject.liveUrl} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="h-3 w-3 mr-1" />
-                            {locale === "en" ? "Live" : "演示"}
-                          </a>
-                        </Button>
-                      )}
-                      {activeProject.githubUrl && (
-                        <Button variant="outline" size="sm" asChild>
-                          <a href={activeProject.githubUrl} target="_blank" rel="noopener noreferrer">
-                            <Github className="h-3 w-3 mr-1" />
-                            {locale === "en" ? "GitHub" : "源码"}
-                          </a>
-                        </Button>
-                      )}
-                    </CardFooter>
-                  </Card>
-                )}
-              </div>
+          {/* Right: Project Preview (Sticky on Desktop) */}
+          <div className="hidden lg:flex lg:w-3/5 w-full sticky top-32 h-[calc(100vh-16rem)] items-center justify-center">
+            <div className="relative w-full h-full flex items-center justify-center">
+              {projects.map((project) => (
+                <div
+                  key={project.id}
+                  className={cn(
+                    "absolute w-full transition-all duration-700 ease-out",
+                    activeId === project.id
+                      ? "opacity-100 translate-y-0 scale-100 z-10"
+                      : "opacity-0 translate-y-12 scale-95 z-0 pointer-events-none"
+                  )}
+                >
+                  <ProjectCard project={project} getStatusLabel={getStatusLabel} locale={locale} />
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+interface ProjectCardProps {
+  project: ProjectType;
+  getStatusLabel: (status: string) => string;
+  locale: "en" | "zh";
+}
+
+function ProjectCard({ project, getStatusLabel, locale }: ProjectCardProps) {
+  return (
+    <Card className="w-full shadow-lg border-2 border-transparent hover:border-primary/20 p-6 bg-background/80 backdrop-blur-sm">
+      <CardHeader>
+        <div className="flex justify-between items-start gap-4 flex-wrap mb-4">
+          <CardTitle className="text-2xl">{project.title}</CardTitle>
+          <Badge
+            variant={
+              project.status === "completed"
+                ? "default"
+                : project.status === "in progress"
+                  ? "secondary"
+                  : "outline"
+            }
+            className={project.status === "completed" ? "bg-primary text-primary-foreground" : ""}
+          >
+            {getStatusLabel(project.status)}
+          </Badge>
+        </div>
+        <CardDescription className="text-lg">
+          {project.description}
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        <p className="text-base text-muted-foreground leading-relaxed">
+          {project.overview}
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {project.technologies.map((tech: string) => (
+            <Badge key={tech} variant="outline" className="text-sm px-3 py-1">
+              {tech}
+            </Badge>
+          ))}
+        </div>
+        <div className="flex gap-4 text-xs text-muted-foreground">
+          <span>{project.duration}</span>
+          <span className="opacity-50">|</span>
+          <span>{project.teamSize}</span>
+          <span className="opacity-50">|</span>
+          <span>{project.role}</span>
+        </div>
+      </CardContent>
+      <CardFooter className="gap-2">
+        {project.liveUrl && (
+          <Button variant="outline" size="sm" asChild>
+            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+              <ExternalLink className="h-4 w-4 mr-2" />
+              {locale === "en" ? "Live Demo" : "演示"}
+            </a>
+          </Button>
+        )}
+        {project.githubUrl && (
+          <Button variant="outline" size="sm" asChild>
+            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+              <Github className="h-4 w-4 mr-2" />
+              {locale === "en" ? "GitHub" : "源码"}
+            </a>
+          </Button>
+        )}
+      </CardFooter>
+    </Card>
   );
 }
