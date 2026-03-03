@@ -74,7 +74,7 @@ export function Hero({ locale }: HeroProps) {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-40 h-40 bg-primary/10 rounded-full blur-3xl" />
               </div>
-              
+
               {/* Geometric shapes */}
               <div className="relative">
                 <div className="w-32 h-32 border-4 border-primary rotate-45 animate-pulse" />
