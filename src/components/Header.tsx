@@ -11,28 +11,62 @@ interface HeaderProps {
 
 const navItems = [
   { key: "navigation.home", href: "/" },
-  { key: "navigation.about", href: "/#about" },
-  { key: "navigation.projects", href: "/#projects" },
-  { key: "navigation.experience", href: "/#experience" },
-  { key: "navigation.contact", href: "/#contact" },
+  { key: "navigation.about", href: "/#about", sectionId: "about" },
+  { key: "navigation.projects", href: "/#projects", sectionId: "projects" },
+  { key: "navigation.experience", href: "/#experience", sectionId: "experience" },
+  { key: "navigation.contact", href: "/#contact", sectionId: "contact" },
 ];
 
 export function Header({ locale }: HeaderProps) {
   const t = getTranslations(locale);
   const [isOpen, setIsOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+  const [activeSection, setActiveSection] = React.useState<string>("");
 
   React.useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      // Clear active section if scrolled to the very top
+      if (window.scrollY < 100) {
+        setActiveSection("");
+      }
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-20% 0px -70% 0px", // Trigger when the section reaches top 20%-30% of viewport
+      }
+    );
+
+    const sectionIds = navItems.filter(item => item.sectionId).map(item => `#${item.sectionId}`);
+    if (sectionIds.length === 0) return;
+
+    const sections = document.querySelectorAll(sectionIds.join(", "));
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
   const getNavLabel = (key: string): string => {
     const nav = t.navigation as Record<string, string>;
     return nav?.[key.replace('navigation.', '')] || key;
+  };
+
+  const isNavActive = (item: typeof navItems[0]) => {
+    if (item.href === "/" && !activeSection) return true;
+    return item.sectionId === activeSection;
   };
 
   return (
@@ -57,9 +91,15 @@ export function Header({ locale }: HeaderProps) {
               <a
                 key={item.key}
                 href={`/${locale === "zh" ? "zh" : ""}${item.href}`}
-                className="text-sm font-medium transition-colors hover:text-primary"
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-primary relative py-2",
+                  isNavActive(item) ? "text-primary font-semibold" : "text-muted-foreground"
+                )}
               >
                 {getNavLabel(item.key)}
+                {isNavActive(item) && (
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full transition-all" />
+                )}
               </a>
             ))}
           </nav>
@@ -95,7 +135,11 @@ export function Header({ locale }: HeaderProps) {
               <a
                 key={item.key}
                 href={`/${locale === "zh" ? "zh" : ""}${item.href}`}
-                className="block py-2 text-sm font-medium transition-colors hover:text-primary"
+                className={cn(
+                  "block py-2 text-sm font-medium transition-colors hover:text-primary",
+                  isNavActive(item) ? "text-primary font-semibold" : "text-muted-foreground",
+                  isNavActive(item) ? "bg-primary/5 pl-2 border-l-2 border-primary" : "pl-2 border-l-2 border-transparent"
+                )}
                 onClick={() => setIsOpen(false)}
               >
                 {getNavLabel(item.key)}
