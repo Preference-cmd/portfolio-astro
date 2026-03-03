@@ -21,7 +21,7 @@ export function About({ locale }: AboutProps) {
   };
 
   return (
-    <section id="about" className="py-20 scroll-mt-16">
+    <section id="about" className="py-20 scroll-mt-16 justify-center flex items-center">
       <div className="container px-4">
         {/* Section Title */}
         <div className="text-center mb-12">
