@@ -69,6 +69,29 @@ export function Header({ locale }: HeaderProps) {
     return item.sectionId === activeSection;
   };
 
+  const getHref = (item: typeof navItems[0]) => {
+    if (item.href === "/") {
+      return locale === "zh" ? "/zh" : "/";
+    }
+    return locale === "zh" ? `/zh${item.href}` : item.href;
+  };
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
+    const isHomePage = window.location.pathname === '/' || window.location.pathname === '/zh' || window.location.pathname === '/zh/';
+
+    if (isHomePage && item.sectionId) {
+      e.preventDefault();
+      const element = document.getElementById(item.sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        setIsOpen(false);
+        window.history.pushState(null, '', getHref(item));
+      }
+    } else {
+      setIsOpen(false);
+    }
+  };
+
   return (
     <header
       className={cn(
@@ -95,7 +118,8 @@ export function Header({ locale }: HeaderProps) {
               return (
                 <a
                   key={item.key}
-                  href={`/${locale === "zh" ? "zh" : ""}${item.href}`}
+                  href={getHref(item)}
+                  onClick={(e) => handleNavClick(e, item)}
                   className={cn(
                     "text-xs font-mono uppercase tracking-widest px-4 py-2 transition-all border",
                     active
@@ -141,14 +165,14 @@ export function Header({ locale }: HeaderProps) {
               return (
                 <a
                   key={item.key}
-                  href={`/${locale === "zh" ? "zh" : ""}${item.href}`}
+                  href={getHref(item)}
                   className={cn(
                     "block py-4 px-4 text-xs font-mono uppercase tracking-widest transition-colors",
                     active
                       ? "bg-primary text-primary-foreground font-bold"
                       : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
                   )}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleNavClick(e, item)}
                 >
                   {active ? `> ${getNavLabel(item.key)}` : getNavLabel(item.key)}
                 </a>

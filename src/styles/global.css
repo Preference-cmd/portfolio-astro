@@ -44,39 +44,39 @@
 
 @layer base {
   :root {
-    /* Brutalist Design System - Light (Fallback) */
-    --background: #121212;
-    --foreground: #E2E2E2;
+    /* Brutalist Design System - Light */
+    --background: #F4F4F0;
+    --foreground: #121212;
 
     /* Card & Popover */
-    --card: #1C1C1C;
-    --card-foreground: #E2E2E2;
-    --popover: #1C1C1C;
-    --popover-foreground: #E2E2E2;
+    --card: #FFFFFF;
+    --card-foreground: #121212;
+    --popover: #FFFFFF;
+    --popover-foreground: #121212;
 
     /* Primary (International Orange) */
     --primary: #FF5C28;
-    --primary-foreground: #121212;
+    --primary-foreground: #FFFFFF;
 
-    /* Secondary (Khaki/Tan) */
-    --secondary: #D2BC9D;
+    /* Secondary */
+    --secondary: #E0D3C1;
     --secondary-foreground: #121212;
 
     /* Muted (Structural Lines & Bg) */
-    --muted: #262626;
-    --muted-foreground: #8D8D8D;
+    --muted: #D1D1D1;
+    --muted-foreground: #666666;
 
     /* Accent */
-    --accent: #262626;
-    --accent-foreground: #E2E2E2;
+    --accent: #D1D1D1;
+    --accent-foreground: #121212;
 
     /* Destructive */
-    --destructive: #FF5C28;
-    --destructive-foreground: #121212;
+    --destructive: #E63900;
+    --destructive-foreground: #FFFFFF;
 
     /* Borders & Inputs */
-    --border: #262626;
-    --input: #1C1C1C;
+    --border: #121212;
+    --input: #FFFFFF;
     --ring: #FF5C28;
 
     /* Radius */
@@ -157,6 +157,10 @@
 @layer base {
   * {
     @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
