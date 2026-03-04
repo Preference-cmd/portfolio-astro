@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { getResume, type Locale } from "@/data";
+import { getResume } from "@/data";
+import type { Locale } from "@/i18n";
 import { cn } from "@/lib/utils";
 
 interface ExperienceProps {
@@ -11,109 +11,97 @@ export function Experience({ locale }: ExperienceProps) {
   const resume = getResume(locale);
 
   return (
-    <section id="experience" className="py-20 scroll-mt-16">
-        {/* Section Title */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            {locale === "en" ? "Experience" : "工作经历"}
-          </h2>
-        </div>
-
-        {/* Timeline */}
-        <div className="relative max-w-3xl mx-auto">
-        {/* Section Title */}
-        <div className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            {locale === "en" ? "Experience" : "工作经历"}
-          </h2>
-        </div>
-
-        {/* Timeline */}
-        <div className="relative max-w-3xl">
-          {/* Vertical line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px" />
-
-          {/* Timeline items */}
-          <div className="space-y-12">
-            {resume.workExperience.map((job, index) => (
-              <div
-                key={index}
-                className={cn(
-                  "relative flex flex-col md:flex-row gap-6",
-                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                )}
-              >
-                {/* Timeline dot */}
-                <div className="absolute left-4 md:left-1/2 w-3 h-3 bg-primary rounded-full -translate-x-1/2 mt-6 z-10" />
-
-                {/* Content card */}
-                <div className={cn(
-                  "ml-12 md:ml-0 md:w-[calc(50%-1.5rem)]",
-                  index % 2 === 0 ? "md:text-right" : "md:text-left"
-                )}>
-                  <Card className="bg-card border-border/50">
-                    <CardContent className="p-5">
-                      {/* Period badge */}
-                      <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary mb-3">
-                        {job.period}
-                      </span>
-                      
-                      {/* Position */}
-                      <h3 className="text-lg font-semibold mb-1">
-                        {job.position}
-                      </h3>
-                      
-                      {/* Company */}
-                      <p className="text-sm text-muted-foreground mb-3">
-                        {locale === "en" ? "at " : ""}{job.company}
-                      </p>
-                      
-                      {/* Responsibilities */}
-                      <ul className={cn(
-                        "space-y-2 text-sm text-muted-foreground",
-                        index % 2 === 0 ? "md:text-right" : "md:text-left"
-                      )}>
-                        {job.responsibilities.map((resp, respIndex) => (
-                          <li key={respIndex} className={cn(
-                            "flex gap-2",
-                            index % 2 === 0 ? "md:flex-row-reverse" : ""
-                          )}>
-                            <span className="text-primary">•</span>
-                            <span>{resp}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </div>
-
-                {/* Empty space for alternating layout */}
-                <div className="hidden md:block md:w-[calc(50%-1.5rem)]" />
-              </div>
-            ))}
+    <section id="experience" className="py-24 bg-background relative" aria-label="Experience Section">
+      <div className="container px-4 md:px-8 w-full max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-muted pb-8 mb-16 relative z-10">
+          <div className="relative">
+            <div className="text-muted-foreground font-mono text-xs uppercase tracking-widest mb-4">
+              03 / {locale === "en" ? "Experience" : "工作经历"}
+            </div>
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-foreground uppercase">
+              {locale === "en" ? "Career Path" : "职业轨迹"}
+            </h2>
           </div>
+          <p className="text-muted-foreground font-mono text-sm max-w-sm mt-6 md:mt-0 md:text-right">
+            Professional trajectory and academic foundations.
+          </p>
         </div>
 
-        {/* Education Section */}
-        <div className="mt-16">
-          <h3 className="text-2xl font-bold mb-6">
-            {locale === "en" ? "Education" : "教育背景"}
-          </h3>
-          <div className="max-w-3xl space-y-4">
-            {resume.education.map((edu, index) => (
-              <Card key={index} className="bg-card border-border/50">
-                <CardContent className="p-5">
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+        {/* Experience & Education Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 relative z-10 w-full mb-12">
+
+          {/* Work Experience */}
+          <div className="lg:col-span-8 flex flex-col gap-6">
+            <h3 className="text-2xl font-bold uppercase tracking-widest mb-4 flex items-center gap-3">
+              <span className="w-3 h-3 bg-primary inline-block"></span>
+              {locale === "en" ? "Work Experience" : "工作经验"}
+            </h3>
+
+            <div className="space-y-6">
+              {resume.workExperience.map((job, index) => (
+                <div key={index} className="border border-muted bg-card group relative flex flex-col hover:border-primary transition-colors">
+                  {/* Header part */}
+                  <div className="p-6 md:p-8 border-b border-muted bg-muted/10 group-hover:bg-primary/5 transition-colors flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                     <div>
-                      <h4 className="text-lg font-semibold">{edu.institution}</h4>
-                      <p className="text-muted-foreground">{edu.degree}</p>
+                      <h4 className="text-2xl font-black uppercase tracking-tighter mb-2">{job.position}</h4>
+                      <div className="text-sm font-mono text-primary font-bold uppercase tracking-widest">
+                        {locale === "en" ? "AT " : "@ "}{job.company}
+                      </div>
                     </div>
-                    <span className="text-sm text-muted-foreground">{edu.period}</span>
+                    <div className="text-xs font-mono text-muted-foreground border border-muted px-3 py-1 uppercase tracking-widest bg-background h-fit">
+                      {job.period}
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
+
+                  {/* Responsibilities */}
+                  <div className="p-6 md:p-8">
+                    <ul className="space-y-3 font-mono text-sm text-muted-foreground">
+                      {job.responsibilities.map((resp, respIndex) => (
+                        <li key={respIndex} className="flex gap-3 leading-relaxed">
+                          <span className="text-primary mt-1">&gt;</span>
+                          <span>{resp}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
+
+          {/* Education Secondary Column */}
+          <div className="lg:col-span-4 flex flex-col gap-6">
+            <h3 className="text-2xl font-bold uppercase tracking-widest mb-4 flex items-center gap-3">
+              <span className="w-3 h-3 bg-primary inline-block"></span>
+              {locale === "en" ? "Education" : "教育背景"}
+            </h3>
+
+            <div className="space-y-6">
+              {resume.education.map((edu, index) => (
+                <div key={index} className="border border-muted border-l-4 border-l-primary bg-card p-6 md:p-8 flex flex-col">
+                  <div className="text-xs font-mono text-muted-foreground mb-4 uppercase tracking-widest">
+                    {edu.period}
+                  </div>
+                  <h4 className="text-xl font-black uppercase tracking-tighter mb-2">
+                    {edu.institution}
+                  </h4>
+                  <div className="text-sm font-mono text-muted-foreground uppercase">
+                    {edu.degree}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Brutalist Deco Block */}
+            <div className="hidden lg:flex flex-1 border border-muted bg-muted/5 items-center justify-center p-8 mt-2 overflow-hidden relative group min-h-[200px]">
+              <div className="absolute inset-0 bg-primary/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
+              <div className="text-primary font-mono text-6xl tracking-tighter opacity-20 group-hover:opacity-100 transition-opacity rotate-90 scale-150">
+                SYSTEM
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

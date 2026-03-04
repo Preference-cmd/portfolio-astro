@@ -21,8 +21,8 @@ export function PortfolioContent({ locale }: PortfolioContentProps) {
       <main>
         <Hero locale={locale} />
         <About locale={locale} />
-        <Projects locale={locale} />
         <Experience locale={locale} />
+        <Projects locale={locale} />
         <Contact locale={locale} />
       </main>
       <Footer locale={locale} />
