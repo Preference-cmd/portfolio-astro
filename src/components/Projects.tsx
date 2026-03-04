@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Github, ExternalLink } from "lucide-react";
+import { Github, MoveUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -49,64 +49,97 @@ export function Projects({ locale }: ProjectsProps) {
   return (
     <section
       id="projects"
-      className="py-24 bg-muted/30 relative"
+      className="py-24 bg-background relative"
+      aria-label="Projects Section"
     >
-      <div className="container px-8 w-full max-w-7xl mx-auto">
-        {/* Section Title */}
-        <div className="text-center mb-20">
-          <h2 className="text-4xl font-bold mb-4">
-            {locale === "en" ? "My Projects" : "我的项目"}
-          </h2>
-          <p className="text-muted-foreground text-lg">
-            {locale === "en" ? "Featured Projects" : "精选项目"}
+      <div className="container px-4 md:px-8 w-full max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-muted pb-8 mb-16 relative z-10">
+          <div className="relative">
+            <div className="text-muted-foreground font-mono text-xs uppercase tracking-widest mb-4">
+              04 / {locale === "en" ? "Projects" : "我的项目"}
+            </div>
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-foreground uppercase">
+              {locale === "en" ? "Featured Work" : "精选项目"}
+            </h2>
+          </div>
+          <p className="text-muted-foreground font-mono text-sm max-w-sm mt-6 md:mt-0 md:text-right">
+            Selected engineering and design implementations.
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-24 items-start relative">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start relative z-10 w-full">
           {/* Left: Project Timeline list (Scroll Area) */}
-          <div className="lg:w-2/5 w-full">
+          <div className="lg:w-[35%] w-full">
             <div className="relative">
-              {/* Vertical Line */}
-              <div className="absolute left-[27px] lg:left-4 top-0 bottom-0 w-0.5 bg-border hidden lg:block" />
+              {/* Vertical Line via border */}
+              <div className="absolute left-[37px] top-0 bottom-0 w-[1px] bg-muted hidden lg:block" />
 
-              <div className="space-y-0">
+              <div className="space-y-0 relative z-10">
                 {projects.map((project, index) => (
                   <div
                     key={project.id}
                     data-id={project.id}
                     className={cn(
-                      "project-timeline-item relative w-full text-left pl-0 lg:pl-12 py-12 lg:py-32 pr-0 lg:pr-4 flex flex-col justify-center",
+                      "project-timeline-item relative w-full text-left pl-0 lg:pl-[84px] py-12 lg:py-32 pr-0 lg:pr-4 flex flex-col justify-center",
                       "min-h-[auto] lg:min-h-[60vh]",
                       index === 0 ? "lg:mt-0" : "",
                       index === projects.length - 1 ? "lg:mb-[30vh]" : ""
                     )}
                   >
-                    {/* Timeline Dot (Desktop only) */}
-                    <span
-                      className={cn(
-                        "absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 transition-all duration-500 hidden lg:block",
-                        activeId === project.id
-                          ? "bg-primary border-primary scale-125"
-                          : "bg-background border-muted-foreground/30"
-                      )}
-                    />
+                    {/* Timeline Tracker (Desktop only) */}
+                    <div className="absolute left-8 top-1/2 -translate-y-1/2 hidden lg:flex items-center justify-center w-[20px] bg-background">
+                      <span
+                        className={cn(
+                          "transition-all duration-500 font-mono text-xs font-bold w-full text-center relative z-20",
+                          activeId === project.id
+                            ? "text-primary scale-150"
+                            : "text-muted-foreground scale-100 opacity-30"
+                        )}
+                      >
+                        {activeId === project.id ? "◊" : "□"}
+                      </span>
+                    </div>
 
                     {/* Timeline Info (Desktop only) text wrapper */}
                     <div className={cn(
                       "transition-all duration-500 hidden lg:block",
-                      activeId === project.id ? "opacity-100 translate-x-0" : "opacity-40 -translate-x-4"
+                      activeId === project.id ? "opacity-100 translate-x-0" : "opacity-30 -translate-x-4"
                     )}>
-                      <div className="font-bold text-3xl mb-2">
+                      <div className="font-bold text-3xl mb-3 tracking-tighter uppercase">
                         {project.title}
                       </div>
-                      <div className="text-lg text-muted-foreground mt-2">
-                        {project.duration}
+                      <div className="text-sm font-mono tracking-widest text-muted-foreground mt-2 uppercase mb-6">
+                        {project.duration} // {project.role}
+                      </div>
+
+                      {/* Buttons in left column for desktop */}
+                      <div className={cn(
+                        "flex flex-wrap gap-4 transition-all duration-500",
+                        activeId === project.id ? "opacity-100" : "opacity-0 pointer-events-none -translate-y-2"
+                      )}>
+                        {project.liveUrl && (
+                          <Button size="sm" className="w-auto" asChild>
+                            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                              {locale === "en" ? "Live Demo" : "演示"}
+                              <MoveUpRight className="h-4 w-4 ml-2" />
+                            </a>
+                          </Button>
+                        )}
+                        {project.githubUrl && (
+                          <Button variant="outline" size="sm" className="w-auto" asChild>
+                            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                              <Github className="h-4 w-4 mr-2" />
+                              {locale === "en" ? "Source" : "源码"}
+                            </a>
+                          </Button>
+                        )}
                       </div>
                     </div>
 
                     {/* Mobile Project Card (Visible only on mobile/tablet) */}
                     <div className="block lg:hidden w-full mb-8">
-                      <ProjectCard project={project} getStatusLabel={getStatusLabel} locale={locale} />
+                      <ProjectCard project={project} getStatusLabel={getStatusLabel} locale={locale} isActive={true} />
                     </div>
                   </div>
                 ))}
@@ -115,19 +148,22 @@ export function Projects({ locale }: ProjectsProps) {
           </div>
 
           {/* Right: Project Preview (Sticky on Desktop) */}
-          <div className="hidden lg:flex lg:w-3/5 w-full sticky top-32 h-[calc(100vh-16rem)] items-center justify-center">
-            <div className="relative w-full h-full flex items-center justify-center">
+          <div className="hidden lg:flex lg:w-[65%] w-full sticky top-24 h-[calc(100vh-10rem)] items-center justify-center">
+            <div className="relative w-full h-[80vh] max-h-[900px] flex items-center justify-center">
               {projects.map((project) => (
                 <div
                   key={project.id}
                   className={cn(
-                    "absolute w-full transition-all duration-700 ease-out",
+                    "absolute w-full h-full transition-all duration-700 ease-out flex items-center justify-center",
                     activeId === project.id
-                      ? "opacity-100 translate-y-0 scale-100 z-10"
-                      : "opacity-0 translate-y-12 scale-95 z-0 pointer-events-none"
+                      ? "opacity-100 translate-y-0 z-10"
+                      : "opacity-0 translate-y-16 pointer-events-none -z-10"
                   )}
+                  style={{
+                    // Add slight rotations to inactive cards if desired for stacking effect, we stick to straight fade/slide here.
+                  }}
                 >
-                  <ProjectCard project={project} getStatusLabel={getStatusLabel} locale={locale} />
+                  <ProjectCard project={project} getStatusLabel={getStatusLabel} locale={locale} isActive={activeId === project.id} />
                 </div>
               ))}
             </div>
@@ -142,14 +178,21 @@ interface ProjectCardProps {
   project: ProjectType;
   getStatusLabel: (status: string) => string;
   locale: "en" | "zh";
+  isActive: boolean;
 }
 
-function ProjectCard({ project, getStatusLabel, locale }: ProjectCardProps) {
+function ProjectCard({ project, getStatusLabel, locale, isActive }: ProjectCardProps) {
   return (
-    <Card className="w-full shadow-lg border-2 border-transparent hover:border-primary/20 p-6 bg-background/80 backdrop-blur-sm">
-      <CardHeader>
+    <Card className={cn(
+      "w-full h-full flex flex-col p-0 bg-background/95 backdrop-blur-xl transition-all duration-500",
+      isActive ? "border-primary shadow-[4px_4px_0_var(--color-primary)]" : "border-muted"
+    )}>
+      <CardHeader className="border-b border-muted p-6 md:p-8 bg-muted/10">
         <div className="flex justify-between items-start gap-4 flex-wrap mb-4">
-          <CardTitle className="text-2xl">{project.title}</CardTitle>
+          <div className="flex flex-col">
+            <span className="text-xs font-mono text-muted-foreground tracking-widest uppercase mb-2">Deploy: {project.id}</span>
+            <CardTitle className="text-3xl md:text-4xl uppercase tracking-tighter font-black">{project.title}</CardTitle>
+          </div>
           <Badge
             variant={
               project.status === "completed"
@@ -158,48 +201,67 @@ function ProjectCard({ project, getStatusLabel, locale }: ProjectCardProps) {
                   ? "secondary"
                   : "outline"
             }
-            className={project.status === "completed" ? "bg-primary text-primary-foreground" : ""}
+            className={cn(
+              "notched-br",
+              project.status === "completed" ? "bg-primary text-primary-foreground border-primary" : ""
+            )}
           >
             {getStatusLabel(project.status)}
           </Badge>
         </div>
-        <CardDescription className="text-lg">
+        <CardDescription className="text-lg text-foreground font-semibold mt-4">
           {project.description}
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-6">
-        <p className="text-base text-muted-foreground leading-relaxed">
-          {project.overview}
-        </p>
-        <div className="flex flex-wrap gap-2">
-          {project.technologies.map((tech: string) => (
-            <Badge key={tech} variant="outline" className="text-sm px-3 py-1">
-              {tech}
-            </Badge>
-          ))}
+
+      <CardContent className="p-6 md:p-8 flex-grow flex flex-col justify-between overflow-y-auto">
+        <div>
+          <p className="text-sm font-mono text-muted-foreground leading-relaxed mb-8">
+            {project.overview}
+          </p>
+
+          <div className="mb-8">
+            <h4 className="text-xs font-mono text-muted-foreground tracking-widest uppercase mb-4">Tech Stack</h4>
+            <div className="flex flex-wrap gap-2">
+              {project.technologies.map((tech: string) => (
+                <span key={tech} className="text-xs font-mono border border-muted px-2 py-1 bg-background">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
-        <div className="flex gap-4 text-xs text-muted-foreground">
-          <span>{project.duration}</span>
-          <span className="opacity-50">|</span>
-          <span>{project.teamSize}</span>
-          <span className="opacity-50">|</span>
-          <span>{project.role}</span>
+
+        <div className="flex flex-col sm:flex-row gap-4 text-xs font-mono text-muted-foreground uppercase tracking-widest border-t border-muted pt-6 mt-auto">
+          <div className="flex flex-col gap-1">
+            <span className="text-foreground/50">Timeline</span>
+            <span className="text-foreground">{project.duration}</span>
+          </div>
+          <div className="border-l border-muted pl-4 flex flex-col gap-1">
+            <span className="text-foreground/50">Team</span>
+            <span className="text-foreground">{project.teamSize}</span>
+          </div>
+          <div className="border-l border-muted pl-4 flex flex-col gap-1">
+            <span className="text-foreground/50">Role</span>
+            <span className="text-foreground">{project.role}</span>
+          </div>
         </div>
       </CardContent>
-      <CardFooter className="gap-2">
+
+      <CardFooter className="p-6 md:p-8 border-t border-muted bg-muted/10 gap-4 flex-wrap lg:hidden">
         {project.liveUrl && (
-          <Button variant="outline" size="sm" asChild>
+          <Button size="lg" className="w-full sm:w-auto" asChild>
             <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="h-4 w-4 mr-2" />
               {locale === "en" ? "Live Demo" : "演示"}
+              <MoveUpRight className="h-4 w-4 ml-2" />
             </a>
           </Button>
         )}
         {project.githubUrl && (
-          <Button variant="outline" size="sm" asChild>
+          <Button variant="outline" size="lg" className="w-full sm:w-auto" asChild>
             <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
               <Github className="h-4 w-4 mr-2" />
-              {locale === "en" ? "GitHub" : "源码"}
+              {locale === "en" ? "Source" : "源码"}
             </a>
           </Button>
         )}

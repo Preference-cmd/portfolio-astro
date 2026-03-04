@@ -44,80 +44,113 @@
 
 @layer base {
   :root {
-    /* Swiss Design System - Light Mode */
-    --background: #F2F2F2;
-    --foreground: #161616;
-
-    /* Card & Popover */
-    --card: #FFFFFF;
-    --card-foreground: #161616;
-    --popover: #FFFFFF;
-    --popover-foreground: #161616;
-
-    /* Primary (Swiss Orange) */
-    --primary: #FF3D00;
-    --primary-foreground: #FFFFFF;
-
-    /* Secondary */
-    --secondary: #FFFFFF;
-    --secondary-foreground: #161616;
-
-    /* Muted */
-    --muted: #E5E5E5;
-    --muted-foreground: #999999;
-
-    /* Accent */
-    --accent: #E5E5E5;
-    --accent-foreground: #161616;
-
-    /* Destructive */
-    --destructive: #FF3D00;
-    --destructive-foreground: #FFFFFF;
-
-    /* Borders & Inputs */
-    --border: #E5E5E5;
-    --input: #FFFFFF;
-    --ring: #FF3D00;
-
-    /* Radius */
-    --radius: 0.625rem;
-  }
-
-  .dark {
-    /* Swiss Design System - Dark Mode */
-    --background: #161616;
-    --foreground: #FFFFFF;
+    /* Brutalist Design System - Light (Fallback) */
+    --background: #121212;
+    --foreground: #E2E2E2;
 
     /* Card & Popover */
     --card: #1C1C1C;
-    --card-foreground: #FFFFFF;
+    --card-foreground: #E2E2E2;
     --popover: #1C1C1C;
-    --popover-foreground: #FFFFFF;
+    --popover-foreground: #E2E2E2;
 
-    /* Primary (Swiss Orange - stays the same) */
-    --primary: #FF3D00;
-    --primary-foreground: #FFFFFF;
+    /* Primary (International Orange) */
+    --primary: #FF5C28;
+    --primary-foreground: #121212;
 
-    /* Secondary */
-    --secondary: #2C2C2C;
-    --secondary-foreground: #FFFFFF;
+    /* Secondary (Khaki/Tan) */
+    --secondary: #D2BC9D;
+    --secondary-foreground: #121212;
 
-    /* Muted */
-    --muted: #2C2C2C;
-    --muted-foreground: #999999;
+    /* Muted (Structural Lines & Bg) */
+    --muted: #262626;
+    --muted-foreground: #8D8D8D;
 
     /* Accent */
-    --accent: #2C2C2C;
-    --accent-foreground: #FFFFFF;
+    --accent: #262626;
+    --accent-foreground: #E2E2E2;
+
+    /* Destructive */
+    --destructive: #FF5C28;
+    --destructive-foreground: #121212;
+
+    /* Borders & Inputs */
+    --border: #262626;
+    --input: #1C1C1C;
+    --ring: #FF5C28;
+
+    /* Radius */
+    --radius: 0px;
+  }
+
+  .dark {
+    /* Brutalist Design System - Dark Mode (Default) */
+    --background: #121212;
+    --foreground: #E2E2E2;
+
+    /* Card & Popover */
+    --card: #1C1C1C;
+    --card-foreground: #E2E2E2;
+    --popover: #1C1C1C;
+    --popover-foreground: #E2E2E2;
+
+    /* Primary (International Orange) */
+    --primary: #FF5C28;
+    --primary-foreground: #121212;
+
+    /* Secondary (Khaki/Tan) */
+    --secondary: #D2BC9D;
+    --secondary-foreground: #121212;
+
+    /* Muted */
+    --muted: #262626;
+    --muted-foreground: #8D8D8D;
+
+    /* Accent */
+    --accent: #262626;
+    --accent-foreground: #E2E2E2;
 
     /* Destructive */
     --destructive: #7f1d1d;
-    --destructive-foreground: #FFFFFF;
+    --destructive-foreground: #E2E2E2;
 
     /* Borders & Inputs */
-    --border: #2C2C2C;
-    --input: #2C2C2C;
-    --ring: #FF3D00;
+    --border: #262626;
+    --input: #262626;
+    --ring: #FF5C28;
+  }
+}
+
+@layer utilities {
+  .notched-br {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+  }
+
+  .notched-tl {
+    clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
+  }
+
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+  }
+
+  .dotted-divider {
+    background-image: linear-gradient(to right, var(--color-muted) 50%, transparent 50%);
+    background-size: 8px 1px;
+    background-repeat: repeat-x;
+    height: 1px;
+  }
+
+  .grid-bg {
+    background-image: linear-gradient(var(--color-muted) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-muted) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center center;
   }
 }
 
