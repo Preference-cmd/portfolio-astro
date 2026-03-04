@@ -32,72 +32,59 @@ export function Experience({ locale }: ExperienceProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 relative z-10 w-full mb-12">
 
           {/* Work Experience */}
-          <div className="lg:col-span-8 flex flex-col gap-6">
+          <div className="lg:col-span-12 flex flex-col gap-6 w-full max-w-6xl mx-auto">
             <h3 className="text-2xl font-bold uppercase tracking-widest mb-4 flex items-center gap-3">
               <span className="w-3 h-3 bg-primary inline-block"></span>
               {locale === "en" ? "Work Experience" : "工作经验"}
             </h3>
 
-            <div className="space-y-6">
-              {resume.workExperience.map((job, index) => (
-                <div key={index} className="border border-muted bg-card group relative flex flex-col hover:border-primary transition-colors">
-                  {/* Header part */}
-                  <div className="p-6 md:p-8 border-b border-muted bg-muted/10 group-hover:bg-primary/5 transition-colors flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                    <div>
-                      <h4 className="text-2xl font-black uppercase tracking-tighter mb-2">{job.position}</h4>
-                      <div className="text-sm font-mono text-primary font-bold uppercase tracking-widest">
-                        {locale === "en" ? "AT " : "@ "}{job.company}
+            <div className="relative pt-8 pl-12 md:pl-48 w-full max-w-5xl mx-auto">
+              {/* Vertical Timeline Divider */}
+              <div className="absolute left-4 md:left-40 top-0 bottom-0 w-px bg-muted z-0"></div>
+
+              <div className="space-y-12 md:space-y-16">
+                {resume.workExperience.map((job, index) => (
+                  <div key={index} className="relative z-10 w-full group">
+
+                    {/* Timeline Node Point (perfectly aligned with line) */}
+                    <div className="absolute left-[calc(-3rem+16px-0.5px-8px)] md:left-[calc(-12rem+160px-0.5px-8px)] top-8 w-4 h-4 rounded-none bg-background border-2 border-primary group-hover:scale-150 group-hover:bg-primary transition-all z-20"></div>
+
+                    {/* Timeline Period Label (Left side of axis on Desktop) */}
+                    <div className="md:absolute md:left-[-190px] md:top-6 hidden md:flex items-center justify-end w-[130px]">
+                      <div className="text-sm font-mono text-muted-foreground border border-muted px-4 py-2 uppercase tracking-widest bg-background group-hover:border-primary group-hover:text-primary transition-colors text-right whitespace-nowrap">
+                        {job.period}
                       </div>
                     </div>
-                    <div className="text-xs font-mono text-muted-foreground border border-muted px-3 py-1 uppercase tracking-widest bg-background h-fit">
-                      {job.period}
+
+                    {/* Content Card (Right side of axis) */}
+                    <div className="w-full border border-muted bg-card hover:border-primary transition-colors flex flex-col">
+                      {/* Header */}
+                      <div className="p-6 md:p-8 border-b border-muted bg-muted/10 group-hover:bg-primary/5 transition-colors">
+                        {/* Mobile Only Period */}
+                        <div className="md:hidden text-xs font-mono text-muted-foreground mb-4 uppercase tracking-widest border border-muted px-3 py-1 inline-block bg-background">
+                          {job.period}
+                        </div>
+                        <h4 className="text-2xl font-black uppercase tracking-tighter mb-2">{job.position}</h4>
+                        <div className="text-sm font-mono text-primary font-bold uppercase tracking-widest">
+                          {locale === "en" ? "AT " : "@ "}{job.company}
+                        </div>
+                      </div>
+
+                      {/* Responsibilities */}
+                      <div className="p-6 md:p-8">
+                        <ul className="space-y-3 font-mono text-sm text-muted-foreground">
+                          {job.responsibilities.map((resp, respIndex) => (
+                            <li key={respIndex} className="flex gap-3 leading-relaxed">
+                              <span className="text-primary mt-1">&gt;</span>
+                              <span>{resp}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Responsibilities */}
-                  <div className="p-6 md:p-8">
-                    <ul className="space-y-3 font-mono text-sm text-muted-foreground">
-                      {job.responsibilities.map((resp, respIndex) => (
-                        <li key={respIndex} className="flex gap-3 leading-relaxed">
-                          <span className="text-primary mt-1">&gt;</span>
-                          <span>{resp}</span>
-                        </li>
-                      ))}
-                    </ul>
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Education Secondary Column */}
-          <div className="lg:col-span-4 flex flex-col gap-6">
-            <h3 className="text-2xl font-bold uppercase tracking-widest mb-4 flex items-center gap-3">
-              <span className="w-3 h-3 bg-primary inline-block"></span>
-              {locale === "en" ? "Education" : "教育背景"}
-            </h3>
-
-            <div className="space-y-6">
-              {resume.education.map((edu, index) => (
-                <div key={index} className="border border-muted border-l-4 border-l-primary bg-card p-6 md:p-8 flex flex-col">
-                  <div className="text-xs font-mono text-muted-foreground mb-4 uppercase tracking-widest">
-                    {edu.period}
-                  </div>
-                  <h4 className="text-xl font-black uppercase tracking-tighter mb-2">
-                    {edu.institution}
-                  </h4>
-                  <div className="text-sm font-mono text-muted-foreground uppercase">
-                    {edu.degree}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Brutalist Deco Block */}
-            <div className="hidden lg:flex flex-1 border border-muted bg-muted/5 items-center justify-center p-8 mt-2 overflow-hidden relative group min-h-[200px]">
-              <div className="absolute inset-0 bg-primary/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
-              <div className="text-primary font-mono text-6xl tracking-tighter opacity-20 group-hover:opacity-100 transition-opacity rotate-90 scale-150">
-                SYSTEM
+                ))}
               </div>
             </div>
           </div>
