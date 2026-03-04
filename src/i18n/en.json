@@ -22,12 +22,52 @@
       "para3": "I strive to combine solid engineering practices with excellent user experience: continuously refining AI-native products, building scalable microservices and data infrastructure, exploring automated 3D generation and autonomous systems, and constantly improving performance and maintainability."
     },
     "skillsTitle": "Technologies I Work With",
-    "skills": [
-      "Next.js", "TypeScript", "Tailwind CSS", "shadcn-UI",
-      "Rust", "tokio/Axum", "Python", "FastAPI", "Data Analysis", "DL/ML",
-      "PostgreSQL", "Redis", "Docker", "CI/CD",
-      "LangChain/LangGraph", "OpenCV", "Computer Vision",
-      "ROS2", "System Modeling", "Real-time Processing"
+    "skillCategories": [
+      {
+        "name": "Frontend",
+        "skills": [
+          "Next.js",
+          "TypeScript",
+          "Tailwind CSS",
+          "shadcn-UI"
+        ]
+      },
+      {
+        "name": "Backend",
+        "skills": [
+          "Rust",
+          "tokio/Axum",
+          "Python",
+          "FastAPI"
+        ]
+      },
+      {
+        "name": "Infrastructure",
+        "skills": [
+          "PostgreSQL",
+          "Redis",
+          "Docker",
+          "CI/CD"
+        ]
+      },
+      {
+        "name": "AI & Vision",
+        "skills": [
+          "LangChain/LangGraph",
+          "DL/ML",
+          "Computer Vision",
+          "OpenCV",
+          "Data Analysis"
+        ]
+      },
+      {
+        "name": "Robotics & Systems",
+        "skills": [
+          "ROS2",
+          "System Modeling",
+          "Real-time Processing"
+        ]
+      }
     ],
     "stats": {
       "experience": {

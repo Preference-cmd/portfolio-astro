@@ -13,7 +13,7 @@ export function About({ locale }: AboutProps) {
     title: string;
     subtitle: string;
     skillsTitle: string;
-    skills: string[];
+    skillCategories: { name: string; skills: string[] }[];
   };
 
   const [isVisible, setIsVisible] = React.useState(false);
@@ -50,7 +50,7 @@ export function About({ locale }: AboutProps) {
           </p>
         </div>
 
-        {/* Unified Skills Section */}
+        {/* Categorized Skills Section */}
         <div className={cn(
           "transition-all duration-1000 delay-150 ease-out w-full",
           isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-12 scale-95"
@@ -60,14 +60,23 @@ export function About({ locale }: AboutProps) {
               <h3 className="text-2xl font-bold mb-10 text-center">
                 {about.skillsTitle}
               </h3>
-              <div className="flex flex-wrap justify-center gap-4">
-                {about.skills.map((skill: string, index: number) => (
-                  <span
-                    key={index}
-                    className="px-6 py-3 text-base rounded-md border border-primary/30 bg-primary/5 text-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:shadow-md cursor-default font-medium"
-                  >
-                    {skill}
-                  </span>
+              <div className="flex flex-col gap-6 md:gap-8">
+                {about.skillCategories?.map((category, idx) => (
+                  <div key={idx} className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+                    <div className="md:w-1/4 text-center md:text-right font-semibold text-lg text-primary">
+                      {category.name}
+                    </div>
+                    <div className="md:w-3/4 flex flex-wrap justify-center md:justify-start gap-4">
+                      {category.skills.map((skill: string, index: number) => (
+                        <span
+                          key={index}
+                          className="px-5 py-2 text-sm md:text-base rounded-md border border-primary/30 bg-primary/5 text-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:shadow-md cursor-default font-medium"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 ))}
               </div>
             </CardContent>

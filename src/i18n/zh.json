@@ -22,12 +22,52 @@
       "para3": "我致力于将可靠的工程实践与卓越的用户体验结合起来 原生产品、：持续打磨 AI构建可扩展的微服务与数据基础设施、探索自动化 3D 生成与自治系统，并不断提升系统的性能与可维护性。"
     },
     "skillsTitle": "我使用的技术",
-    "skills": [
-      "Next.js", "TypeScript", "Tailwind CSS", "shadcn-UI",
-      "Rust", "tokio/Axum", "Python", "FastAPI", "Data Analysis", "DL/ML",
-      "PostgreSQL", "Redis", "Docker", "CI/CD",
-      "LangChain/LangGraph", "OpenCV", "Computer Vision",
-      "ROS2", "System Modeling","Real-time Processing"
+    "skillCategories": [
+      {
+        "name": "前端与全栈",
+        "skills": [
+          "Next.js",
+          "TypeScript",
+          "Tailwind CSS",
+          "shadcn-UI"
+        ]
+      },
+      {
+        "name": "后端开发",
+        "skills": [
+          "Rust",
+          "tokio/Axum",
+          "Python",
+          "FastAPI"
+        ]
+      },
+      {
+        "name": "基础设施",
+        "skills": [
+          "PostgreSQL",
+          "Redis",
+          "Docker",
+          "CI/CD"
+        ]
+      },
+      {
+        "name": "AI与视觉",
+        "skills": [
+          "LangChain/LangGraph",
+          "DL/ML",
+          "Computer Vision",
+          "OpenCV",
+          "Data Analysis"
+        ]
+      },
+      {
+        "name": "机器人与系统",
+        "skills": [
+          "ROS2",
+          "System Modeling",
+          "Real-time Processing"
+        ]
+      }
     ],
     "stats": {
       "experience": {
