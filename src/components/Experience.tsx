@@ -66,7 +66,7 @@ export function Experience({ locale }: ExperienceProps) {
                         </div>
                         <h4 className="text-2xl font-black uppercase tracking-tighter mb-2">{job.position}</h4>
                         <div className="text-sm font-mono text-primary font-bold uppercase tracking-widest">
-                          {locale === "en" ? "AT " : "@ "}{job.company}
+                          {job.company}
                         </div>
                       </div>
 
