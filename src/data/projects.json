@@ -5,20 +5,31 @@
       "title": "AI Native TRPG Platform",
       "description": "An AI-native TRPG platform that provides AI-driven TRPG gaming experiences.",
       "overview": "This AI Native TRPG Platform represents a cutting-edge TRPG experience where creators can easily build, customize, and share their own TRPG games with deep AI technology integration.",
-      "technologies": ["Next.js", "TypeScript", "Tailwind CSS", "AI Integration"],
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "AI Integration"
+      ],
       "duration": "September 2025 - Present",
       "teamSize": "1 developer",
       "role": "Full-stack Developer",
-      "status": "prototype",
-      "liveUrl": "https://ai-chat-demo.vercel.app",
-      "githubUrl": "https://github.com/username/ai-chat-platform"
+      "status": "prototype"
     },
     {
       "id": "rust-python-microservices",
       "title": "Rust/Python Microservices API",
       "description": "High-performance microservices architecture built with Rust Axum and Python FastAPI.",
       "overview": "This microservices cluster integrates Rust's high-performance advantages with Python's flexibility, providing complete solutions for user authentication, authorization, and resource management.",
-      "technologies": ["Rust", "tokio/Axum", "Python", "FastAPI", "PostgreSQL", "Redis", "Docker"],
+      "technologies": [
+        "Rust",
+        "tokio/Axum",
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
+        "Redis",
+        "Docker"
+      ],
       "duration": "May 2025 - Present",
       "teamSize": "1 developer",
       "role": "Full-stack Developer",
@@ -30,7 +41,14 @@
       "title": "ROS2-based Intelligent Autonomous Vehicle",
       "description": "A comprehensive autonomous vehicle system built on ROS2 framework.",
       "overview": "This intelligent autonomous vehicle system represents a complete implementation of self-driving technology using the ROS2 framework with advanced perception, decision-making, and execution modules.",
-      "technologies": ["ROS2", "VINS-Fusion", "Octomap", "Navigation2", "C++", "Python"],
+      "technologies": [
+        "ROS2",
+        "VINS-Fusion",
+        "Octomap",
+        "Navigation2",
+        "C++",
+        "Python"
+      ],
       "duration": "February 2023 - June 2023",
       "teamSize": "1 developer",
       "role": "System Designer & Developer",
@@ -42,7 +60,13 @@
       "title": "Product Preview 3D Reconstruction",
       "description": "An automated 3D model generation application from product images.",
       "overview": "This innovative application automates the process of generating 3D models from product images or videos, providing e-commerce businesses with enhanced product visualization capabilities.",
-      "technologies": ["Python", "Meta SAM2", "Colmap", "OpenMVS", "OpenCV"],
+      "technologies": [
+        "Python",
+        "Meta SAM2",
+        "Colmap",
+        "OpenMVS",
+        "OpenCV"
+      ],
       "duration": "May 2025",
       "teamSize": "1 developer",
       "role": "Solo Developer",
@@ -54,7 +78,13 @@
       "title": "Computer Vision Target Tracking System",
       "description": "Real-time target tracking system with YOLOv5 and PID control.",
       "overview": "This computer vision target tracking system was developed as part of RoboCon competition research, focusing on real-time target detection and tracking in complex environments.",
-      "technologies": ["Python", "OpenCV", "YOLOv5", "PID Control", "Computer Vision"],
+      "technologies": [
+        "Python",
+        "OpenCV",
+        "YOLOv5",
+        "PID Control",
+        "Computer Vision"
+      ],
       "duration": "July 2021 - March 2022",
       "teamSize": "1 developer",
       "role": "Computer Vision Engineer",
@@ -65,7 +95,12 @@
       "title": "LQR Control System for Inverted Pendulum",
       "description": "Control system design using Luenberger observer and LQR algorithms.",
       "overview": "This project focuses on designing and implementing an advanced control system for a single inverted pendulum using Luenberger observer for state estimation and Linear Quadratic Regulator (LQR) for optimal control.",
-      "technologies": ["MATLAB/Simulink", "Control Theory", "LQR Controller", "Luenberger Observer"],
+      "technologies": [
+        "MATLAB/Simulink",
+        "Control Theory",
+        "LQR Controller",
+        "Luenberger Observer"
+      ],
       "duration": "October 2022 - November 2022",
       "teamSize": "1 developer",
       "role": "Control System Designer",

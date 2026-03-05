@@ -31,6 +31,16 @@
   ],
   "workExperience": [
     {
+      "company": "GuangDong Yesheen Technology Co., Ltd.",
+      "position": "AI/Full-Stack Developer, Project lead of robot project",
+      "period": "NOV 2025 - FEB 2026",
+      "responsibilities": [
+        "Developed the complete face-recognition application for edge computing device using Tauri2",
+        "Collecting and processing data with Dify workflows for model training",
+        "Design and implement architecture of the AI system for object detection, pose estimation and tracking using Dora-rs and ROS2 with Docker"
+      ]
+    },
+    {
       "company": "Chongqing Jiangjin District Meitu Agricultural Professional Cooperative",
       "position": "Huarun Sanjiu Wild Chrysanthemum Project, Management & Information Analysis Engineer",
       "period": "SEP 2024 - APR 2025",

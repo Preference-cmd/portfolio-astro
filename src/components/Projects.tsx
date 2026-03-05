@@ -88,7 +88,7 @@ export function Projects({ locale }: ProjectsProps) {
                     )}
                   >
                     {/* Timeline Tracker (Desktop only) */}
-                    <div className="absolute left-8 top-1/2 -translate-y-1/2 hidden lg:flex items-center justify-center w-[20px] bg-background">
+                    <div className="absolute left-[calc(37px-10px+0.5px)] top-1/2 -translate-y-1/2 hidden lg:flex items-center justify-center w-[20px] bg-background">
                       <span
                         className={cn(
                           "transition-all duration-500 font-mono text-xs font-bold w-full text-center relative z-20",
@@ -188,26 +188,26 @@ function ProjectCard({ project, getStatusLabel, locale, isActive }: ProjectCardP
       isActive ? "border-primary shadow-[4px_4px_0_var(--color-primary)]" : "border-muted"
     )}>
       <CardHeader className="border-b border-muted p-6 md:p-8 bg-muted/10">
-        <div className="flex justify-between items-start gap-4 flex-wrap mb-4">
-          <div className="flex flex-col">
-            <span className="text-xs font-mono text-muted-foreground tracking-widest uppercase mb-2">Deploy: {project.id}</span>
-            <CardTitle className="text-3xl md:text-4xl uppercase tracking-tighter font-black">{project.title}</CardTitle>
+        <div className="flex flex-col mb-4">
+          <span className="text-xs font-mono text-muted-foreground tracking-widest uppercase mb-2">Deploy: {project.id}</span>
+          <CardTitle className="text-3xl md:text-4xl uppercase tracking-tighter font-black mb-4">{project.title}</CardTitle>
+          <div className="flex items-center">
+            <Badge
+              variant={
+                project.status === "completed"
+                  ? "default"
+                  : project.status === "in progress"
+                    ? "secondary"
+                    : "outline"
+              }
+              className={cn(
+                "notched-br px-3 py-1",
+                project.status === "completed" ? "bg-primary text-primary-foreground border-primary" : ""
+              )}
+            >
+              {getStatusLabel(project.status)}
+            </Badge>
           </div>
-          <Badge
-            variant={
-              project.status === "completed"
-                ? "default"
-                : project.status === "in progress"
-                  ? "secondary"
-                  : "outline"
-            }
-            className={cn(
-              "notched-br",
-              project.status === "completed" ? "bg-primary text-primary-foreground border-primary" : ""
-            )}
-          >
-            {getStatusLabel(project.status)}
-          </Badge>
         </div>
         <CardDescription className="text-lg text-foreground font-semibold mt-4">
           {project.description}
@@ -221,10 +221,10 @@ function ProjectCard({ project, getStatusLabel, locale, isActive }: ProjectCardP
           </p>
 
           <div className="mb-8">
-            <h4 className="text-xs font-mono text-muted-foreground tracking-widest uppercase mb-4">Tech Stack</h4>
+            <h4 className="text-xs font-mono text-muted-foreground tracking-widest uppercase mb-4">Technologies</h4>
             <div className="flex flex-wrap gap-2">
               {project.technologies.map((tech: string) => (
-                <span key={tech} className="text-xs font-mono border border-muted px-2 py-1 bg-background">
+                <span key={tech} className="text-xs font-bold font-mono bg-foreground text-background px-3 py-1.5 uppercase tracking-widest">
                   {tech}
                 </span>
               ))}
