@@ -57,12 +57,12 @@ export function About({ locale }: AboutProps) {
 
         {/* Skills & Education Merged Layout */}
         <div className={cn(
-          "grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 transition-all duration-1000 ease-out",
+          "flex flex-col gap-16 transition-all duration-1000 ease-out",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         )}>
 
           {/* Main Column: Skills */}
-          <div className="lg:col-span-8 flex flex-col">
+          <div className="flex flex-col">
             <h3 className="text-2xl font-bold uppercase tracking-widest mb-6 flex items-center gap-3">
               <span className="w-3 h-3 bg-primary inline-block"></span>
               {about.skillsTitle}
@@ -91,16 +91,16 @@ export function About({ locale }: AboutProps) {
           </div>
 
           {/* Secondary Column: Education */}
-          <div className="lg:col-span-4 flex flex-col">
+          <div className="flex flex-col">
             <h3 className="text-2xl font-bold uppercase tracking-widest mb-6 flex items-center gap-3">
               <span className="w-3 h-3 bg-primary inline-block"></span>
               {locale === "en" ? "Education" : "教育背景"}
             </h3>
 
-            <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {resume.education.map((edu, index) => (
                 <div key={index} className="border border-muted bg-card group relative flex flex-col hover:border-primary transition-colors">
-                  <div className="p-6 md:p-8 border-b border-muted bg-muted/10 group-hover:bg-primary/5 transition-colors">
+                  <div className="p-6 md:p-8 h-full flex flex-col border-b border-muted bg-muted/10 group-hover:bg-primary/5 transition-colors">
                     <div className="text-xs font-mono text-primary font-bold mb-4 uppercase tracking-widest flex justify-between">
                       <span>[{edu.period}]</span>
                     </div>
@@ -115,13 +115,6 @@ export function About({ locale }: AboutProps) {
               ))}
             </div>
 
-            {/* Filler Deco Block for layout balance */}
-            <div className="hidden lg:flex flex-1 border border-muted bg-muted/5 items-center justify-center p-8 mt-6 overflow-hidden relative group min-h-[160px]">
-              <div className="absolute inset-0 bg-primary/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
-              <div className="text-primary font-mono text-4xl tracking-tighter opacity-20 group-hover:opacity-100 transition-opacity uppercase">
-                E-({resume.education.length})
-              </div>
-            </div>
           </div>
 
         </div>
