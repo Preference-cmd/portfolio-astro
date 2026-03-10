@@ -20,7 +20,7 @@ export function Experience({ locale }: ExperienceProps) {
               03 / {locale === "en" ? "Experience" : "工作经历"}
             </div>
             <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-foreground uppercase">
-              {locale === "en" ? "Career Path" : "职业轨迹"}
+              {locale === "en" ? "Experience" : "职业轨迹"}
             </h2>
           </div>
           <p className="text-muted-foreground font-mono text-sm max-w-sm mt-6 md:mt-0 md:text-right">
@@ -33,11 +33,6 @@ export function Experience({ locale }: ExperienceProps) {
 
           {/* Work Experience */}
           <div className="lg:col-span-12 flex flex-col gap-6 w-full max-w-6xl mx-auto">
-            <h3 className="text-2xl font-bold uppercase tracking-widest mb-4 flex items-center gap-3">
-              <span className="w-3 h-3 bg-primary inline-block"></span>
-              {locale === "en" ? "Work Experience" : "工作经验"}
-            </h3>
-
             <div className="relative pt-8 pl-12 md:pl-48 w-full max-w-5xl mx-auto">
               {/* Vertical Timeline Divider */}
               <div className="absolute left-4 md:left-40 top-0 bottom-0 w-px bg-muted z-0"></div>
