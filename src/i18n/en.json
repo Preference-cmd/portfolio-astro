@@ -24,25 +24,25 @@
     "skillsTitle": "Technologies I Work With",
     "skillCategories": [
       {
-        "name": "Frontend",
+        "name": "language",
         "skills": [
-          "Next.js",
+          "Python",
+          "Rust",
           "TypeScript",
-          "Tailwind CSS",
-          "shadcn-UI"
+          "C++"
         ]
       },
       {
-        "name": "Backend",
+        "name": "web",
         "skills": [
-          "Rust",
+          "Next.js",
+          "Tailwind CSS",
           "tokio/Axum",
-          "Python",
           "FastAPI"
         ]
       },
       {
-        "name": "Infrastructure",
+        "name": "infra",
         "skills": [
           "PostgreSQL",
           "Redis",
@@ -51,7 +51,7 @@
         ]
       },
       {
-        "name": "AI & Vision",
+        "name": "ai",
         "skills": [
           "LangChain/LangGraph",
           "DL/ML",
@@ -61,7 +61,7 @@
         ]
       },
       {
-        "name": "Robotics & Systems",
+        "name": "robotics",
         "skills": [
           "ROS2",
           "System Modeling",

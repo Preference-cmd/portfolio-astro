@@ -24,25 +24,25 @@
     "skillsTitle": "我使用的技术",
     "skillCategories": [
       {
-        "name": "前端与全栈",
+        "name": "language",
         "skills": [
-          "Next.js",
+          "Python",
+          "Rust",
           "TypeScript",
-          "Tailwind CSS",
-          "shadcn-UI"
+          "C++"
         ]
       },
       {
-        "name": "后端开发",
+        "name": "web",
         "skills": [
-          "Rust",
+          "Next.js",
+          "Tailwind CSS",
           "tokio/Axum",
-          "Python",
           "FastAPI"
         ]
       },
       {
-        "name": "基础设施",
+        "name": "infra",
         "skills": [
           "PostgreSQL",
           "Redis",
@@ -51,7 +51,7 @@
         ]
       },
       {
-        "name": "AI与视觉",
+        "name": "ai",
         "skills": [
           "LangChain/LangGraph",
           "DL/ML",
@@ -61,7 +61,7 @@
         ]
       },
       {
-        "name": "机器人与系统",
+        "name": "robotics",
         "skills": [
           "ROS2",
           "System Modeling",

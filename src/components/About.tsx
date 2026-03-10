@@ -68,9 +68,9 @@ export function About({ locale }: AboutProps) {
               {about.skillsTitle}
             </h3>
 
-            <div className="border border-muted bg-card grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2">
+            <div className="border border-muted bg-card flex flex-wrap lg:grid lg:grid-cols-3">
               {about.skillCategories?.map((category, idx) => (
-                <div key={idx} className="p-6 md:p-8 border-muted flex flex-col border-b sm:border-r sm:even:border-r-0 last:border-b-0 sm:last:border-b-0">
+                <div key={idx} className="w-full md:w-1/2 lg:w-auto p-6 md:p-8 flex flex-col border-b md:border-r md:even:border-r-0 lg:border-r lg:even:border-r lg:[&:nth-child(3n)]:border-r-0 last:border-b-0 md:[&:nth-last-child(-n+2)]:border-b-0 lg:[&:nth-last-child(-n+3)]:border-b-0 border-muted">
                   <h4 className="font-mono text-secondary text-sm uppercase mb-6 tracking-widest flex items-center gap-2">
                     <span className="w-2 h-2 border border-primary inline-block"></span>
                     {category.name}
