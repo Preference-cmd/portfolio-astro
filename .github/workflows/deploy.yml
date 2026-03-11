@@ -28,6 +28,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Update wrangler.toml with D1 database ID
+        run: |
+          echo 'database_id = "${{ secrets.CLOUDFLARE_D1_DATABASE_ID }}"' >> wrangler.toml
+
       - name: Build with D1 data
         run: pnpm build:with-d1
         env:
