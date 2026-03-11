@@ -96,11 +96,13 @@ function fetchResumes(): boolean {
       education: JSON.parse(r.education),
     };
 
+    // 使用正确的文件名: resume.json (en) 和 resume.zh.json (zh)
+    const filename = r.locale === 'en' ? 'resume.json' : 'resume.zh.json';
     fs.writeFileSync(
-      path.join(OUTPUT_DIR, `resume.${r.locale}.json`),
+      path.join(OUTPUT_DIR, filename),
       JSON.stringify(data, null, 2)
     );
-    console.log(`✓ Saved resume (${r.locale})`);
+    console.log(`✓ Saved resume (${r.locale}) -> ${filename}`);
     saved = true;
   });
 
