@@ -5,6 +5,8 @@ import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import cloudflare from '@astrojs/cloudflare';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
@@ -12,6 +14,7 @@ export default defineConfig({
   integrations: [
     react(),
   ],
+
   vite: {
     plugins: [
       tailwindcss(),
@@ -22,4 +25,6 @@ export default defineConfig({
       },
     },
   },
+
+  adapter: cloudflare(),
 });
