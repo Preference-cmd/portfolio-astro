@@ -36,6 +36,12 @@ jobs:
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_D1_DATABASE_ID: ${{ secrets.CLOUDFLARE_D1_DATABASE_ID }}
+
+      - name: Update wrangler.toml with D1 database ID
+        if: env.CLOUDFLARE_D1_DATABASE_ID != ''
+        run: |
+          echo 'database_id = "${{ secrets.CLOUDFLARE_D1_DATABASE_ID }}"' >> wrangler.toml
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
@@ -44,5 +50,3 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: portfolio-astro
           directory: dist
-          # 可选：清除缓存
-          #  optional-hash: [empty]
