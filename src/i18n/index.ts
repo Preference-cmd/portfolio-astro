@@ -1,15 +1,16 @@
-import en from './en.json';
-import zh from './zh.json';
-
 export type Locale = 'en' | 'zh';
 
 export const locales: Locale[] = ['en', 'zh'];
 
 export const defaultLocale: Locale = 'en';
 
-const translations: Record<Locale, typeof en> = {
-  en,
-  zh,
+// 直接 import 翻译数据
+import enData from './en.json';
+import zhData from './zh.json';
+
+const translations: Record<Locale, typeof enData> = {
+  en: enData,
+  zh: zhData,
 };
 
 export function getTranslations(locale: Locale) {

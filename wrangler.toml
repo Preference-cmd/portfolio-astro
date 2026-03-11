@@ -1,0 +1,8 @@
+name = "portfolio-astro"
+compatibility_date = "2024-01-01"
+
+# D1 Database
+[[d1_databases]]
+binding = "pref2rence"
+database_name = "portfolios"
+database_id = "6d95fd88-1462-4930-9f07-fcc8c5f33b55"

@@ -1,7 +1,8 @@
+import type { Locale } from '@/i18n';
+
 import projectsData from './projects.json';
 import resumeData from './resume.json';
 import resumeDataZh from './resume.zh.json';
-import type { Locale } from '@/i18n';
 
 export interface Project {
   id: string;
