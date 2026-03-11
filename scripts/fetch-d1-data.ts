@@ -114,7 +114,13 @@ const projectsOk = fetchProjects();
 const resumesOk = fetchResumes();
 
 if (!projectsOk && !resumesOk) {
-  console.log('\n⚠️ D1 not available, using local JSON files');
+  console.log('\n⚠️ WARNING: D1 not available or query failed, using local JSON files');
+  console.log('⚠️ The deployed site will contain EXAMPLE DATA, not your D1 content!');
+  console.log('⚠️ Please check:');
+  console.log('  1. CLOUDFLARE_D1_DATABASE_ID secret is set in GitHub');
+  console.log('  2. CLOUDFLARE_API_TOKEN has D1 read permissions');
+  console.log('  3. The D1 database "portfolios" exists and has data');
+  process.exit(1);
 } else {
   console.log('\n✓ Data fetched from D1');
 }
