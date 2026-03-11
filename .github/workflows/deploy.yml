@@ -30,9 +30,7 @@ jobs:
 
       - name: Update wrangler.toml with D1 database ID
         run: |
-          # 使用 sed 在 [[d1_databases]] 块中插入 database_id
-          sed -i 's/^database_name = "portfolios"$/database_name = "portfolios"\ndatabase_id = "${{ secrets.CLOUDFLARE_D1_DATABASE_ID }}"/' wrangler.toml
-          cat wrangler.toml
+          echo 'database_id = "${{ secrets.CLOUDFLARE_D1_DATABASE_ID }}"' >> wrangler.toml
 
       - name: Build with D1 data
         run: pnpm build:with-d1
