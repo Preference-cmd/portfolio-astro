@@ -1,110 +1,93 @@
 {
   "projects": [
     {
-      "id": "ai-native-trpg-platform",
-      "title": "AI Native TRPG Platform",
-      "description": "An AI-native TRPG platform that provides AI-driven TRPG gaming experiences.",
-      "overview": "This AI Native TRPG Platform represents a cutting-edge TRPG experience where creators can easily build, customize, and share their own TRPG games with deep AI technology integration.",
+      "id": "project-1",
+      "title": "E-commerce Platform",
+      "description": "A full-featured e-commerce platform with user authentication and payment processing.",
+      "overview": "Built a modern e-commerce platform that supports user registration, product browsing, shopping cart, checkout process, and payment integration with Stripe.",
       "technologies": [
+        "React",
         "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "AI Integration"
+        "Node.js",
+        "PostgreSQL",
+        "Stripe API"
       ],
-      "duration": "September 2025 - Present",
-      "teamSize": "1 developer",
-      "role": "Full-stack Developer",
-      "status": "prototype"
+      "duration": "3 months",
+      "teamSize": "3 developers",
+      "role": "Full Stack Developer",
+      "status": "completed",
+      "liveUrl": "https://example.com",
+      "githubUrl": "https://github.com/yourusername/ecommerce-platform"
     },
     {
-      "id": "rust-python-microservices",
-      "title": "Rust/Python Microservices API",
-      "description": "High-performance microservices architecture built with Rust Axum and Python FastAPI.",
-      "overview": "This microservices cluster integrates Rust's high-performance advantages with Python's flexibility, providing complete solutions for user authentication, authorization, and resource management.",
+      "id": "project-2",
+      "title": "Task Management App",
+      "description": "A collaborative task management application with real-time updates.",
+      "overview": "Developed a task management tool that allows teams to create, assign, and track tasks with real-time notifications and updates.",
       "technologies": [
-        "Rust",
-        "tokio/Axum",
-        "Python",
-        "FastAPI",
-        "PostgreSQL",
-        "Redis",
+        "React",
+        "Express",
+        "MongoDB",
+        "Socket.io",
         "Docker"
       ],
-      "duration": "May 2025 - Present",
-      "teamSize": "1 developer",
-      "role": "Full-stack Developer",
-      "status": "in progress",
-      "githubUrl": "https://github.com/Preference-cmd/inceptae"
-    },
-    {
-      "id": "ros2-autonomous-vehicle",
-      "title": "ROS2-based Intelligent Autonomous Vehicle",
-      "description": "A comprehensive autonomous vehicle system built on ROS2 framework.",
-      "overview": "This intelligent autonomous vehicle system represents a complete implementation of self-driving technology using the ROS2 framework with advanced perception, decision-making, and execution modules.",
-      "technologies": [
-        "ROS2",
-        "VINS-Fusion",
-        "Octomap",
-        "Navigation2",
-        "C++",
-        "Python"
-      ],
-      "duration": "February 2023 - June 2023",
-      "teamSize": "1 developer",
-      "role": "System Designer & Developer",
+      "duration": "2 months",
+      "teamSize": "2 developers",
+      "role": "Backend Developer",
       "status": "completed",
-      "githubUrl": "https://github.com/username/ros2-autonomous-vehicle"
+      "githubUrl": "https://github.com/yourusername/task-manager"
     },
     {
-      "id": "3d-reconstruction-app",
-      "title": "Product Preview 3D Reconstruction",
-      "description": "An automated 3D model generation application from product images.",
-      "overview": "This innovative application automates the process of generating 3D models from product images or videos, providing e-commerce businesses with enhanced product visualization capabilities.",
+      "id": "project-3",
+      "title": "Weather Dashboard",
+      "description": "A weather forecasting dashboard with interactive maps and charts.",
+      "overview": "Created a weather application that displays current conditions and forecasts using data from weather APIs with beautiful visualizations.",
       "technologies": [
-        "Python",
-        "Meta SAM2",
-        "Colmap",
-        "OpenMVS",
-        "OpenCV"
+        "React",
+        "TypeScript",
+        "Chart.js",
+        "OpenWeather API"
       ],
-      "duration": "May 2025",
+      "duration": "1 month",
       "teamSize": "1 developer",
-      "role": "Solo Developer",
-      "status": "prototype",
-      "liveUrl": "https://3d-reconstruction-demo.vercel.app"
+      "role": "Frontend Developer",
+      "status": "completed",
+      "liveUrl": "https://weather-demo.example.com"
     },
     {
-      "id": "computer-vision-tracking",
-      "title": "Computer Vision Target Tracking System",
-      "description": "Real-time target tracking system with YOLOv5 and PID control.",
-      "overview": "This computer vision target tracking system was developed as part of RoboCon competition research, focusing on real-time target detection and tracking in complex environments.",
+      "id": "project-4",
+      "title": "REST API Boilerplate",
+      "description": "A production-ready REST API starter template with authentication.",
+      "overview": "Built a comprehensive API boilerplate with JWT authentication, rate limiting, input validation, and comprehensive documentation.",
       "technologies": [
-        "Python",
-        "OpenCV",
-        "YOLOv5",
-        "PID Control",
-        "Computer Vision"
+        "Node.js",
+        "Express",
+        "PostgreSQL",
+        "JWT",
+        "Docker"
       ],
-      "duration": "July 2021 - March 2022",
+      "duration": "2 weeks",
       "teamSize": "1 developer",
-      "role": "Computer Vision Engineer",
-      "status": "completed"
+      "role": "Backend Developer",
+      "status": "completed",
+      "githubUrl": "https://github.com/yourusername/api-boilerplate"
     },
     {
-      "id": "inverted-pendulum-control",
-      "title": "LQR Control System for Inverted Pendulum",
-      "description": "Control system design using Luenberger observer and LQR algorithms.",
-      "overview": "This project focuses on designing and implementing an advanced control system for a single inverted pendulum using Luenberger observer for state estimation and Linear Quadratic Regulator (LQR) for optimal control.",
+      "id": "project-5",
+      "title": "Portfolio Website",
+      "description": "Personal portfolio website with blog functionality.",
+      "overview": "Designed and developed a personal portfolio website with a built-in blog, contact form, and dark mode support.",
       "technologies": [
-        "MATLAB/Simulink",
-        "Control Theory",
-        "LQR Controller",
-        "Luenberger Observer"
+        "Astro",
+        "React",
+        "Tailwind CSS",
+        "Markdown"
       ],
-      "duration": "October 2022 - November 2022",
+      "duration": "1 month",
       "teamSize": "1 developer",
-      "role": "Control System Designer",
-      "status": "completed"
+      "role": "Frontend Developer",
+      "status": "completed",
+      "liveUrl": "https://yourportfolio.com"
     }
   ]
 }

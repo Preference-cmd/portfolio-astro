@@ -1,8 +1,8 @@
 {
   "hero": {
-    "greeting": "你好，我是单林",
-    "title": "AI/WEB 开发者",
-    "subtitle": "使用现代技术构建可扩展的AI与Web应用程序",
+    "greeting": "你好，我是",
+    "title": "全栈开发者",
+    "subtitle": "使用现代技术构建可扩展的应用程序",
     "cta": "查看我的项目",
     "contactMe": "联系我"
   },
@@ -17,65 +17,64 @@
     "title": "关于我",
     "subtitle": "aboutMe",
     "paragraphs": {
-      "para1": "我是一名专注于 AI 原生产品与高性能后端的全栈工程师，近期的代表性项目涵盖 AI 原生 TRPG 平台、Rust/Python 微服务 API、3D 重建应用、ROS2 自动驾驶系统，以及控制理论与计算机视觉的工程实践。",
-      "para2": "在技术栈方面，我在前端/全栈领域使用 Next.js、TypeScript、Tailwind CSS 与 shadcn-UI；在后端领域构建 Rust tokio/Axum 与 Python FastAPI 的微服务，结合 PostgreSQL、Redis、Docker 与 Github Action 的 CI/CD；在 AI 与计算机视觉领域实践 LangChain/LangGraph、YOLOv5、OpenCV、Meta SAM2、Colmap 与 OpenMVS；在机器人与控制方面使用 ROS2、VINS-Fusion、Navigation2，并应用 LQR、Luenberger 等控制方法。",
-      "para3": "我致力于将可靠的工程实践与卓越的用户体验结合起来 原生产品、：持续打磨 AI构建可扩展的微服务与数据基础设施、探索自动化 3D 生成与自治系统，并不断提升系统的性能与可维护性。"
+      "para1": "我是一名全栈开发者，热衷于构建现代化的 Web 应用程序。我有使用各种技术的经验，喜欢为复杂问题创建优雅的解决方案。",
+      "para2": "我的技术栈包括 JavaScript/TypeScript、React、Node.js、Python 和云服务。我总是渴望学习新技术并提高自己的技能。",
+      "para3": "我坚信编写简洁、可维护的代码，创造用户友好的体验。我总是乐于接受新的机会和合作。"
     },
     "skillsTitle": "我使用的技术",
     "skillCategories": [
       {
         "name": "language",
         "skills": [
-          "Python",
-          "Rust",
+          "JavaScript",
           "TypeScript",
-          "C++"
+          "Python",
+          "Go"
         ]
       },
       {
         "name": "web",
         "skills": [
+          "React",
           "Next.js",
-          "Tailwind CSS",
-          "tokio/Axum",
-          "FastAPI"
+          "Node.js",
+          "Express"
         ]
       },
       {
         "name": "infra",
         "skills": [
           "PostgreSQL",
-          "Redis",
+          "MongoDB",
           "Docker",
-          "CI/CD"
+          "AWS"
         ]
       },
       {
-        "name": "ai",
+        "name": "tools",
         "skills": [
-          "LangChain/LangGraph",
-          "DL/ML",
-          "Computer Vision",
-          "OpenCV",
-          "Data Analysis"
+          "Git",
+          "Linux",
+          "REST API",
+          "GraphQL"
         ]
       },
       {
-        "name": "robotics",
+        "name": "soft",
         "skills": [
-          "ROS2",
-          "System Modeling",
-          "Real-time Processing"
+          "团队协作",
+          "解决问题",
+          "沟通能力"
         ]
       }
     ],
     "stats": {
       "experience": {
-        "value": "5+",
+        "value": "3+",
         "label": "年工作经验"
       },
       "projects": {
-        "value": "6+",
+        "value": "10+",
         "label": "完成项目"
       }
     }
@@ -118,27 +117,27 @@
     "contactInfo": {
       "email": {
         "label": "邮箱",
-        "value": "noreply@example.com"
+        "value": "your.email@example.com"
       },
       "phone": {
         "label": "电话",
-        "value": "+86 13798093084"
+        "value": "+86 123 4567 8900"
       },
       "location": {
         "label": "位置",
-        "value": "REDACTED"
+        "value": "中国, 城市"
       },
       "github": {
         "label": "GitHub",
-        "value": "github.com/Preference-cmd"
+        "value": "github.com/yourusername"
       }
     },
     "availableFor": {
       "title": "可提供的服务",
       "services": [
-        "AI/ML集成",
+        "Web 开发",
+        "后端开发",
         "全栈开发",
-        "计算机视觉",
         "技术咨询"
       ]
     },
@@ -169,7 +168,7 @@
     }
   },
   "footer": {
-    "description": "AI/全栈开发者，构建可扩展应用",
+    "description": "全栈开发者，构建可扩展应用",
     "copyright": "版权所有。",
     "social": "联系我"
   }

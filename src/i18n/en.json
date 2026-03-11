@@ -1,8 +1,8 @@
 {
   "hero": {
-    "greeting": "Hi, I'm Shan Lin",
-    "title": "AI/Fullstack Developer",
-    "subtitle": "Building scalable AI and web applications with modern technologies",
+    "greeting": "Hi, I'm",
+    "title": "Full Stack Developer",
+    "subtitle": "Building scalable applications with modern technologies",
     "cta": "View My Work",
     "contactMe": "Contact Me"
   },
@@ -17,65 +17,64 @@
     "title": "About Me",
     "subtitle": "aboutMe",
     "paragraphs": {
-      "para1": "I'm a full-stack engineer focused on AI-native products and high-performance backends. Recent representative projects include an AI-native TRPG platform, Rust/Python microservices API, 3D reconstruction application, ROS2 autonomous vehicle system, as well as engineering practice in control theory and computer vision.",
-      "para2": "In terms of tech stack, I use Next.js, TypeScript, Tailwind CSS and shadcn-UI for frontend/full-stack; build microservices with Rust (tokio/Axum) and Python FastAPI, combined with PostgreSQL, Redis, Docker and Github Action for CI/CD; practice LangChain/LangGraph, YOLOv5, OpenCV, Meta SAM2, Colmap and OpenMVS in AI and computer vision; and use ROS2, VINS-Fusion and Navigation2 with LQR and Luenberger methods in robotics and control.",
-      "para3": "I strive to combine solid engineering practices with excellent user experience: continuously refining AI-native products, building scalable microservices and data infrastructure, exploring automated 3D generation and autonomous systems, and constantly improving performance and maintainability."
+      "para1": "I'm a full-stack developer passionate about building modern web applications. I have experience working with various technologies and love creating elegant solutions to complex problems.",
+      "para2": "My tech stack includes JavaScript/TypeScript, React, Node.js, Python, and cloud services. I'm always eager to learn new technologies and improve my skills.",
+      "para3": "I believe in writing clean, maintainable code and creating user-friendly experiences. I'm always open to new opportunities and collaborations."
     },
     "skillsTitle": "Technologies I Work With",
     "skillCategories": [
       {
         "name": "language",
         "skills": [
-          "Python",
-          "Rust",
+          "JavaScript",
           "TypeScript",
-          "C++"
+          "Python",
+          "Go"
         ]
       },
       {
         "name": "web",
         "skills": [
+          "React",
           "Next.js",
-          "Tailwind CSS",
-          "tokio/Axum",
-          "FastAPI"
+          "Node.js",
+          "Express"
         ]
       },
       {
         "name": "infra",
         "skills": [
           "PostgreSQL",
-          "Redis",
+          "MongoDB",
           "Docker",
-          "CI/CD"
+          "AWS"
         ]
       },
       {
-        "name": "ai",
+        "name": "tools",
         "skills": [
-          "LangChain/LangGraph",
-          "DL/ML",
-          "Computer Vision",
-          "OpenCV",
-          "Data Analysis"
+          "Git",
+          "Linux",
+          "REST APIs",
+          "GraphQL"
         ]
       },
       {
-        "name": "robotics",
+        "name": "soft",
         "skills": [
-          "ROS2",
-          "System Modeling",
-          "Real-time Processing"
+          "Team Collaboration",
+          "Problem Solving",
+          "Communication"
         ]
       }
     ],
     "stats": {
       "experience": {
-        "value": "5+",
+        "value": "3+",
         "label": "Years Experience"
       },
       "projects": {
-        "value": "6+",
+        "value": "10+",
         "label": "Projects Completed"
       }
     }
@@ -118,27 +117,27 @@
     "contactInfo": {
       "email": {
         "label": "Email",
-        "value": "noreply@example.com"
+        "value": "your.email@example.com"
       },
       "phone": {
         "label": "Phone",
-        "value": "+86 13798093084"
+        "value": "+1 234 567 8900"
       },
       "location": {
         "label": "Location",
-        "value": "REDACTED"
+        "value": "Your City, Country"
       },
       "github": {
         "label": "GitHub",
-        "value": "github.com/Preference-cmd"
+        "value": "github.com/yourusername"
       }
     },
     "availableFor": {
       "title": "Available For",
       "services": [
-        "AI/ML Integration",
+        "Web Development",
+        "Backend Development",
         "Full-stack Development",
-        "Computer Vision",
         "Technical Consulting"
       ]
     },
@@ -169,7 +168,7 @@
     }
   },
   "footer": {
-    "description": "AI/Fullstack Developer building scalable applications",
+    "description": "Full Stack Developer building scalable applications",
     "copyright": "All rights reserved.",
     "social": "Connect with me"
   }
