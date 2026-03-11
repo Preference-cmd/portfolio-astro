@@ -9,9 +9,9 @@ A modern personal portfolio website template built with Astro, React, and Tailwi
 - **Tailwind CSS 4** - Utility-first CSS framework
 - **shadcn/ui style components** - Reusable UI components
 - **Dark/Light Theme** - Theme toggle with system preference detection
-- **Internationalization (i18n)** - Support for English and Chinese
+- **Internationalization (i18n)** - Support for English and Chinese (local files)
+- **Cloudflare D1** - Database for projects and resume data (optional, falls back to local JSON)
 - **Responsive Design** - Mobile-first approach
-- **Cloudflare D1** - Optional database integration for dynamic content
 - **GitHub Actions** - Automatic deployment to Cloudflare Workers
 
 ## Quick Start
@@ -24,6 +24,7 @@ Click the "Fork" button on GitHub to create your own copy.
 
 Edit the following files to add your information:
 
+- `src/data/projects.json` - Your projects data
 - `src/data/resume.json` - Your resume data (English)
 - `src/data/resume.zh.json` - Your resume data (Chinese)
 - `src/i18n/en.json` - English translations
@@ -41,11 +42,32 @@ pnpm dev
 
 Open [http://localhost:4321](http://localhost:4321) to view the site.
 
-### 4. Deploy
+### 4. Deploy to Cloudflare Workers
 
-Connect your repository to Cloudflare Workers/Pages for automatic deployment.
+1. Create a Cloudflare account if you don't have one
+2. Set up GitHub Secrets:
+   - `CLOUDFLARE_API_TOKEN` - Your Cloudflare API token
+   - `CLOUDFLARE_ACCOUNT_ID` - Your Cloudflare account ID
+   - `CLOUDFLARE_D1_DATABASE_ID` - (Optional) Your D1 database ID
 
-See [D1_MIGRATION.md](./D1_MIGRATION.md) for optional database setup.
+The site will automatically deploy on push to main branch.
+
+## Data Sources
+
+- **i18n**: Always reads from local files (`src/i18n/*.json`)
+- **Projects & Resume**: Reads from D1 database if available, falls back to local JSON files
+
+### Using Local Data Only
+
+```bash
+pnpm build
+```
+
+### Using D1 Database
+
+```bash
+pnpm build:with-d1
+```
 
 ## Tech Stack
 
@@ -56,6 +78,7 @@ See [D1_MIGRATION.md](./D1_MIGRATION.md) for optional database setup.
 - **Icons**: Lucide React
 - **Language**: TypeScript
 - **Package Manager**: pnpm
+- **Deployment**: Cloudflare Workers
 
 ## Project Structure
 
@@ -72,30 +95,31 @@ portfolio-astro/
 │   │   ├── Contact.tsx
 │   │   ├── Resume.tsx
 │   │   └── PortfolioContent.tsx
-│   ├── i18n/            # Internationalization
-│   │   ├── en.json      # English translations
-│   │   ├── zh.json      # Chinese translations
-│   │   └── index.ts    # i18n utilities
+│   ├── i18n/            # Internationalization (local files)
+│   │   ├── en.json
+│   │   ├── zh.json
+│   │   └── index.ts
 │   ├── layouts/         # Astro layouts
 │   │   └── Layout.astro
 │   ├── lib/             # Utilities
-│   │   └── utils.ts    # cn() function
+│   │   └── utils.ts
 │   ├── pages/           # Astro pages
-│   │   ├── index.astro      # English home
-│   │   ├── resume.astro    # English resume
-│   │   └── zh/             # Chinese pages
+│   │   ├── index.astro
+│   │   ├── resume.astro
+│   │   └── zh/
 │   │       ├── index.astro
 │   │       └── resume.astro
-│   └── data/             # Content data
+│   └── data/            # Content data (local fallback)
+│       ├── projects.json
 │       ├── resume.json
-│       └── projects.json
-├── d1/                   # D1 database files
-│   └── schema.sql
+│       └── resume.zh.json
+├── scripts/
+│   └── fetch-d1-data.ts # D1 data fetching script
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml    # GitHub Actions deployment
-├── wrangler.toml         # Cloudflare configuration── astro.config.mjs
-└ # Astro configuration
+│       └── deploy.yml   # GitHub Actions deployment
+├── wrangler.toml        # Cloudflare configuration
+└── astro.config.mjs     # Astro configuration
 ```
 
 ## Pages
