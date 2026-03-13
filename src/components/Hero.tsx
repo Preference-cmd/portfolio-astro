@@ -2,8 +2,9 @@ import * as React from "react";
 import { MoveRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getTranslations, type Locale } from "@/i18n";
+import { getResume } from "@/data";
 
-// Assuming we process through Vite/Astro we need to import or specify explicit path if it's in public. 
+// Assuming we process through Vite/Astro we need to import or specify explicit path if it's in public.
 // However, standard Astro / React integration often allows importing the image:
 // import coverImage from "@/images/cover.jpg";
 // To avoid build errors if alias isn't setup for images, we use relative:
@@ -15,7 +16,10 @@ interface HeroProps {
 
 export function Hero({ locale }: HeroProps) {
   const t = getTranslations(locale);
-  const hero = t.hero as { greeting: string; title: string; subtitle: string; cta: string; contactMe: string };
+  const resume = getResume(locale);
+
+  // Prefer D1 data, fallback to i18n translations
+  const heroContent = resume.hero || (t.hero as { greeting: string; title: string; subtitle: string; cta: string; contactMe: string });
 
   return (
     <section className="w-full relative flex flex-col bg-background">
@@ -45,29 +49,29 @@ export function Hero({ locale }: HeroProps) {
 
               {/* Greeting */}
               <p className="text-secondary font-mono text-sm mb-4 uppercase tracking-widest">
-                [ {hero.greeting} ]
+                [ {heroContent.greeting} ]
               </p>
 
               {/* Title */}
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tighter leading-[0.85] mb-8 text-foreground uppercase">
-                {hero.title}
+                {heroContent.title}
               </h1>
 
               {/* Subtitle */}
               <p className="text-base sm:text-lg md:text-xl text-muted-foreground font-semibold tracking-tight max-w-2xl mb-16">
-                {hero.subtitle}
+                {heroContent.subtitle}
               </p>
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4 mt-auto">
                 <Button asChild size="lg" variant="default" className="text-base group w-full sm:w-auto">
                   <a href="#projects">
-                    {hero.cta}
+                    {heroContent.cta}
                     <MoveRight className="ml-3 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </a>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="text-base group w-full sm:w-auto">
-                  <a href="#contact">{hero.contactMe}</a>
+                  <a href="#contact">{heroContent.contactMe}</a>
                 </Button>
               </div>
 

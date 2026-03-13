@@ -6,6 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "build:with-d1": "npx tsx scripts/fetch-d1-data.ts && astro build",
+    "build:with-kv": "npx tsx scripts/fetch-kv-data.ts && astro build",
+    "seed:kv": "npx tsx scripts/seed-kv.ts",
     "preview": "astro preview",
     "astro": "astro"
   },

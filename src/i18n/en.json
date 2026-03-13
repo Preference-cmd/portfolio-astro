@@ -1,11 +1,4 @@
 {
-  "hero": {
-    "greeting": "Hi, I'm",
-    "title": "Full Stack Developer",
-    "subtitle": "Building scalable applications with modern technologies",
-    "cta": "View My Work",
-    "contactMe": "Contact Me"
-  },
   "navigation": {
     "home": "Home",
     "about": "About",
@@ -13,71 +6,31 @@
     "experience": "Experience",
     "contact": "Contact"
   },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "title": "Full Stack Developer",
+    "subtitle": "Building elegant solutions with modern technologies. Specializing in React, Node.js, and cloud architecture.",
+    "cta": "View Projects",
+    "contactMe": "Contact Me"
+  },
   "about": {
     "title": "About Me",
-    "subtitle": "aboutMe",
-    "paragraphs": {
-      "para1": "I'm a full-stack developer passionate about building modern web applications. I have experience working with various technologies and love creating elegant solutions to complex problems.",
-      "para2": "My tech stack includes JavaScript/TypeScript, React, Node.js, Python, and cloud services. I'm always eager to learn new technologies and improve my skills.",
-      "para3": "I believe in writing clean, maintainable code and creating user-friendly experiences. I'm always open to new opportunities and collaborations."
-    },
-    "skillsTitle": "Technologies I Work With",
+    "subtitle": "Profile",
+    "skillsTitle": "Technical Skills",
     "skillCategories": [
       {
-        "name": "language",
-        "skills": [
-          "JavaScript",
-          "TypeScript",
-          "Python",
-          "Go"
-        ]
+        "name": "Frontend",
+        "skills": ["React", "TypeScript", "Astro", "Tailwind CSS"]
       },
       {
-        "name": "web",
-        "skills": [
-          "React",
-          "Next.js",
-          "Node.js",
-          "Express"
-        ]
+        "name": "Backend",
+        "skills": ["Node.js", "Python", "PostgreSQL", "GraphQL"]
       },
       {
-        "name": "infra",
-        "skills": [
-          "PostgreSQL",
-          "MongoDB",
-          "Docker",
-          "AWS"
-        ]
-      },
-      {
-        "name": "tools",
-        "skills": [
-          "Git",
-          "Linux",
-          "REST APIs",
-          "GraphQL"
-        ]
-      },
-      {
-        "name": "soft",
-        "skills": [
-          "Team Collaboration",
-          "Problem Solving",
-          "Communication"
-        ]
+        "name": "DevOps",
+        "skills": ["Docker", "AWS", "CI/CD", "Linux"]
       }
-    ],
-    "stats": {
-      "experience": {
-        "value": "3+",
-        "label": "Years Experience"
-      },
-      "projects": {
-        "value": "10+",
-        "label": "Projects Completed"
-      }
-    }
+    ]
   },
   "projects": {
     "title": "My Projects",
@@ -110,36 +63,23 @@
     "present": "Present"
   },
   "contact": {
-    "title": "Let's Work Together",
-    "subtitle": "letsWorkTogether",
-    "description": "I'm always interested in new opportunities and exciting projects. Whether you have a question or just want to say hi, I'll try my best to get back to you!",
-    "getInTouch": "Get In Touch",
-    "contactInfo": {
-      "email": {
-        "label": "Email",
-        "value": "your.email@example.com"
-      },
-      "phone": {
-        "label": "Phone",
-        "value": "+1 234 567 8900"
-      },
-      "location": {
-        "label": "Location",
-        "value": "Your City, Country"
-      },
-      "github": {
-        "label": "GitHub",
-        "value": "github.com/yourusername"
-      }
-    },
+    "title": "Get In Touch",
+    "description": "Available for freelance opportunities and collaborations.",
+    "getInTouch": "Let's Talk",
     "availableFor": {
       "title": "Available For",
       "services": [
-        "Web Development",
-        "Backend Development",
-        "Full-stack Development",
-        "Technical Consulting"
+        "Full-stack web development",
+        "Frontend architecture",
+        "Technical consulting",
+        "API design & integration"
       ]
+    },
+    "contactInfo": {
+      "email": { "label": "Email" },
+      "phone": { "label": "Phone" },
+      "location": { "label": "Location" },
+      "github": { "label": "GitHub" }
     },
     "form": {
       "title": "Send Message",
@@ -168,7 +108,6 @@
     }
   },
   "footer": {
-    "description": "Full Stack Developer building scalable applications",
     "copyright": "All rights reserved.",
     "social": "Connect with me"
   }

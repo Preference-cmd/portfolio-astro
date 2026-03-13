@@ -10,12 +10,14 @@ interface AboutProps {
 export function About({ locale }: AboutProps) {
   const t = getTranslations(locale);
   const resume = getResume(locale);
-  const about = t.about as {
+
+  // Prefer D1 data, fallback to i18n translations
+  const aboutContent = resume.aboutContent || (t.about as {
     title: string;
     subtitle: string;
     skillsTitle: string;
     skillCategories: { name: string; skills: string[] }[];
-  };
+  });
 
   const [isVisible, setIsVisible] = React.useState(false);
   const sectionRef = React.useRef<HTMLElement>(null);
@@ -47,7 +49,7 @@ export function About({ locale }: AboutProps) {
               02 / {locale === "en" ? "Profile" : "个人简介"}
             </div>
             <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-foreground uppercase">
-              {about.title}
+              {aboutContent.title}
             </h2>
           </div>
           <p className="text-muted-foreground font-mono text-sm max-w-sm mt-6 md:mt-0 md:text-right">
@@ -65,11 +67,11 @@ export function About({ locale }: AboutProps) {
           <div className="flex flex-col">
             <h3 className="text-2xl font-bold uppercase tracking-widest mb-6 flex items-center gap-3">
               <span className="w-3 h-3 bg-primary inline-block"></span>
-              {about.skillsTitle}
+              {aboutContent.skillsTitle}
             </h3>
 
             <div className="border border-muted bg-card flex flex-wrap lg:grid lg:grid-cols-3">
-              {about.skillCategories?.map((category, idx) => (
+              {aboutContent.skillCategories?.map((category, idx) => (
                 <div key={idx} className="w-full md:w-1/2 lg:w-auto p-6 md:p-8 flex flex-col border-b md:border-r md:even:border-r-0 lg:border-r lg:even:border-r lg:[&:nth-child(3n)]:border-r-0 last:border-b-0 md:[&:nth-last-child(-n+2)]:border-b-0 lg:[&:nth-last-child(-n+3)]:border-b-0 border-muted">
                   <h4 className="font-mono text-secondary text-sm uppercase mb-6 tracking-widest flex items-center gap-2">
                     <span className="w-2 h-2 border border-primary inline-block"></span>

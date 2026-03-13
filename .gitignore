@@ -28,3 +28,11 @@ pnpm-debug.log*
 .dev.vars*
 !.dev.vars.example
 !.env.example
+
+# generated data (from KV during build)
+src/data/projects.json
+src/data/resume.json
+src/data/resume.zh.json
+
+# temp files
+.temp-kv-value.json

@@ -51,6 +51,23 @@ export interface ResumeData {
     period: string;
     description: string[];
   }[];
+  // Hero and About content from D1
+  hero?: {
+    greeting: string;
+    title: string;
+    subtitle: string;
+    cta: string;
+    contactMe: string;
+  };
+  aboutContent?: {
+    title: string;
+    skillsTitle: string;
+    skillCategories: { name: string; skills: string[] }[];
+    stats: {
+      experience: { value: string; label: string };
+      projects: { value: string; label: string };
+    };
+  };
 }
 
 export function getProjects(): Project[] {

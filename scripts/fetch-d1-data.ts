@@ -72,7 +72,7 @@ function fetchProjects(): boolean {
 }
 
 /**
- * 获取简历数据
+ * 获取简历数据（包含 hero 和 about 内容）
  */
 function fetchResumes(): boolean {
   console.log('Fetching resumes from D1...');
@@ -85,7 +85,7 @@ function fetchResumes(): boolean {
 
   let saved = false;
   resumes.forEach((r: any) => {
-    const data = {
+    const data: any = {
       personalInfo: JSON.parse(r.personal_info),
       contact: JSON.parse(r.contact),
       skills: JSON.parse(r.skills),
@@ -96,6 +96,14 @@ function fetchResumes(): boolean {
       education: JSON.parse(r.education),
     };
 
+    // 添加 hero 和 about_content（如果存在）
+    if (r.hero) {
+      data.hero = JSON.parse(r.hero);
+    }
+    if (r.about_content) {
+      data.aboutContent = JSON.parse(r.about_content);
+    }
+
     // 使用正确的文件名: resume.json (en) 和 resume.zh.json (zh)
     const filename = r.locale === 'en' ? 'resume.json' : 'resume.zh.json';
     fs.writeFileSync(
@@ -103,6 +111,8 @@ function fetchResumes(): boolean {
       JSON.stringify(data, null, 2)
     );
     console.log(`✓ Saved resume (${r.locale}) -> ${filename}`);
+    if (data.hero) console.log(`  - with hero content`);
+    if (data.aboutContent) console.log(`  - with about content`);
     saved = true;
   });
 

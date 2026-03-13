@@ -1,11 +1,4 @@
 {
-  "hero": {
-    "greeting": "你好，我是",
-    "title": "全栈开发者",
-    "subtitle": "使用现代技术构建可扩展的应用程序",
-    "cta": "查看我的项目",
-    "contactMe": "联系我"
-  },
   "navigation": {
     "home": "首页",
     "about": "关于",
@@ -13,71 +6,31 @@
     "experience": "经历",
     "contact": "联系"
   },
+  "hero": {
+    "greeting": "你好，我是",
+    "title": "全栈工程师",
+    "subtitle": "使用现代技术构建优雅的解决方案。专注于 React、Node.js 和云架构。",
+    "cta": "查看项目",
+    "contactMe": "联系我"
+  },
   "about": {
     "title": "关于我",
-    "subtitle": "aboutMe",
-    "paragraphs": {
-      "para1": "我是一名全栈开发者，热衷于构建现代化的 Web 应用程序。我有使用各种技术的经验，喜欢为复杂问题创建优雅的解决方案。",
-      "para2": "我的技术栈包括 JavaScript/TypeScript、React、Node.js、Python 和云服务。我总是渴望学习新技术并提高自己的技能。",
-      "para3": "我坚信编写简洁、可维护的代码，创造用户友好的体验。我总是乐于接受新的机会和合作。"
-    },
-    "skillsTitle": "我使用的技术",
+    "subtitle": "个人简介",
+    "skillsTitle": "技术技能",
     "skillCategories": [
       {
-        "name": "language",
-        "skills": [
-          "JavaScript",
-          "TypeScript",
-          "Python",
-          "Go"
-        ]
+        "name": "前端",
+        "skills": ["React", "TypeScript", "Astro", "Tailwind CSS"]
       },
       {
-        "name": "web",
-        "skills": [
-          "React",
-          "Next.js",
-          "Node.js",
-          "Express"
-        ]
+        "name": "后端",
+        "skills": ["Node.js", "Python", "PostgreSQL", "GraphQL"]
       },
       {
-        "name": "infra",
-        "skills": [
-          "PostgreSQL",
-          "MongoDB",
-          "Docker",
-          "AWS"
-        ]
-      },
-      {
-        "name": "tools",
-        "skills": [
-          "Git",
-          "Linux",
-          "REST API",
-          "GraphQL"
-        ]
-      },
-      {
-        "name": "soft",
-        "skills": [
-          "团队协作",
-          "解决问题",
-          "沟通能力"
-        ]
+        "name": "运维",
+        "skills": ["Docker", "AWS", "CI/CD", "Linux"]
       }
-    ],
-    "stats": {
-      "experience": {
-        "value": "3+",
-        "label": "年工作经验"
-      },
-      "projects": {
-        "value": "10+",
-        "label": "完成项目"
-      }
-    }
+    ]
   },
   "projects": {
     "title": "我的项目",
@@ -111,35 +64,22 @@
   },
   "contact": {
     "title": "联系我",
-    "subtitle": "letsWorkTogether",
-    "description": "我总是对新的机会和有趣的项目感兴趣。无论您是想讨论潜在的合作、需要技术咨询，还是只是想打个招呼，我都很乐意听到您的声音。",
-    "getInTouch": "联系我",
-    "contactInfo": {
-      "email": {
-        "label": "邮箱",
-        "value": "your.email@example.com"
-      },
-      "phone": {
-        "label": "电话",
-        "value": "+86 123 4567 8900"
-      },
-      "location": {
-        "label": "位置",
-        "value": "中国, 城市"
-      },
-      "github": {
-        "label": "GitHub",
-        "value": "github.com/yourusername"
-      }
-    },
+    "description": "欢迎自由职业机会和合作。",
+    "getInTouch": "开始对话",
     "availableFor": {
-      "title": "可提供的服务",
+      "title": "可提供服务",
       "services": [
-        "Web 开发",
-        "后端开发",
-        "全栈开发",
-        "技术咨询"
+        "全栈 Web 开发",
+        "前端架构设计",
+        "技术咨询",
+        "API 设计与集成"
       ]
+    },
+    "contactInfo": {
+      "email": { "label": "邮箱" },
+      "phone": { "label": "电话" },
+      "location": { "label": "位置" },
+      "github": { "label": "GitHub" }
     },
     "form": {
       "title": "发送消息",
@@ -168,7 +108,6 @@
     }
   },
   "footer": {
-    "description": "全栈开发者，构建可扩展应用",
     "copyright": "版权所有。",
     "social": "联系我"
   }
