@@ -1,0 +1,110 @@
+{
+  "projects": [
+    {
+      "id": "ai-native-trpg-platform",
+      "title": "AI 原生 TRPG 平台",
+      "description": "一个提供 AI 驱动 TRPG 游戏体验的 AI 原生桌面角色扮演游戏平台。",
+      "overview": "这个 AI 原生 TRPG 平台代表了一种尖端的 TRPG 体验，创作者可以轻松构建、定制和分享自己的 TRPG 游戏，并深度集成 AI 技术。",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "AI 集成"
+      ],
+      "duration": "2025年9月 - 至今",
+      "teamSize": "1 人开发",
+      "role": "全栈开发工程师",
+      "status": "原型"
+    },
+    {
+      "id": "rust-python-microservices",
+      "title": "Rust/Python 微服务 API",
+      "description": "基于 Rust Axum 和 Python FastAPI 构建的高性能微服务架构。",
+      "overview": "这个微服务集群将 Rust 的高性能优势与 Python 的灵活性相结合，为用户认证、授权和资源管理提供完整的解决方案。",
+      "technologies": [
+        "Rust",
+        "tokio/Axum",
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
+        "Redis",
+        "Docker"
+      ],
+      "duration": "2025年5月 - 至今",
+      "teamSize": "1 人开发",
+      "role": "全栈开发工程师",
+      "status": "进行中",
+      "githubUrl": "https://github.com/Preference-cmd/inceptae"
+    },
+    {
+      "id": "ros2-autonomous-vehicle",
+      "title": "基于 ROS2 的智能自动驾驶汽车",
+      "description": "基于 ROS2 框架构建的综合自动驾驶系统。",
+      "overview": "这个智能自动驾驶汽车系统是使用 ROS2 框架实现完整自动驾驶技术的典范，配备了先进的感知、决策和执行模块。",
+      "technologies": [
+        "ROS2",
+        "VINS-Fusion",
+        "Octomap",
+        "Navigation2",
+        "C++",
+        "Python"
+      ],
+      "duration": "2023年2月 - 2023年6月",
+      "teamSize": "1 人开发",
+      "role": "系统设计与开发",
+      "status": "已完成",
+      "githubUrl": "https://github.com/username/ros2-autonomous-vehicle"
+    },
+    {
+      "id": "3d-reconstruction-app",
+      "title": "产品预览 3D 重建",
+      "description": "从产品图像自动生成 3D 模型的应用程序。",
+      "overview": "这个创新应用自动化了从产品图像或视频生成 3D 模型的过程，为电商企业提供增强的产品可视化能力。",
+      "technologies": [
+        "Python",
+        "Meta SAM2",
+        "Colmap",
+        "OpenMVS",
+        "OpenCV"
+      ],
+      "duration": "2025年5月",
+      "teamSize": "1 人开发",
+      "role": "独立开发",
+      "status": "原型",
+      "liveUrl": "https://3d-reconstruction-demo.vercel.app"
+    },
+    {
+      "id": "computer-vision-tracking",
+      "title": "计算机视觉目标跟踪系统",
+      "description": "基于 YOLOv5 和 PID 控制的实时目标跟踪系统。",
+      "overview": "这个计算机视觉目标跟踪系统是作为 RoboCon 竞赛研究的一部分开发的，专注于在复杂环境中进行实时目标检测和跟踪。",
+      "technologies": [
+        "Python",
+        "OpenCV",
+        "YOLOv5",
+        "PID 控制",
+        "计算机视觉"
+      ],
+      "duration": "2021年7月 - 2022年3月",
+      "teamSize": "1 人开发",
+      "role": "计算机视觉工程师",
+      "status": "已完成"
+    },
+    {
+      "id": "inverted-pendulum-control",
+      "title": "倒立摆 LQR 控制系统",
+      "description": "使用 Luenberger 观测器和 LQR 算法设计的控制系统。",
+      "overview": "这个项目专注于使用 Luenberger 观测器进行状态估计和线性二次调节器（LQR）进行最优控制，设计和实现单倒立摆的高级控制系统。",
+      "technologies": [
+        "MATLAB/Simulink",
+        "控制理论",
+        "LQR 控制器",
+        "Luenberger 观测器"
+      ],
+      "duration": "2022年10月 - 2022年11月",
+      "teamSize": "1 人开发",
+      "role": "控制系统设计师",
+      "status": "已完成"
+    }
+  ]
+}

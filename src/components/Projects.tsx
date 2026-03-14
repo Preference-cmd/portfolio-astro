@@ -13,7 +13,7 @@ interface ProjectsProps {
 type ProjectType = ReturnType<typeof getProjects>[0];
 
 export function Projects({ locale }: ProjectsProps) {
-  const projects = getProjects();
+  const projects = getProjects(locale);
   const [activeId, setActiveId] = React.useState(projects[0]?.id || "");
 
   const getStatusLabel = (status: string): string => {

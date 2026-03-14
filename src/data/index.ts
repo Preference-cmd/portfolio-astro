@@ -84,8 +84,9 @@ function readJsonFile(filename: string, subdir = ''): any {
   return null;
 }
 
-export function getProjects(): Project[] {
-  const data = readJsonFile('projects.json');
+export function getProjects(locale: Locale = 'en'): Project[] {
+  const subdir = locale === 'zh' ? 'zh' : '';
+  const data = readJsonFile('projects.json', subdir);
   return (data?.projects || []) as Project[];
 }
 
