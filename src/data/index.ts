@@ -1,8 +1,6 @@
 import type { Locale } from '@/i18n';
-
-import projectsData from './projects.json';
-import resumeData from './resume.json';
-import resumeDataZh from './resume.zh.json';
+import fs from 'fs';
+import path from 'path';
 
 export interface Project {
   id: string;
@@ -51,7 +49,6 @@ export interface ResumeData {
     period: string;
     description: string[];
   }[];
-  // Hero and About content from D1
   hero?: {
     greeting: string;
     title: string;
@@ -59,21 +56,56 @@ export interface ResumeData {
     cta: string;
     contactMe: string;
   };
-  aboutContent?: {
-    title: string;
-    skillsTitle: string;
-    skillCategories: { name: string; skills: string[] }[];
-    stats: {
-      experience: { value: string; label: string };
-      projects: { value: string; label: string };
-    };
-  };
+}
+
+const KV_DIR = path.join(process.cwd(), 'src', 'data', 'kv');
+const EXAMPLE_DIR = path.join(process.cwd(), 'src', 'data', 'example');
+
+function readJsonFile(filename: string, subdir = ''): any {
+  const kvPath = path.join(KV_DIR, subdir, filename);
+  if (fs.existsSync(kvPath)) {
+    try {
+      return JSON.parse(fs.readFileSync(kvPath, 'utf-8'));
+    } catch (e) {
+      console.warn(`Failed to parse KV file: ${kvPath}, falling back to example`);
+    }
+  }
+
+  const examplePath = path.join(EXAMPLE_DIR, subdir, filename);
+  if (fs.existsSync(examplePath)) {
+    try {
+      return JSON.parse(fs.readFileSync(examplePath, 'utf-8'));
+    } catch (e) {
+      console.error(`Failed to parse example file: ${examplePath}`);
+    }
+  }
+
+  console.error(`Data file not found: ${filename}`);
+  return null;
 }
 
 export function getProjects(): Project[] {
-  return projectsData.projects as Project[];
+  const data = readJsonFile('projects.json');
+  return (data?.projects || []) as Project[];
 }
 
 export function getResume(locale: Locale): ResumeData {
-  return locale === 'zh' ? resumeDataZh as ResumeData : resumeData as ResumeData;
+  const filename = locale === 'zh' ? 'resume.zh.json' : 'resume.json';
+  const subdir = locale === 'zh' ? 'zh' : 'en';
+  const data = readJsonFile(filename, subdir);
+  
+  if (!data) {
+    return {
+      personalInfo: { name: '', title: '', subtitle: '' },
+      contact: { website: '', email: '', phone: '', location: '', github: '' },
+      skills: [],
+      tools: [],
+      languages: [],
+      workExperience: [],
+      keyProjects: [],
+      education: [],
+    };
+  }
+  
+  return data as ResumeData;
 }

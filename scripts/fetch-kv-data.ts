@@ -12,7 +12,7 @@ import path from 'path';
 const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID || '';
 const KV_NAMESPACE_ID = process.env.CLOUDFLARE_KV_NAMESPACE_ID || '';
 const API_TOKEN = process.env.CLOUDFLARE_API_TOKEN || '';
-const OUTPUT_DIR = path.join(process.cwd(), 'src', 'data');
+const OUTPUT_DIR = path.join(process.cwd(), 'src', 'data', 'kv');
 
 const API_BASE = `https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/storage/kv/namespaces/${KV_NAMESPACE_ID}`;
 

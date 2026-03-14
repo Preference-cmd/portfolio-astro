@@ -1,0 +1,97 @@
+{
+  "personalInfo": {
+    "name": "SHAN LIN",
+    "title": "AI/Web Developer",
+    "subtitle": "Full-Stack Developer & AI Enthusiast"
+  },
+  "contact": {
+    "website": "pref2rence.inceptae.com",
+    "email": "noreply@example.com",
+    "phone": "+86 REDACTED",
+    "location": "REDACTED",
+    "github": "github.com/Preference-cmd"
+  },
+  "skills": [
+    "AI/ML Integration",
+    "Data Analysis",
+    "System Architecture",
+    "Computer Vision",
+    "RPA"
+  ],
+  "tools": [
+    "Rust",
+    "Python",
+    "TypeScript",
+    "Docker",
+    "CI/CD"
+  ],
+  "languages": [
+    "Chinese (Native)",
+    "English (CET6)"
+  ],
+  "workExperience": [
+    {
+      "company": "GuangDong Yesheen Technology Co., Ltd.",
+      "position": "AI/Full-Stack Developer",
+      "period": "NOV 2025 - FEB 2026",
+      "responsibilities": [
+        "Developed face-recognition app using Tauri2",
+        "Collecting data with Dify workflows",
+        "Design AI system architecture"
+      ]
+    }
+  ],
+  "keyProjects": [
+    {
+      "name": "Rust Axum/Python FastAPI Microservice Backend",
+      "period": "MAY 2025 - PRESENT",
+      "description": [
+        "High-performance microservice backend"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Guilin University of Aerospace Technology",
+      "degree": "BSc Robotics&Automation",
+      "period": "SEP 2019 - JUN 2023",
+      "description": []
+    }
+  ],
+  "hero": {
+    "greeting": "Hi, I'm Shan Lin",
+    "title": "AI/Fullstack Developer",
+    "subtitle": "Building scalable AI and web applications with modern technologies",
+    "cta": "View My Work",
+    "contactMe": "Contact Me"
+  },
+  "aboutContent": {
+    "title": "About Me",
+    "skillsTitle": "Technologies I Work With",
+    "skillCategories": [
+      {
+        "name": "language",
+        "skills": [
+          "Python",
+          "Rust",
+          "TypeScript"
+        ]
+      },
+      {
+        "name": "web",
+        "skills": [
+          "Next.js",
+          "Tailwind CSS",
+          "FastAPI"
+        ]
+      },
+      {
+        "name": "ai",
+        "skills": [
+          "LangChain",
+          "Computer Vision"
+        ]
+      }
+    ]
+  }
+}
