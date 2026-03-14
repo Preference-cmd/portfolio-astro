@@ -1,4 +1,4 @@
-name: Live Demo Deploy
+name: Deploy to Cloudflare Workers
 
 on:
   push:
@@ -28,10 +28,19 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build with example data
-        run: pnpm build
+      - name: Update wrangler.toml with KV namespace ID
+        run: |
+          sed -i 's/^id = "portfolios"$/id = "${{ secrets.CLOUDFLARE_KV_NAMESPACE_ID }}"/' wrangler.toml
+          cat wrangler.toml
 
-      - name: Deploy to Cloudflare Workers (Demo)
+      - name: Build with KV data
+        run: pnpm build:with-kv
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_KV_NAMESPACE_ID: ${{ secrets.CLOUDFLARE_KV_NAMESPACE_ID }}
+
+      - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}

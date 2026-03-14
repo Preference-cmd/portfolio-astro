@@ -10,7 +10,7 @@ A modern personal portfolio website template built with Astro, React, and Tailwi
 - **shadcn/ui style components** - Reusable UI components
 - **Dark/Light Theme** - Theme toggle with system preference detection
 - **Internationalization (i18n)** - Support for English and Chinese (local files)
-- **Cloudflare D1** - Database for projects and resume data (optional, falls back to local JSON)
+- **Cloudflare KV** - Remote data storage (optional, falls back to local example data)
 - **Responsive Design** - Mobile-first approach
 - **GitHub Actions** - Automatic deployment to Cloudflare Workers
 
@@ -22,11 +22,11 @@ Click the "Fork" button on GitHub to create your own copy.
 
 ### 2. Customize your data
 
-Edit the following files to add your information:
+Edit the example data files:
 
-- `src/data/projects.json` - Your projects data
-- `src/data/resume.json` - Your resume data (English)
-- `src/data/resume.zh.json` - Your resume data (Chinese)
+- `src/data/example/projects.json` - Your projects data
+- `src/data/example/en/resume.json` - Your resume data (English)
+- `src/data/example/zh/resume.zh.json` - Your resume data (Chinese)
 - `src/i18n/en.json` - English translations
 - `src/i18n/zh.json` - Chinese translations
 
@@ -46,28 +46,49 @@ Open [http://localhost:4321](http://localhost:4321) to view the site.
 
 1. Create a Cloudflare account if you don't have one
 2. Set up GitHub Secrets:
-   - `CLOUDFLARE_API_TOKEN` - Your Cloudflare API token
+   - `CLOUDFLARE_API_TOKEN` - Your Cloudflare API token (with KV write permissions)
    - `CLOUDFLARE_ACCOUNT_ID` - Your Cloudflare account ID
-   - `CLOUDFLARE_D1_DATABASE_ID` - (Optional) Your D1 database ID
+   - `CLOUDFLARE_KV_NAMESPACE_ID` - Your KV namespace ID
 
 The site will automatically deploy on push to main branch.
 
-## Data Sources
+## Data Architecture
 
-- **i18n**: Always reads from local files (`src/i18n/*.json`)
-- **Projects & Resume**: Reads from D1 database if available, falls back to local JSON files
+```
+src/data/
+├── index.ts          # Data access with fallback logic
+├── kv/               # KV data (gitignored, fetched during build)
+│   ├── projects.json
+│   ├── resume.json   # (en)
+│   └── resume.zh.json # (zh)
+└── example/          # Example data (tracked in git)
+    ├── projects.json
+    ├── en/resume.json
+    └── zh/resume.zh.json
+```
 
-### Using Local Data Only
+- **Local development**: Uses example data from `src/data/example/`
+- **GitHub Actions build**: Fetches data from your KV namespace, overwrites `src/data/kv/`
+- **Fallback**: If KV fetch fails, falls back to example data
+
+### Build Commands
 
 ```bash
+# Local build (uses example data)
 pnpm build
+
+# Build with KV data (for deployment)
+pnpm build:with-kv
+
+# Seed your data to KV
+pnpm seed:kv
 ```
 
-### Using D1 Database
+### Setting Up KV Data
 
-```bash
-pnpm build:with-d1
-```
+1. Create a KV namespace in Cloudflare Dashboard
+2. Get your KV namespace ID and add to GitHub Secrets
+3. Run `pnpm seed:kv` to populate KV with your data (requires `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_KV_NAMESPACE_ID`)
 
 ## Tech Stack
 
@@ -79,6 +100,7 @@ pnpm build:with-d1
 - **Language**: TypeScript
 - **Package Manager**: pnpm
 - **Deployment**: Cloudflare Workers
+- **Remote Data**: Cloudflare KV
 
 ## Project Structure
 
@@ -109,12 +131,13 @@ portfolio-astro/
 │   │   └── zh/
 │   │       ├── index.astro
 │   │       └── resume.astro
-│   └── data/            # Content data (local fallback)
-│       ├── projects.json
-│       ├── resume.json
-│       └── resume.zh.json
+│   └── data/            # Data with fallback
+│       ├── index.ts     # Data access functions
+│       ├── kv/          # KV data (gitignored)
+│       └── example/     # Example data (tracked)
 ├── scripts/
-│   └── fetch-d1-data.ts # D1 data fetching script
+│   ├── fetch-kv-data.ts # Fetch from KV
+│   └── seed-kv.ts      # Seed to KV
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml   # GitHub Actions deployment
