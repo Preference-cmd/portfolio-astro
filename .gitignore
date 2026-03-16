@@ -30,7 +30,7 @@ pnpm-debug.log*
 !.env.example
 
 # generated data (from KV during build)
-src/data/kv/*.json
+src/data/kv/
 src/data/*.json
 !src/data/example/
 
