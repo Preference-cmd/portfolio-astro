@@ -11,7 +11,7 @@ export function About({ locale }: AboutProps) {
   const t = getTranslations(locale);
   const resume = getResume(locale);
 
-  // Prefer D1 data, fallback to i18n translations
+  // Prefer KV data, fallback to i18n translations
   const aboutContent = resume.aboutContent || (t.about as {
     title: string;
     subtitle: string;

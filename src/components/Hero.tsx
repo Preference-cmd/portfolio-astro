@@ -18,7 +18,7 @@ export function Hero({ locale }: HeroProps) {
   const t = getTranslations(locale);
   const resume = getResume(locale);
 
-  // Prefer D1 data, fallback to i18n translations
+  // Prefer KV data, fallback to i18n translations
   const heroContent = resume.hero || (t.hero as { greeting: string; title: string; subtitle: string; cta: string; contactMe: string });
 
   return (

@@ -56,6 +56,15 @@ export interface ResumeData {
     cta: string;
     contactMe: string;
   };
+  aboutContent?: {
+    title: string;
+    skillsTitle: string;
+    skillCategories: { name: string; skills: string[] }[];
+    stats: {
+      experience: { value: string; label: string };
+      projects: { value: string; label: string };
+    };
+  };
 }
 
 const KV_DIR = path.join(process.cwd(), 'src', 'data', 'kv');

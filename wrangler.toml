@@ -1,11 +1,6 @@
 name = "portfolio-astro"
 compatibility_date = "2024-01-01"
 
-# D1 Database - database_id 在 CI/CD 中通过环境变量注入
-[[d1_databases]]
-binding = "DB"
-database_name = "portfolios"
-
 # KV Namespace - 用于存储内容数据
 [[kv_namespaces]]
 binding = "PORTFOLIO_KV"
