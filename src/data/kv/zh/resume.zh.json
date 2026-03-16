@@ -1,0 +1,96 @@
+{
+  "personalInfo": {
+    "name": "单林",
+    "title": "AI/Web 开发者",
+    "subtitle": "全栈开发者 & AI 爱好者"
+  },
+  "contact": {
+    "website": "pref2rence.inceptae.com",
+    "email": "noreply@example.com",
+    "phone": "+86 REDACTED",
+    "location": "REDACTED",
+    "github": "github.com/Preference-cmd"
+  },
+  "skills": [
+    "AI/ML 集成",
+    "数据分析",
+    "系统架构",
+    "计算机视觉",
+    "RPA"
+  ],
+  "tools": [
+    "Rust",
+    "Python",
+    "TypeScript",
+    "Docker",
+    "CI/CD"
+  ],
+  "languages": [
+    "中文（母语）",
+    "英语（CET6）"
+  ],
+  "workExperience": [
+    {
+      "company": "重庆市江津区美图农业专业合作社",
+      "position": "信息分析工程师",
+      "period": "2024年9月 - 2025年4月",
+      "responsibilities": [
+        "使用RPA工具管理工作流程",
+        "使用目标检测方法收集数据"
+      ]
+    }
+  ],
+  "keyProjects": [
+    {
+      "name": "Rust Axum/Python FastAPI 微服务后端",
+      "period": "2025年5月 - 至今",
+      "description": [
+        "高性能微服务后端"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "桂林航天工业学院",
+      "degree": "学士学位 机器人工程",
+      "period": "2019年9月 - 2023年6月",
+      "description": []
+    }
+  ],
+  "hero": {
+    "greeting": "你好，我是单林",
+    "title": "AI/WEB 开发者",
+    "subtitle": "使用现代技术构建可扩展的AI与Web应用程序",
+    "cta": "查看我的项目",
+    "contactMe": "联系我"
+  },
+  "aboutContent": {
+    "title": "关于我",
+    "skillsTitle": "我使用的技术",
+    "skillCategories": [
+      {
+        "name": "language",
+        "skills": [
+          "Python",
+          "Rust",
+          "TypeScript"
+        ]
+      },
+      {
+        "name": "web",
+        "skills": [
+          "Next.js",
+          "Tailwind CSS",
+          "FastAPI"
+        ]
+      },
+      {
+        "name": "ai",
+        "skills": [
+          "LangChain",
+          "计算机视觉"
+        ]
+      }
+    ]
+  }
+}

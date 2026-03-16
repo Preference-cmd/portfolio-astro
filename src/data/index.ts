@@ -94,14 +94,15 @@ function readJsonFile(filename: string, subdir = ''): any {
 }
 
 export function getProjects(locale: Locale = 'en'): Project[] {
-  const subdir = locale === 'zh' ? 'zh' : '';
+  const subdir = locale === 'zh' ? 'zh' : 'en';
   const data = readJsonFile('projects.json', subdir);
   return (data?.projects || []) as Project[];
 }
 
 export function getResume(locale: Locale): ResumeData {
+  const subdir = locale === 'zh' ? 'zh' : 'en';
   const filename = locale === 'zh' ? 'resume.zh.json' : 'resume.json';
-  const data = readJsonFile(filename, '');
+  const data = readJsonFile(filename, subdir);
   
   if (!data) {
     return {

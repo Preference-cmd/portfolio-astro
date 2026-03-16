@@ -16,14 +16,14 @@ const OUTPUT_DIR = path.join(process.cwd(), 'src', 'data', 'kv');
 
 const API_BASE = `https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/storage/kv/namespaces/${KV_NAMESPACE_ID}`;
 
-// 确保输出目录存在
-if (!fs.existsSync(OUTPUT_DIR)) {
-  fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-}
+// Ensure output directories exist
+['en', 'zh'].forEach(locale => {
+  const dir = path.join(OUTPUT_DIR, locale);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+});
 
-/**
- * 从 KV 读取数据 via REST API
- */
 async function readFromKV(key: string): Promise<string | null> {
   try {
     const response = await fetch(`${API_BASE}/values/${encodeURIComponent(key)}`, {
@@ -45,31 +45,42 @@ async function readFromKV(key: string): Promise<string | null> {
   }
 }
 
-/**
- * 获取项目数据
- */
 async function fetchProjects(): Promise<boolean> {
   console.log('Fetching projects from KV...');
-  const projectsJson = await readFromKV('projects');
-
-  if (!projectsJson) {
+  
+  const projectsEn = await readFromKV('projects:en');
+  const projectsZh = await readFromKV('projects:zh');
+  
+  let saved = false;
+  
+  if (projectsEn) {
+    const formatted = JSON.parse(projectsEn);
+    fs.writeFileSync(
+      path.join(OUTPUT_DIR, 'en', 'projects.json'),
+      JSON.stringify(formatted, null, 2)
+    );
+    console.log(`✓ Saved projects (en)`);
+    saved = true;
+  }
+  
+  if (projectsZh) {
+    const formatted = JSON.parse(projectsZh);
+    fs.writeFileSync(
+      path.join(OUTPUT_DIR, 'zh', 'projects.json'),
+      JSON.stringify(formatted, null, 2)
+    );
+    console.log(`✓ Saved projects (zh)`);
+    saved = true;
+  }
+  
+  if (!projectsEn && !projectsZh) {
     console.log('No projects from KV, will use local fallback');
     return false;
   }
-
-  const formatted = JSON.parse(projectsJson);
-
-  fs.writeFileSync(
-    path.join(OUTPUT_DIR, 'projects.json'),
-    JSON.stringify(formatted, null, 2)
-  );
-  console.log(`✓ Saved ${formatted.projects?.length || 0} projects`);
-  return true;
+  
+  return saved;
 }
 
-/**
- * 获取简历数据（英文）
- */
 async function fetchResumeEn(): Promise<boolean> {
   console.log('Fetching resume (en) from KV...');
   const resumeJson = await readFromKV('resume:en');
@@ -82,16 +93,13 @@ async function fetchResumeEn(): Promise<boolean> {
   const formatted = JSON.parse(resumeJson);
 
   fs.writeFileSync(
-    path.join(OUTPUT_DIR, 'resume.json'),
+    path.join(OUTPUT_DIR, 'en', 'resume.json'),
     JSON.stringify(formatted, null, 2)
   );
   console.log(`✓ Saved resume (en)`);
   return true;
 }
 
-/**
- * 获取简历数据（中文）
- */
 async function fetchResumeZh(): Promise<boolean> {
   console.log('Fetching resume (zh) from KV...');
   const resumeJson = await readFromKV('resume:zh');
@@ -104,14 +112,13 @@ async function fetchResumeZh(): Promise<boolean> {
   const formatted = JSON.parse(resumeJson);
 
   fs.writeFileSync(
-    path.join(OUTPUT_DIR, 'resume.zh.json'),
+    path.join(OUTPUT_DIR, 'zh', 'resume.zh.json'),
     JSON.stringify(formatted, null, 2)
   );
   console.log(`✓ Saved resume (zh)`);
   return true;
 }
 
-// 主流程
 async function main() {
   console.log('=== Fetching data from Cloudflare KV ===\n');
 
@@ -133,7 +140,7 @@ async function main() {
     console.log('⚠️ The deployed site will contain EXAMPLE DATA, not your KV content!');
     console.log('⚠️ Please check:');
     console.log('  1. KV namespace "portfolios" exists');
-    console.log('  2. Keys "projects", "resume:en", "resume:zh" are set');
+    console.log('  2. Keys "projects:en", "projects:zh", "resume:en", "resume:zh" are set');
     console.log('  3. Run "pnpm seed:kv" to populate KV');
     process.exit(1);
   } else {

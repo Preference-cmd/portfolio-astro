@@ -12,13 +12,10 @@ import path from 'path';
 const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID || '';
 const KV_NAMESPACE_ID = process.env.CLOUDFLARE_KV_NAMESPACE_ID || '';
 const API_TOKEN = process.env.CLOUDFLARE_API_TOKEN || '';
-const DATA_DIR = path.join(process.cwd(), 'src', 'data');
+const DATA_DIR = path.join(process.cwd(), 'src', 'data', 'kv');
 
 const API_BASE = `https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/storage/kv/namespaces/${KV_NAMESPACE_ID}`;
 
-/**
- * 写入数据到 KV via REST API
- */
 async function writeToKV(key: string, value: string): Promise<boolean> {
   try {
     const response = await fetch(`${API_BASE}/values/${encodeURIComponent(key)}`, {
@@ -42,44 +39,55 @@ async function writeToKV(key: string, value: string): Promise<boolean> {
   }
 }
 
-/**
- * 读取本地 JSON 文件
- */
-function readJsonFile(filename: string): object | null {
-  const filepath = path.join(DATA_DIR, filename);
+function readJsonFile(filename: string, subdir: string): object | null {
+  const filepath = path.join(DATA_DIR, subdir, filename);
   if (!fs.existsSync(filepath)) {
-    console.log(`File not found: ${filename}`);
+    console.log(`File not found: ${filepath}`);
     return null;
   }
   try {
     return JSON.parse(fs.readFileSync(filepath, 'utf-8'));
   } catch (error) {
-    console.error(`Failed to parse ${filename}:`, (error as Error).message);
+    console.error(`Failed to parse ${filepath}:`, (error as Error).message);
     return null;
   }
 }
 
-/**
- * 上传项目数据
- */
 async function seedProjects(): Promise<boolean> {
   console.log('Seeding projects...');
-  const data = readJsonFile('projects.json');
-  if (!data) return false;
-
-  const success = await writeToKV('projects', JSON.stringify(data));
-  if (success) {
-    console.log(`✓ Seeded projects (${(data as any).projects?.length || 0} items)`);
+  
+  const dataEn = readJsonFile('projects.json', 'en');
+  const dataZh = readJsonFile('projects.json', 'zh');
+  
+  let saved = false;
+  
+  if (dataEn) {
+    const success = await writeToKV('projects:en', JSON.stringify(dataEn));
+    if (success) {
+      console.log(`✓ Seeded projects (en)`);
+      saved = true;
+    }
   }
-  return success;
+  
+  if (dataZh) {
+    const success = await writeToKV('projects:zh', JSON.stringify(dataZh));
+    if (success) {
+      console.log(`✓ Seeded projects (zh)`);
+      saved = true;
+    }
+  }
+  
+  if (!dataEn && !dataZh) {
+    console.log('No projects found to seed');
+    return false;
+  }
+  
+  return saved;
 }
 
-/**
- * 上传简历数据（英文）
- */
 async function seedResumeEn(): Promise<boolean> {
   console.log('Seeding resume (en)...');
-  const data = readJsonFile('resume.json');
+  const data = readJsonFile('resume.json', 'en');
   if (!data) return false;
 
   const success = await writeToKV('resume:en', JSON.stringify(data));
@@ -89,12 +97,9 @@ async function seedResumeEn(): Promise<boolean> {
   return success;
 }
 
-/**
- * 上传简历数据（中文）
- */
 async function seedResumeZh(): Promise<boolean> {
   console.log('Seeding resume (zh)...');
-  const data = readJsonFile('resume.zh.json');
+  const data = readJsonFile('resume.zh.json', 'zh');
   if (!data) return false;
 
   const success = await writeToKV('resume:zh', JSON.stringify(data));
@@ -104,7 +109,6 @@ async function seedResumeZh(): Promise<boolean> {
   return success;
 }
 
-// 主流程
 async function main() {
   console.log('=== Seeding Cloudflare KV ===\n');
   console.log(`Data directory: ${DATA_DIR}`);
