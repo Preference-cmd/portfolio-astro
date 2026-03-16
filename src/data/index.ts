@@ -101,8 +101,7 @@ export function getProjects(locale: Locale = 'en'): Project[] {
 
 export function getResume(locale: Locale): ResumeData {
   const filename = locale === 'zh' ? 'resume.zh.json' : 'resume.json';
-  const subdir = locale === 'zh' ? 'zh' : 'en';
-  const data = readJsonFile(filename, subdir);
+  const data = readJsonFile(filename, '');
   
   if (!data) {
     return {
