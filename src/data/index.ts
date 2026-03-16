@@ -1,6 +1,13 @@
 import type { Locale } from '@/i18n';
-import fs from 'fs';
-import path from 'path';
+
+import projectsEn from './kv/en/projects.json';
+import projectsZh from './kv/zh/projects.json';
+import resumeEn from './kv/en/resume.json';
+import resumeZh from './kv/zh/resume.zh.json';
+import exampleProjectsEn from './example/en/projects.json';
+import exampleProjectsZh from './example/zh/projects.json';
+import exampleResumeEn from './example/en/resume.json';
+import exampleResumeZh from './example/zh/resume.zh.json';
 
 export interface Project {
   id: string;
@@ -67,42 +74,21 @@ export interface ResumeData {
   };
 }
 
-const KV_DIR = path.join(process.cwd(), 'src', 'data', 'kv');
-const EXAMPLE_DIR = path.join(process.cwd(), 'src', 'data', 'example');
-
-function readJsonFile(filename: string, subdir = ''): any {
-  const kvPath = path.join(KV_DIR, subdir, filename);
-  if (fs.existsSync(kvPath)) {
-    try {
-      return JSON.parse(fs.readFileSync(kvPath, 'utf-8'));
-    } catch (e) {
-      console.warn(`Failed to parse KV file: ${kvPath}, falling back to example`);
-    }
-  }
-
-  const examplePath = path.join(EXAMPLE_DIR, subdir, filename);
-  if (fs.existsSync(examplePath)) {
-    try {
-      return JSON.parse(fs.readFileSync(examplePath, 'utf-8'));
-    } catch (e) {
-      console.error(`Failed to parse example file: ${examplePath}`);
-    }
-  }
-
-  console.error(`Data file not found: ${filename}`);
-  return null;
-}
-
 export function getProjects(locale: Locale = 'en'): Project[] {
-  const subdir = locale === 'zh' ? 'zh' : 'en';
-  const data = readJsonFile('projects.json', subdir);
-  return (data?.projects || []) as Project[];
+  const kvData = locale === 'zh' ? projectsZh : projectsEn;
+  const exampleData = locale === 'zh' ? exampleProjectsZh : exampleProjectsEn;
+  
+  if (kvData?.projects) {
+    return kvData.projects as Project[];
+  }
+  return (exampleData?.projects || []) as Project[];
 }
 
 export function getResume(locale: Locale): ResumeData {
-  const subdir = locale === 'zh' ? 'zh' : 'en';
-  const filename = locale === 'zh' ? 'resume.zh.json' : 'resume.json';
-  const data = readJsonFile(filename, subdir);
+  const kvData = locale === 'zh' ? resumeZh : resumeEn;
+  const exampleData = locale === 'zh' ? exampleResumeZh : exampleResumeEn;
+  
+  const data = kvData || exampleData;
   
   if (!data) {
     return {
