@@ -20,14 +20,15 @@ const { title, locale = "en" } = Astro.props;
     <title>{title}</title>
     <script is:inline>
       // Initialize theme before page renders to prevent flash
+      // Default to dark theme
       (function() {
         const stored = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-        if (stored === "dark" || (!stored && prefersDark)) {
-          document.documentElement.classList.add("dark");
-        } else {
+        
+        if (stored === "light") {
           document.documentElement.classList.remove("dark");
+        } else {
+          // Default to dark theme (no stored = dark)
+          document.documentElement.classList.add("dark");
         }
       })();
     </script>
