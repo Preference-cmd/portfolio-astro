@@ -11,7 +11,6 @@ export function About({ locale }: AboutProps) {
   const t = getTranslations(locale);
   const resume = getResume(locale);
 
-  // Prefer KV data, fallback to i18n translations
   const aboutContent = resume.aboutContent || (t.about as {
     title: string;
     subtitle: string;
@@ -29,7 +28,7 @@ export function About({ locale }: AboutProps) {
           setIsVisible(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
 
     if (sectionRef.current) {
@@ -39,88 +38,90 @@ export function About({ locale }: AboutProps) {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-24 relative flex items-center min-h-screen">
+    <section id="about" ref={sectionRef} className="py-16 md:py-24 relative flex items-center min-h-screen">
       <div className="container px-4 md:px-8 max-w-7xl mx-auto relative z-10">
-
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-muted pb-8 mb-16">
-          <div className="relative">
-            <div className="text-muted-foreground font-mono text-xs uppercase tracking-widest mb-4">
-              02 / {locale === "en" ? "Profile" : "个人简介"}
-            </div>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-foreground uppercase">
-              {aboutContent.title}
-            </h2>
-          </div>
-          <p className="text-muted-foreground font-mono text-sm max-w-sm mt-6 md:mt-0 md:text-right">
-            Systematic overview of technical capabilities and domain expertise.
-          </p>
-        </div>
-
-        {/* Skills & Education Merged Layout */}
-        <div className={cn(
-          "flex flex-col gap-16 transition-all duration-1000 ease-out",
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        )}>
-
-          {/* Main Column: Skills */}
-          <div className="flex flex-col">
-            <h3 className="text-2xl font-bold uppercase tracking-widest mb-6 flex items-center gap-3">
-              <span className="w-3 h-3 bg-primary inline-block"></span>
-              {aboutContent.skillsTitle}
-            </h3>
-
-            <div className="border border-muted bg-card flex flex-wrap lg:grid lg:grid-cols-3">
-              {aboutContent.skillCategories?.map((category, idx) => (
-                <div key={idx} className="w-full md:w-1/2 lg:w-auto p-6 md:p-8 flex flex-col border-b md:border-r md:even:border-r-0 lg:border-r lg:even:border-r lg:[&:nth-child(3n)]:border-r-0 last:border-b-0 md:[&:nth-last-child(-n+2)]:border-b-0 lg:[&:nth-last-child(-n+3)]:border-b-0 border-muted">
-                  <h4 className="font-mono text-secondary text-sm uppercase mb-6 tracking-widest flex items-center gap-2">
-                    <span className="w-2 h-2 border border-primary inline-block"></span>
-                    {category.name}
-                  </h4>
-                  <div className="flex flex-wrap gap-2 md:gap-3">
-                    {category.skills.map((skill: string, index: number) => (
-                      <span
-                        key={index}
-                        className="px-3 py-1.5 text-xs md:text-sm bg-background border border-muted hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors cursor-crosshair font-mono tracking-tight"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+          
+          <div className="lg:col-span-4">
+            <div className={cn(
+              "transition-all duration-700 ease-out",
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            )}>
+              <div className="text-muted-foreground font-mono text-xs uppercase tracking-widest mb-4">
+                02 / {locale === "en" ? "Profile" : "个人简介"}
+              </div>
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold tracking-normal text-foreground mb-6">
+                {aboutContent.title}
+              </h2>
+              <div className="w-12 h-0.5 bg-primary mb-6" />
+              <p className="text-muted-foreground font-mono text-sm leading-relaxed">
+                {locale === "en" 
+                  ? "Building at the intersection of AI and full-stack development. Focused on scalable systems and clean architecture."
+                  : "构建于 AI 与全栈开发的交汇点。专注于可扩展系统与清晰架构。"}
+              </p>
             </div>
           </div>
 
-          {/* Secondary Column: Education */}
-          <div className="flex flex-col">
-            <h3 className="text-2xl font-bold uppercase tracking-widest mb-6 flex items-center gap-3">
-              <span className="w-3 h-3 bg-primary inline-block"></span>
-              {locale === "en" ? "Education" : "教育背景"}
-            </h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {resume.education.map((edu, index) => (
-                <div key={index} className="border border-muted bg-card group relative flex flex-col hover:border-primary transition-colors">
-                  <div className="p-6 md:p-8 h-full flex flex-col border-b border-muted bg-muted/10 group-hover:bg-primary/5 transition-colors">
-                    <div className="text-xs font-mono text-primary font-bold mb-4 uppercase tracking-widest flex justify-between">
-                      <span>[{edu.period}]</span>
+          <div className="lg:col-span-8">
+            <div className={cn(
+              "transition-all duration-700 ease-out delay-150",
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            )}>
+              
+              <div className="mb-12">
+                <h3 className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-6 pb-3 border-b border-muted">
+                  {aboutContent.skillsTitle}
+                </h3>
+                
+                <div className="space-y-6">
+                  {aboutContent.skillCategories?.map((category, idx) => (
+                    <div key={idx}>
+                      <div className="flex items-baseline gap-4 mb-3">
+                        <span className="font-mono text-xs uppercase tracking-wider text-primary">
+                          {category.name}
+                        </span>
+                        <div className="flex-1 h-px bg-muted/30" />
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {category.skills.map((skill: string, index: number) => (
+                          <span
+                            key={index}
+                            className="px-3 py-1.5 text-sm border border-muted hover:border-primary hover:bg-primary/5 transition-colors"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                    <h4 className="text-xl font-black uppercase tracking-tighter mb-2 leading-tight">
-                      {edu.institution}
-                    </h4>
-                    <div className="text-sm font-mono text-muted-foreground uppercase mt-4 border-l-2 border-primary pl-3">
-                      {edu.degree}
-                    </div>
-                  </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              <div>
+                <h3 className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-6 pb-3 border-b border-muted">
+                  {locale === "en" ? "Education" : "教育背景"}
+                </h3>
+                
+                <div className="space-y-4">
+                  {resume.education.map((edu, index) => (
+                    <div key={index} className="grid grid-cols-[1fr_auto] gap-4 items-start">
+                      <div>
+                        <div className="font-bold text-base mb-1">{edu.institution}</div>
+                        <div className="text-sm text-muted-foreground">{edu.degree}</div>
+                      </div>
+                      <div className="font-mono text-xs text-primary whitespace-nowrap">
+                        {edu.period}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
             </div>
-
           </div>
-
+          
         </div>
-
       </div>
     </section>
   );

@@ -19,7 +19,7 @@ export function Experience({ locale }: ExperienceProps) {
             <div className="text-muted-foreground font-mono text-xs uppercase tracking-widest mb-4">
               03 / {locale === "en" ? "Experience" : "工作经历"}
             </div>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-foreground uppercase">
+            <h2 className="text-5xl md:text-7xl font-heading font-bold tracking-normal text-foreground">
               {locale === "en" ? "Experience" : "职业轨迹"}
             </h2>
           </div>
@@ -59,7 +59,7 @@ export function Experience({ locale }: ExperienceProps) {
                         <div className="md:hidden text-xs font-mono text-muted-foreground mb-4 uppercase tracking-widest border border-muted px-3 py-1 inline-block bg-background">
                           {job.period}
                         </div>
-                        <h4 className="text-2xl font-black uppercase tracking-tighter mb-2">{job.position}</h4>
+                        <h4 className="text-2xl font-black tracking-normal mb-2">{job.position}</h4>
                         <div className="text-sm font-mono text-primary font-bold uppercase tracking-widest">
                           {job.company}
                         </div>

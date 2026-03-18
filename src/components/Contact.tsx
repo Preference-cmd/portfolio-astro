@@ -61,7 +61,7 @@ export function Contact({ locale }: ContactProps) {
             <div className="text-muted-foreground font-mono text-xs uppercase tracking-widest mb-4">
               05 / {locale === "en" ? "Contact" : "联系我"}
             </div>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-foreground uppercase">
+            <h2 className="text-5xl md:text-7xl font-heading font-bold tracking-normal text-foreground">
               {contact.title}
             </h2>
           </div>
@@ -79,7 +79,7 @@ export function Contact({ locale }: ContactProps) {
 
               {/* Header Bar */}
               <div className="p-6 md:p-8 border-b border-muted bg-muted/10">
-                <h3 className="text-2xl font-black uppercase tracking-tighter flex items-center gap-3">
+                <h3 className="text-2xl font-heading font-bold tracking-normal flex items-center gap-3">
                   <span className="w-3 h-3 bg-primary inline-block"></span>
                   {locale === "en" ? "Communication Channels" : "通讯渠道"}
                 </h3>
@@ -126,7 +126,7 @@ export function Contact({ locale }: ContactProps) {
           <div className="lg:col-span-4 flex flex-col">
             <div className="border border-muted bg-card h-full flex flex-col">
               <div className="p-6 md:p-8 border-b border-muted bg-primary text-primary-foreground">
-                <h3 className="text-2xl font-black uppercase tracking-tighter">
+                <h3 className="text-2xl font-heading font-bold tracking-normal">
                   {contact.availableFor.title}
                 </h3>
               </div>

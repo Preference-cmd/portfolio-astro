@@ -59,7 +59,7 @@ export function Projects({ locale }: ProjectsProps) {
             <div className="text-muted-foreground font-mono text-xs uppercase tracking-widest mb-4">
               04 / {locale === "en" ? "Projects" : "我的项目"}
             </div>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-foreground uppercase">
+            <h2 className="text-5xl md:text-7xl font-heading font-bold tracking-normal text-foreground">
               {locale === "en" ? "Featured Work" : "精选项目"}
             </h2>
           </div>
@@ -106,7 +106,7 @@ export function Projects({ locale }: ProjectsProps) {
                       "transition-all duration-500 hidden lg:block",
                       activeId === project.id ? "opacity-100 translate-x-0" : "opacity-30 -translate-x-4"
                     )}>
-                      <div className="font-bold text-3xl mb-3 tracking-tighter uppercase">
+                      <div className="font-bold text-3xl mb-3 tracking-normal capitalize">
                         {project.title}
                       </div>
                       <div className="text-sm font-mono tracking-widest text-muted-foreground mt-2 uppercase mb-6">
@@ -190,7 +190,7 @@ function ProjectCard({ project, getStatusLabel, locale, isActive }: ProjectCardP
       <CardHeader className="border-b border-muted p-6 md:p-8 bg-muted/10">
         <div className="flex flex-col mb-4">
           <span className="text-xs font-mono text-muted-foreground tracking-widest uppercase mb-2">Deploy: {project.id}</span>
-          <CardTitle className="text-3xl md:text-4xl uppercase tracking-tighter font-black mb-4">{project.title}</CardTitle>
+          <CardTitle className="text-3xl md:text-4xl tracking-normal font-black mb-4 capitalize">{project.title}</CardTitle>
           <div className="flex items-center">
             <Badge
               variant={

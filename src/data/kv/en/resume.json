@@ -1,6 +1,8 @@
 {
   "personalInfo": {
     "name": "SHAN LIN",
+    "logo": "IN",
+    "brand": "Pref2rence",
     "title": "AI/Web Developer",
     "subtitle": "Full-Stack Developer & AI Enthusiast"
   },
@@ -83,22 +85,31 @@
         "skills": [
           "Python",
           "Rust",
-          "TypeScript"
+          "TypeScript",
+          "C++"
         ]
       },
       {
-        "name": "web",
+        "name": "Frameworks",
         "skills": [
-          "Next.js",
-          "Tailwind CSS",
-          "FastAPI"
+          "Axum/Tokio Async",
+          "Tauri 2",
+          "FastAPI",
+          "Next.js/Astro"
         ]
       },
       {
-        "name": "ai",
+        "name": "AI Coding",
         "skills": [
-          "LangChain",
-          "Computer Vision"
+          "Claude Code/Codex/OpenCode",
+          "OpenClaw"
+        ]
+      },
+      {
+        "name": "AIGC/AI Apps",
+        "skills": [
+          "Dify/Coze",
+          "ComfyUI"
         ]
       }
     ]

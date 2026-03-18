@@ -26,6 +26,8 @@ export interface Project {
 export interface ResumeData {
   personalInfo: {
     name: string;
+    logo?: string;
+    brand?: string;
     title: string;
     subtitle: string;
   };
@@ -92,7 +94,7 @@ export function getResume(locale: Locale): ResumeData {
   
   if (!data) {
     return {
-      personalInfo: { name: '', title: '', subtitle: '' },
+      personalInfo: { name: '', logo: '', brand: '', title: '', subtitle: '' },
       contact: { website: '', email: '', phone: '', location: '', github: '' },
       skills: [],
       tools: [],

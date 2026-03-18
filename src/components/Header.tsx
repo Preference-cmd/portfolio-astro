@@ -1,9 +1,10 @@
 import * as React from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { cn } from "@/lib/utils";
 import { getTranslations, type Locale } from "@/i18n";
+import { getResume } from "@/data";
 
 interface HeaderProps {
   locale: Locale;
@@ -19,6 +20,9 @@ const navItems = [
 
 export function Header({ locale }: HeaderProps) {
   const t = getTranslations(locale);
+  const resumeEn = getResume("en");
+  const logo = resumeEn.personalInfo?.logo || "SL";
+  const brand = resumeEn.personalInfo?.brand || "SYSTEM";
   const [isOpen, setIsOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
   const [activeSection, setActiveSection] = React.useState<string>("");
@@ -104,11 +108,12 @@ export function Header({ locale }: HeaderProps) {
       <div className="container mx-auto px-4 md:px-8 max-w-7xl">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <a href={`/${locale === "zh" ? "zh" : ""}`} className="text-2xl font-black tracking-tighter uppercase relative group flex items-center">
+          <a href={`/${locale === "zh" ? "zh" : ""}`} className="text-2xl font-black tracking-normal uppercase relative group flex items-center">
+            <Terminal className="w-6 h-6 mr-3 text-primary" />
             <span className="bg-primary text-primary-foreground px-2 py-1 mr-2 grid-bg">
-              SL
+              {logo}
             </span>
-            <span className="hidden sm:inline-block">/ SYSTEM</span>
+            <span className="hidden sm:inline-block">/ {brand}</span>
           </a>
 
           {/* Desktop Navigation */}

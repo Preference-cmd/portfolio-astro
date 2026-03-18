@@ -53,12 +53,12 @@ export function Hero({ locale }: HeroProps) {
               </p>
 
               {/* Title */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tighter leading-[0.85] mb-8 text-foreground uppercase">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold tracking-normal leading-[1.15] mb-8 text-foreground">
                 {heroContent.title}
               </h1>
 
               {/* Subtitle */}
-              <p className="text-base sm:text-lg md:text-xl text-muted-foreground font-semibold tracking-tight max-w-2xl mb-16">
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground font-semibold tracking-normal max-w-2xl mb-16">
                 {heroContent.subtitle}
               </p>
 
