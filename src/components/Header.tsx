@@ -126,13 +126,13 @@ export function Header({ locale }: HeaderProps) {
                   href={getHref(item)}
                   onClick={(e) => handleNavClick(e, item)}
                   className={cn(
-                    "text-xs font-mono uppercase tracking-widest px-4 py-2 transition-all border",
+                    "text-xs font-mono uppercase tracking-widest px-4 py-2 transition-all border-b-2",
                     active
-                      ? "bg-primary text-primary-foreground border-primary font-bold shadow-[2px_2px_0_0_currentColor]"
-                      : "border-transparent text-muted-foreground hover:border-muted hover:bg-muted/10"
+                      ? "border-primary text-primary font-bold"
+                      : "border-transparent text-muted-foreground hover:border-muted/50 hover:text-foreground"
                   )}
                 >
-                  {active ? `[ ${getNavLabel(item.key)} ]` : getNavLabel(item.key)}
+                  {active ? getNavLabel(item.key) : getNavLabel(item.key)}
                 </a>
               );
             })}
