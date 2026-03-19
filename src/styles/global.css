@@ -36,7 +36,7 @@
 
   /* Font Family */
   --font-sans: 'MiSans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --font-heading: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Outfit', ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
@@ -87,7 +87,7 @@
   .dark {
     /* Brutalist Design System - Dark Mode (Default) */
     --background: #121212;
-    --foreground: #E2E2E2;
+    --foreground: #FFFFFF;
 
     /* Card & Popover */
     --card: #1C1C1C;

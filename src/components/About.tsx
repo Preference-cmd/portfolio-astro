@@ -38,7 +38,7 @@ export function About({ locale }: AboutProps) {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-16 md:py-24 relative flex items-center min-h-screen">
+      <section id="about" ref={sectionRef} className="py-12 md:py-16 relative">
       <div className="container px-4 md:px-8 max-w-7xl mx-auto relative z-10">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
@@ -75,26 +75,55 @@ export function About({ locale }: AboutProps) {
                 </h3>
                 
                 <div className="space-y-6">
-                  {aboutContent.skillCategories?.map((category, idx) => (
-                    <div key={idx}>
-                      <div className="flex items-baseline gap-4 mb-3">
-                        <span className="font-mono text-xs uppercase tracking-wider text-primary">
-                          {category.name}
-                        </span>
-                        <div className="flex-1 h-px bg-muted/30" />
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {category.skills.map((skill: string, index: number) => (
-                          <span
-                            key={index}
-                            className="px-3 py-1.5 text-sm border border-muted hover:border-primary hover:bg-primary/5 transition-colors"
-                          >
-                            {skill}
+                  {aboutContent.skillCategories?.map((category, idx) => {
+                    const bgColors = [
+                      "bg-primary/5",
+                      "bg-blue-500/5",
+                      "bg-purple-500/5",
+                    ];
+                    const borderColors = [
+                      "border-primary/20",
+                      "border-blue-500/20",
+                      "border-purple-500/20",
+                    ];
+                    const textColors = [
+                      "text-primary",
+                      "text-blue-500",
+                      "text-purple-500",
+                    ];
+                    const bg = bgColors[idx % bgColors.length];
+                    const border = borderColors[idx % borderColors.length];
+                    const text = textColors[idx % textColors.length];
+                    
+                    return (
+                      <div
+                        key={idx}
+                        className={cn(
+                          "p-4 border",
+                          bg, border
+                        )}
+                      >
+                        <div className="flex items-baseline gap-4 mb-3">
+                          <span className={cn(
+                            "font-mono text-xs uppercase tracking-wider font-semibold",
+                            text
+                          )}>
+                            {category.name}
                           </span>
-                        ))}
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {category.skills.map((skill: string, index: number) => (
+                            <span
+                              key={index}
+                              className="px-3 py-1.5 text-sm border border-muted/30 hover:border-primary/50 hover:bg-primary/5 transition-colors"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 
