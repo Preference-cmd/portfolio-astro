@@ -74,40 +74,15 @@ export function About({ locale }: AboutProps) {
                   {aboutContent.skillsTitle}
                 </h3>
                 
-                <div className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {aboutContent.skillCategories?.map((category, idx) => {
-                    const bgColors = [
-                      "bg-primary/5",
-                      "bg-blue-500/5",
-                      "bg-purple-500/5",
-                    ];
-                    const borderColors = [
-                      "border-primary/20",
-                      "border-blue-500/20",
-                      "border-purple-500/20",
-                    ];
-                    const textColors = [
-                      "text-primary",
-                      "text-blue-500",
-                      "text-purple-500",
-                    ];
-                    const bg = bgColors[idx % bgColors.length];
-                    const border = borderColors[idx % borderColors.length];
-                    const text = textColors[idx % textColors.length];
-                    
                     return (
                       <div
                         key={idx}
-                        className={cn(
-                          "p-4 border",
-                          bg, border
-                        )}
+                        className="p-5 border border-border"
                       >
-                        <div className="flex items-baseline gap-4 mb-3">
-                          <span className={cn(
-                            "font-mono text-xs uppercase tracking-wider font-semibold",
-                            text
-                          )}>
+                        <div className="flex items-baseline gap-3 mb-4">
+                          <span className="font-mono text-xs uppercase tracking-wider font-semibold text-primary">
                             {category.name}
                           </span>
                         </div>
@@ -115,7 +90,7 @@ export function About({ locale }: AboutProps) {
                           {category.skills.map((skill: string, index: number) => (
                             <span
                               key={index}
-                              className="px-3 py-1.5 text-sm border border-muted/30 hover:border-primary/50 hover:bg-primary/5 transition-colors"
+                              className="px-3 py-1.5 text-sm border border-muted/50 bg-muted/10 hover:border-primary/40 hover:bg-primary/5 transition-colors"
                             >
                               {skill}
                             </span>
