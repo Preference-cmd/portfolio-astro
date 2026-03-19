@@ -2,6 +2,7 @@ import * as React from "react";
 import { Mail, Phone, MapPin, Github, ArrowRight } from "lucide-react";
 import { getTranslations, type Locale } from "@/i18n";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 interface ContactProps {
   locale: Locale;
@@ -143,10 +144,12 @@ export function Contact({ locale }: ContactProps) {
 
               {/* Call to Action Bar */}
               <div className="p-6 md:p-8 border-t border-muted bg-muted/10">
-                <a href="mailto:noreply@example.com" className="w-full inline-flex items-center justify-between border border-primary bg-primary text-primary-foreground hover:bg-background hover:text-primary px-6 py-4 font-bold uppercase tracking-widest transition-all">
-                  {contact.getInTouch}
-                  <ArrowRight className="h-5 w-5" />
-                </a>
+                <Button asChild size="lg" variant="secondary" className="w-full group">
+                  <a href="mailto:noreply@example.com">
+                    <span>{contact.getInTouch}</span>
+                    <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </a>
+                </Button>
               </div>
             </div>
           </div>

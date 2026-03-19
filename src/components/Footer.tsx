@@ -26,26 +26,26 @@ export function Footer({ locale }: FooterProps) {
           </div>
 
           {/* Social Links */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1">
             <a
               href="https://github.com/Preference-cmd"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="p-3 hover:bg-primary/10 border border-transparent hover:border-primary/30 transition-all"
             >
               <Github className="h-5 w-5" />
               <span className="sr-only">GitHub</span>
             </a>
             <a
               href="mailto:noreply@example.com"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="p-3 hover:bg-primary/10 border border-transparent hover:border-primary/30 transition-all"
             >
               <Mail className="h-5 w-5" />
               <span className="sr-only">Email</span>
             </a>
             <a
               href="#"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="p-3 hover:bg-primary/10 border border-transparent hover:border-primary/30 transition-all"
             >
               <Linkedin className="h-5 w-5" />
               <span className="sr-only">LinkedIn</span>
