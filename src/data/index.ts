@@ -13,7 +13,7 @@ export interface Project {
   id: string;
   title: string;
   description: string;
-  overview: string;
+  overview: string[];
   technologies: string[];
   duration: string;
   teamSize: string;
@@ -47,11 +47,7 @@ export interface ResumeData {
     period: string;
     responsibilities: string[];
   }[];
-  keyProjects: {
-    name: string;
-    period: string;
-    description: string[];
-  }[];
+  keyProjects: string[]; // project IDs referencing projects.json
   education: {
     institution: string;
     degree: string;
@@ -79,11 +75,26 @@ export interface ResumeData {
 export function getProjects(locale: Locale = 'en'): Project[] {
   const kvData = locale === 'zh' ? projectsZh : projectsEn;
   const exampleData = locale === 'zh' ? exampleProjectsZh : exampleProjectsEn;
-  
+
+  let projects: Project[] = [];
   if (kvData?.projects) {
-    return kvData.projects as Project[];
+    projects = kvData.projects as Project[];
+  } else {
+    projects = (exampleData?.projects || []) as Project[];
   }
-  return (exampleData?.projects || []) as Project[];
+
+  // Sort by start year descending (newest first)
+  return [...projects].sort((a, b) => {
+    const aYear = extractStartYear(a.duration);
+    const bYear = extractStartYear(b.duration);
+    return bYear - aYear;
+  });
+}
+
+function extractStartYear(duration: string): number {
+  // Match patterns like "2026年3月", "March 2026", "2025.11", etc.
+  const match = duration.match(/(\d{4})/);
+  return match ? parseInt(match[1], 10) : 0;
 }
 
 export function getResume(locale: Locale): ResumeData {

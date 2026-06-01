@@ -1,110 +1,101 @@
 {
   "projects": [
     {
-      "id": "ai-native-trpg-platform",
-      "title": "AI 原生 TRPG 平台",
-      "description": "一个提供 AI 驱动 TRPG 游戏体验的 AI 原生桌面角色扮演游戏平台。",
-      "overview": "这个 AI 原生 TRPG 平台代表了一种尖端的 TRPG 体验，创作者可以轻松构建、定制和分享自己的 TRPG 游戏，并深度集成 AI 技术。",
-      "technologies": [
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "AI 集成"
+      "id": "ecommerce-platform",
+      "title": "电商平台",
+      "description": "支持实时库存和支付处理的现代电商平台。",
+      "overview": [
+        "使用 Next.js 14 和 TypeScript 进行类型安全开发",
+        "集成 Stripe 实现支付处理和 Webhook 处理",
+        "通过 WebSocket 实现实时库存更新"
       ],
-      "duration": "2025年9月 - 至今",
-      "teamSize": "1 人开发",
+      "technologies": ["TypeScript", "Next.js", "Stripe", "PostgreSQL", "Redis"],
+      "duration": "2024年1月 - 至今",
+      "teamSize": "3 人开发",
       "role": "全栈开发工程师",
-      "status": "原型"
+      "status": "in progress",
+      "liveUrl": "https://demo-ecommerce.vercel.app",
+      "githubUrl": "https://github.com/demo/ecommerce-platform"
     },
     {
-      "id": "rust-python-microservices",
-      "title": "Rust/Python 微服务 API",
-      "description": "基于 Rust Axum 和 Python FastAPI 构建的高性能微服务架构。",
-      "overview": "这个微服务集群将 Rust 的高性能优势与 Python 的灵活性相结合，为用户认证、授权和资源管理提供完整的解决方案。",
-      "technologies": [
-        "Rust",
-        "tokio/Axum",
-        "Python",
-        "FastAPI",
-        "PostgreSQL",
-        "Redis",
-        "Docker"
+      "id": "data-visualization-dashboard",
+      "title": "数据可视化仪表盘",
+      "description": "用于大规模数据可视化的交互式分析仪表盘。",
+      "overview": [
+        "使用 D3.js 和 React 设计响应式图表组件",
+        "针对 100k+ 数据点优化渲染性能",
+        "为用户查询构建自定义过滤和聚合管道"
       ],
-      "duration": "2025年5月 - 至今",
-      "teamSize": "1 人开发",
-      "role": "全栈开发工程师",
-      "status": "进行中",
-      "githubUrl": "https://github.com/Preference-cmd/inceptae"
+      "technologies": ["React", "D3.js", "Python", "FastAPI", "ClickHouse"],
+      "duration": "2023年6月 - 2023年12月",
+      "teamSize": "2 人开发",
+      "role": "前端负责人",
+      "status": "completed",
+      "githubUrl": "https://github.com/demo/data-viz-dashboard"
     },
     {
-      "id": "ros2-autonomous-vehicle",
-      "title": "基于 ROS2 的智能自动驾驶汽车",
-      "description": "基于 ROS2 框架构建的综合自动驾驶系统。",
-      "overview": "这个智能自动驾驶汽车系统是使用 ROS2 框架实现完整自动驾驶技术的典范，配备了先进的感知、决策和执行模块。",
-      "technologies": [
-        "ROS2",
-        "VINS-Fusion",
-        "Octomap",
-        "Navigation2",
-        "C++",
-        "Python"
+      "id": "mobile-health-app",
+      "title": "移动健康追踪应用",
+      "description": "用于追踪健身和健康指标的跨平台移动应用。",
+      "overview": [
+        "使用 React Native 开发，兼容 iOS 和 Android",
+        "集成 Apple HealthKit 和 Google Fit API",
+        "采用离线优先架构，使用本地 SQLite 存储"
       ],
-      "duration": "2023年2月 - 2023年6月",
-      "teamSize": "1 人开发",
-      "role": "系统设计与开发",
-      "status": "已完成",
-      "githubUrl": "https://github.com/username/ros2-autonomous-vehicle"
+      "technologies": ["TypeScript", "React Native", "SQLite", "Node.js"],
+      "duration": "2023年1月 - 2023年5月",
+      "teamSize": "4 人开发",
+      "role": "移动开发工程师",
+      "status": "completed",
+      "liveUrl": "https://health-tracker-demo.vercel.app"
     },
     {
-      "id": "3d-reconstruction-app",
-      "title": "产品预览 3D 重建",
-      "description": "从产品图像自动生成 3D 模型的应用程序。",
-      "overview": "这个创新应用自动化了从产品图像或视频生成 3D 模型的过程，为电商企业提供增强的产品可视化能力。",
-      "technologies": [
-        "Python",
-        "Meta SAM2",
-        "Colmap",
-        "OpenMVS",
-        "OpenCV"
+      "id": "cli-toolkit",
+      "title": "开发者 CLI 工具集",
+      "description": "用于脚手架搭建和项目自动化的命令行工具。",
+      "overview": [
+        "使用 Rust 构建，实现快速执行和跨平台兼容",
+        "设计插件架构以支持可扩展的命令模块",
+        "为 Bash、Zsh 和 Fish 实现 Shell 补全"
       ],
-      "duration": "2025年5月",
+      "technologies": ["Rust", "Clap", "Tokio", "Serde"],
+      "duration": "2022年8月 - 2022年12月",
       "teamSize": "1 人开发",
       "role": "独立开发",
-      "status": "原型",
-      "liveUrl": "https://3d-reconstruction-demo.vercel.app"
+      "status": "completed",
+      "githubUrl": "https://github.com/demo/dev-cli-toolkit"
     },
     {
-      "id": "computer-vision-tracking",
-      "title": "计算机视觉目标跟踪系统",
-      "description": "基于 YOLOv5 和 PID 控制的实时目标跟踪系统。",
-      "overview": "这个计算机视觉目标跟踪系统是作为 RoboCon 竞赛研究的一部分开发的，专注于在复杂环境中进行实时目标检测和跟踪。",
-      "technologies": [
-        "Python",
-        "OpenCV",
-        "YOLOv5",
-        "PID 控制",
-        "计算机视觉"
+      "id": "real-time-chat",
+      "title": "实时聊天应用",
+      "description": "基于 WebSocket 的端到端加密聊天应用。",
+      "overview": [
+        "实现 WebSocket 协议以支持实时消息传递",
+        "使用 Signal Protocol 添加端到端加密",
+        "通过 Redis 发布/订阅构建在线状态和输入指示器"
       ],
-      "duration": "2021年7月 - 2022年3月",
-      "teamSize": "1 人开发",
-      "role": "计算机视觉工程师",
-      "status": "已完成"
+      "technologies": ["TypeScript", "Node.js", "Socket.io", "Redis", "Docker"],
+      "duration": "2022年3月 - 2022年7月",
+      "teamSize": "2 人开发",
+      "role": "后端开发工程师",
+      "status": "completed",
+      "githubUrl": "https://github.com/demo/realtime-chat"
     },
     {
-      "id": "inverted-pendulum-control",
-      "title": "倒立摆 LQR 控制系统",
-      "description": "使用 Luenberger 观测器和 LQR 算法设计的控制系统。",
-      "overview": "这个项目专注于使用 Luenberger 观测器进行状态估计和线性二次调节器（LQR）进行最优控制，设计和实现单倒立摆的高级控制系统。",
-      "technologies": [
-        "MATLAB/Simulink",
-        "控制理论",
-        "LQR 控制器",
-        "Luenberger 观测器"
+      "id": "portfolio-generator",
+      "title": "作品集网站生成器",
+      "description": "支持主题定制的开发者作品集静态网站生成器。",
+      "overview": [
+        "创建 Markdown 到 HTML 的转换管道，支持自定义语法扩展",
+        "构建基于 CSS 变量的主题系统，支持定制",
+        "通过增量编译优化构建性能"
       ],
-      "duration": "2022年10月 - 2022年11月",
+      "technologies": ["Go", "HTML", "CSS", "Markdown"],
+      "duration": "2021年10月 - 2022年2月",
       "teamSize": "1 人开发",
-      "role": "控制系统设计师",
-      "status": "已完成"
+      "role": "独立开发",
+      "status": "prototype",
+      "githubUrl": "https://github.com/demo/portfolio-gen"
     }
   ]
 }

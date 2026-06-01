@@ -1,78 +1,83 @@
 {
   "personalInfo": {
-    "name": "SHAN LIN",
-    "logo": "SL",
-    "brand": "SYSTEM",
-    "title": "AI/Web Developer",
-    "subtitle": "Full-Stack Developer & AI Enthusiast"
+    "name": "ALEX CHEN",
+    "logo": "AC",
+    "brand": "STUDIO",
+    "title": "Full-Stack · Open Source · Design Systems",
+    "subtitle": "Software Engineer & UI Enthusiast"
   },
   "contact": {
-    "website": "pref2rence.inceptae.com",
-    "email": "noreply@example.com",
-    "phone": "+86 REDACTED",
-    "location": "REDACTED",
-    "github": "github.com/Preference-cmd"
+    "website": "alex-chen.dev",
+    "email": "hello@alex-chen.dev",
+    "phone": "+1 (555) 123-4567",
+    "location": "San Francisco, CA",
+    "github": "github.com/alex-chen"
   },
   "skills": [
-    "AI/ML Integration",
-    "Data Analysis",
-    "System Architecture",
-    "Computer Vision",
-    "RPA"
+    "System Design",
+    "Performance Optimization",
+    "Developer Tooling",
+    "UI Architecture",
+    "Open Source"
   ],
   "tools": [
-    "Rust",
-    "Python",
     "TypeScript",
-    "Docker",
-    "CI/CD"
+    "Rust",
+    "Go",
+    "React",
+    "Next.js",
+    "PostgreSQL",
+    "Docker"
   ],
   "languages": [
-    "Chinese (Native)",
-    "English (CET6)"
+    "English (Native)",
+    "Mandarin (Conversational)"
   ],
   "workExperience": [
     {
-      "company": "GuangDong Yesheen Technology Co., Ltd.",
-      "position": "AI/Full-Stack Developer",
-      "period": "NOV 2025 - FEB 2026",
+      "company": "TechCorp Inc.",
+      "position": "Senior Software Engineer",
+      "period": "JAN 2022 - PRESENT",
       "responsibilities": [
-        "Developed face-recognition app using Tauri2",
-        "Collecting data with Dify workflows",
-        "Design AI system architecture"
+        "Led migration from monolith to microservices, reducing deployment time by 60%",
+        "Built internal design system used across 12 product teams with 50+ components",
+        "Mentored junior engineers and conducted 30+ technical interviews"
       ]
     },
     {
-      "company": "Chongqing Jiangjin District Meitu Agricultural Professional Cooperative",
-      "position": "Information Analysis Engineer",
-      "period": "SEP 2024 - APR 2025",
+      "company": "StartupXYZ",
+      "position": "Full-Stack Developer",
+      "period": "JUN 2019 - DEC 2021",
       "responsibilities": [
-        "Using RPA tools to manage workflows",
-        "Using object detection methods to collect data"
+        "Developed customer-facing dashboard serving 10k+ daily active users",
+        "Implemented CI/CD pipelines reducing build failures by 40%",
+        "Optimized database queries improving API response times by 3x"
       ]
-    }
-  ],
-  "keyProjects": [
+    },
     {
-      "name": "Rust Axum/Python FastAPI Microservice Backend",
-      "period": "MAY 2025 - PRESENT",
-      "description": [
-        "High-performance microservice backend"
+      "company": "Digital Agency Co.",
+      "position": "Frontend Developer",
+      "period": "SEP 2017 - MAY 2019",
+      "responsibilities": [
+        "Built responsive web applications for clients in fintech and healthcare",
+        "Collaborated with designers to implement pixel-perfect UI components",
+        "Introduced automated testing, increasing code coverage from 20% to 75%"
       ]
     }
   ],
+  "keyProjects": ["ecommerce-platform", "data-visualization-dashboard", "cli-toolkit"],
   "education": [
     {
-      "institution": "Guilin University of Aerospace Technology",
-      "degree": "BSc Robotics&Automation",
-      "period": "SEP 2019 - JUN 2023",
+      "institution": "University of California, Berkeley",
+      "degree": "BSc Computer Science",
+      "period": "SEP 2013 - MAY 2017",
       "description": []
     }
   ],
   "hero": {
-    "greeting": "Hi, I'm Shan Lin",
-    "title": "AI/Fullstack Developer",
-    "subtitle": "Building scalable AI and web applications with modern technologies",
+    "greeting": "Hi, I'm Alex Chen",
+    "title": "Full-Stack · Open Source · Design Systems",
+    "subtitle": "Building tools and interfaces that developers love.",
     "cta": "View My Work",
     "contactMe": "Contact Me"
   },
@@ -81,26 +86,23 @@
     "skillsTitle": "Technologies I Work With",
     "skillCategories": [
       {
-        "name": "language",
+        "name": "Frontend",
         "skills": [
-          "Python",
-          "Rust",
-          "TypeScript"
-        ]
-      },
-      {
-        "name": "web",
-        "skills": [
+          "TypeScript",
+          "React",
           "Next.js",
           "Tailwind CSS",
-          "FastAPI"
+          "D3.js"
         ]
       },
       {
-        "name": "ai",
+        "name": "Backend & Tools",
         "skills": [
-          "LangChain",
-          "Computer Vision"
+          "Rust",
+          "Go",
+          "Node.js",
+          "PostgreSQL",
+          "Docker"
         ]
       }
     ]

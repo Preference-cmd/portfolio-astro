@@ -1,110 +1,101 @@
 {
   "projects": [
     {
-      "id": "ai-native-trpg-platform",
-      "title": "AI Native TRPG Platform",
-      "description": "An AI-native TRPG platform that provides AI-driven TRPG gaming experiences.",
-      "overview": "This AI Native TRPG Platform represents a cutting-edge TRPG experience where creators can easily build, customize, and share their own TRPG games with deep AI technology integration.",
-      "technologies": [
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "AI Integration"
+      "id": "ecommerce-platform",
+      "title": "E-Commerce Platform",
+      "description": "Modern e-commerce platform with real-time inventory and payment processing.",
+      "overview": [
+        "Built with Next.js 14 and TypeScript for type-safe development",
+        "Integrated Stripe for payment processing and webhook handling",
+        "Implemented real-time inventory updates using WebSocket connections"
       ],
-      "duration": "September 2025 - Present",
-      "teamSize": "1 developer",
-      "role": "Full-stack Developer",
-      "status": "prototype"
-    },
-    {
-      "id": "rust-python-microservices",
-      "title": "Rust/Python Microservices API",
-      "description": "High-performance microservices architecture built with Rust Axum and Python FastAPI.",
-      "overview": "This microservices cluster integrates Rust's high-performance advantages with Python's flexibility, providing complete solutions for user authentication, authorization, and resource management.",
-      "technologies": [
-        "Rust",
-        "tokio/Axum",
-        "Python",
-        "FastAPI",
-        "PostgreSQL",
-        "Redis",
-        "Docker"
-      ],
-      "duration": "May 2025 - Present",
-      "teamSize": "1 developer",
+      "technologies": ["TypeScript", "Next.js", "Stripe", "PostgreSQL", "Redis"],
+      "duration": "January 2024 - Present",
+      "teamSize": "3 developers",
       "role": "Full-stack Developer",
       "status": "in progress",
-      "githubUrl": "https://github.com/Preference-cmd/inceptae"
+      "liveUrl": "https://demo-ecommerce.vercel.app",
+      "githubUrl": "https://github.com/demo/ecommerce-platform"
     },
     {
-      "id": "ros2-autonomous-vehicle",
-      "title": "ROS2-based Intelligent Autonomous Vehicle",
-      "description": "A comprehensive autonomous vehicle system built on ROS2 framework.",
-      "overview": "This intelligent autonomous vehicle system represents a complete implementation of self-driving technology using the ROS2 framework with advanced perception, decision-making, and execution modules.",
-      "technologies": [
-        "ROS2",
-        "VINS-Fusion",
-        "Octomap",
-        "Navigation2",
-        "C++",
-        "Python"
+      "id": "data-visualization-dashboard",
+      "title": "Data Visualization Dashboard",
+      "description": "Interactive analytics dashboard for large-scale data visualization.",
+      "overview": [
+        "Designed responsive chart components using D3.js and React",
+        "Optimized rendering performance for datasets with 100k+ data points",
+        "Built custom filtering and aggregation pipeline for user queries"
       ],
-      "duration": "February 2023 - June 2023",
-      "teamSize": "1 developer",
-      "role": "System Designer & Developer",
+      "technologies": ["React", "D3.js", "Python", "FastAPI", "ClickHouse"],
+      "duration": "June 2023 - December 2023",
+      "teamSize": "2 developers",
+      "role": "Frontend Lead",
       "status": "completed",
-      "githubUrl": "https://github.com/username/ros2-autonomous-vehicle"
+      "githubUrl": "https://github.com/demo/data-viz-dashboard"
     },
     {
-      "id": "3d-reconstruction-app",
-      "title": "Product Preview 3D Reconstruction",
-      "description": "An automated 3D model generation application from product images.",
-      "overview": "This innovative application automates the process of generating 3D models from product images or videos, providing e-commerce businesses with enhanced product visualization capabilities.",
-      "technologies": [
-        "Python",
-        "Meta SAM2",
-        "Colmap",
-        "OpenMVS",
-        "OpenCV"
+      "id": "mobile-health-app",
+      "title": "Mobile Health Tracker",
+      "description": "Cross-platform mobile app for tracking fitness and health metrics.",
+      "overview": [
+        "Developed with React Native for iOS and Android compatibility",
+        "Integrated with Apple HealthKit and Google Fit APIs",
+        "Implemented offline-first architecture with local SQLite storage"
       ],
-      "duration": "May 2025",
+      "technologies": ["TypeScript", "React Native", "SQLite", "Node.js"],
+      "duration": "January 2023 - May 2023",
+      "teamSize": "4 developers",
+      "role": "Mobile Developer",
+      "status": "completed",
+      "liveUrl": "https://health-tracker-demo.vercel.app"
+    },
+    {
+      "id": "cli-toolkit",
+      "title": "Developer CLI Toolkit",
+      "description": "Command-line utilities for scaffolding and project automation.",
+      "overview": [
+        "Built with Rust for fast execution and cross-platform compatibility",
+        "Designed plugin architecture for extensible command modules",
+        "Implemented shell completion for Bash, Zsh, and Fish"
+      ],
+      "technologies": ["Rust", "Clap", "Tokio", "Serde"],
+      "duration": "August 2022 - December 2022",
+      "teamSize": "1 developer",
+      "role": "Solo Developer",
+      "status": "completed",
+      "githubUrl": "https://github.com/demo/dev-cli-toolkit"
+    },
+    {
+      "id": "real-time-chat",
+      "title": "Real-Time Chat Application",
+      "description": "WebSocket-based chat with end-to-end encryption.",
+      "overview": [
+        "Implemented WebSocket protocol for real-time message delivery",
+        "Added end-to-end encryption using Signal Protocol",
+        "Built presence and typing indicators with Redis pub/sub"
+      ],
+      "technologies": ["TypeScript", "Node.js", "Socket.io", "Redis", "Docker"],
+      "duration": "March 2022 - July 2022",
+      "teamSize": "2 developers",
+      "role": "Backend Developer",
+      "status": "completed",
+      "githubUrl": "https://github.com/demo/realtime-chat"
+    },
+    {
+      "id": "portfolio-generator",
+      "title": "Portfolio Site Generator",
+      "description": "Static site generator for developer portfolios with theme customization.",
+      "overview": [
+        "Created markdown-to-HTML pipeline with custom syntax extensions",
+        "Built theme system with CSS variable-based customization",
+        "Optimized build performance with incremental compilation"
+      ],
+      "technologies": ["Go", "HTML", "CSS", "Markdown"],
+      "duration": "October 2021 - February 2022",
       "teamSize": "1 developer",
       "role": "Solo Developer",
       "status": "prototype",
-      "liveUrl": "https://3d-reconstruction-demo.vercel.app"
-    },
-    {
-      "id": "computer-vision-tracking",
-      "title": "Computer Vision Target Tracking System",
-      "description": "Real-time target tracking system with YOLOv5 and PID control.",
-      "overview": "This computer vision target tracking system was developed as part of RoboCon competition research, focusing on real-time target detection and tracking in complex environments.",
-      "technologies": [
-        "Python",
-        "OpenCV",
-        "YOLOv5",
-        "PID Control",
-        "Computer Vision"
-      ],
-      "duration": "July 2021 - March 2022",
-      "teamSize": "1 developer",
-      "role": "Computer Vision Engineer",
-      "status": "completed"
-    },
-    {
-      "id": "inverted-pendulum-control",
-      "title": "LQR Control System for Inverted Pendulum",
-      "description": "Control system design using Luenberger observer and LQR algorithms.",
-      "overview": "This project focuses on designing and implementing an advanced control system for a single inverted pendulum using Luenberger observer for state estimation and Linear Quadratic Regulator (LQR) for optimal control.",
-      "technologies": [
-        "MATLAB/Simulink",
-        "Control Theory",
-        "LQR Controller",
-        "Luenberger Observer"
-      ],
-      "duration": "October 2022 - November 2022",
-      "teamSize": "1 developer",
-      "role": "Control System Designer",
-      "status": "completed"
+      "githubUrl": "https://github.com/demo/portfolio-gen"
     }
   ]
 }

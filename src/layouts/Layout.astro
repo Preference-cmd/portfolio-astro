@@ -16,28 +16,23 @@ const { title, locale = "en" } = Astro.props;
     <meta name="description" content="AI/Fullstack Developer Portfolio" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <!-- Swiss Style: Helvetica Neue stack via system fonts, no external font loading needed -->
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <script is:inline>
       // Initialize theme before page renders to prevent flash
-      // Default to dark theme
+      // Default to light theme (Swiss editorial style)
       (function() {
         const stored = localStorage.getItem("theme");
-        
-        if (stored === "light") {
-          document.documentElement.classList.remove("dark");
-        } else {
-          // Default to dark theme (no stored = dark)
+        if (stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
           document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
         }
       })();
     </script>
   </head>
   <body class="min-h-screen bg-background font-sans antialiased text-foreground selection:bg-primary selection:text-primary-foreground">
-    <div class="bg-noise"></div>
     <div class="relative z-10">
       <slot />
     </div>

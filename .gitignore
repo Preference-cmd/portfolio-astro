@@ -20,8 +20,16 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# Windows-specific files
+Thumbs.db
+
 # jetbrains setting folder
 .idea/
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 
 # wrangler files
 .wrangler
@@ -34,5 +42,17 @@ src/data/kv/
 src/data/*.json
 !src/data/example/
 
+# IDE / tool directories
+.impeccable/
+.cursor/
+
 # temp files
 .temp-kv-value.json
+.bitfun/
+/.bitfun/search/flashgrep-index/
+
+# generated screenshots
+public/screenshots/
+
+# personal data
+cv/

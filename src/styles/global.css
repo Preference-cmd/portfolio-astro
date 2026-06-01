@@ -1,7 +1,16 @@
 @import "tailwindcss";
 
+/* Self-hosted Inter Variable font */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
-  /* Colors - using CSS variables */
+  /* Colors */
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -34,10 +43,10 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 
-  /* Font Family */
-  --font-sans: 'MiSans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --font-heading: 'Outfit', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  /* Font Family - Inter self-hosted with system fallbacks */
+  --font-sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', system-ui, sans-serif;
+  --font-heading: 'Inter', 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', system-ui, sans-serif;
+  --font-mono: 'SF Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
 /* Dark mode selector */
@@ -45,113 +54,146 @@
 
 @layer base {
   :root {
-    /* Brutalist Design System - Light */
-    --background: #F4F4F0;
-    --foreground: #121212;
+    /* Editorial Swiss - Light */
+    --background: #D8D8D8;
+    --foreground: #000000;
 
     /* Card & Popover */
-    --card: #FFFFFF;
-    --card-foreground: #121212;
-    --popover: #FFFFFF;
-    --popover-foreground: #121212;
+    --card: #D0D0D0;
+    --card-foreground: #000000;
+    --popover: #D0D0D0;
+    --popover-foreground: #000000;
 
-    /* Primary (International Orange) */
-    --primary: #FF5C28;
-    --primary-foreground: #FFFFFF;
+    /* Primary (Swiss Orange) */
+    --primary: #D85A29;
+    --primary-foreground: #000000;
 
     /* Secondary */
-    --secondary: #E0D3C1;
-    --secondary-foreground: #121212;
+    --secondary: #000000;
+    --secondary-foreground: #FFFFFF;
 
     /* Muted (Structural Lines & Bg) */
-    --muted: #D1D1D1;
-    --muted-foreground: #666666;
+    --muted: #C5C5C5;
+    --muted-foreground: #4A4A4A;
 
     /* Accent */
-    --accent: #D1D1D1;
-    --accent-foreground: #121212;
+    --accent: #C5C5C5;
+    --accent-foreground: #000000;
 
     /* Destructive */
     --destructive: #E63900;
     --destructive-foreground: #FFFFFF;
 
     /* Borders & Inputs */
-    --border: #121212;
+    --border: #C5C5C5;
     --input: #FFFFFF;
-    --ring: #FF5C28;
+    --ring: #D85A29;
 
     /* Radius */
     --radius: 0px;
   }
 
   .dark {
-    /* Brutalist Design System - Dark Mode (Default) */
-    --background: #121212;
+    /* Editorial Swiss - Dark */
+    --background: #1A1A1A;
     --foreground: #FFFFFF;
 
     /* Card & Popover */
-    --card: #1C1C1C;
-    --card-foreground: #E2E2E2;
-    --popover: #1C1C1C;
-    --popover-foreground: #E2E2E2;
+    --card: #1A1A1A;
+    --card-foreground: #FFFFFF;
+    --popover: #1A1A1A;
+    --popover-foreground: #FFFFFF;
 
-    /* Primary (International Orange) */
-    --primary: #FF5C28;
-    --primary-foreground: #121212;
+    /* Primary (Swiss Orange) */
+    --primary: #D85A29;
+    --primary-foreground: #000000;
 
-    /* Secondary (Khaki/Tan) */
-    --secondary: #D2BC9D;
-    --secondary-foreground: #121212;
+    /* Secondary */
+    --secondary: #FFFFFF;
+    --secondary-foreground: #000000;
 
     /* Muted */
-    --muted: #262626;
-    --muted-foreground: #8D8D8D;
+    --muted: #2A2A2A;
+    --muted-foreground: #888888;
 
     /* Accent */
-    --accent: #262626;
-    --accent-foreground: #E2E2E2;
+    --accent: #2A2A2A;
+    --accent-foreground: #FFFFFF;
 
     /* Destructive */
     --destructive: #7f1d1d;
-    --destructive-foreground: #E2E2E2;
+    --destructive-foreground: #FFFFFF;
 
     /* Borders & Inputs */
-    --border: #262626;
-    --input: #262626;
-    --ring: #FF5C28;
+    --border: #2A2A2A;
+    --input: #2A2A2A;
+    --ring: #D85A29;
   }
 }
 
 @layer utilities {
-  .notched-br {
-    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+  /* Hairline border */
+  .hairline {
+    border-color: var(--color-muted);
+    border-width: 1px;
   }
 
-  .notched-tl {
-    clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
+  .hairline-b {
+    border-bottom: 1px solid var(--color-muted);
   }
 
-  .bg-noise {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.05;
-    pointer-events: none;
-    position: absolute;
-    inset: 0;
-    z-index: 50;
+  .hairline-t {
+    border-top: 1px solid var(--color-muted);
   }
 
-  .dotted-divider {
-    background-image: linear-gradient(to right, var(--color-muted) 50%, transparent 50%);
-    background-size: 8px 1px;
-    background-repeat: repeat-x;
-    height: 1px;
+  .hairline-l {
+    border-left: 1px solid var(--color-muted);
   }
 
-  .grid-bg {
-    background-image: linear-gradient(var(--color-muted) 1px, transparent 1px),
+  .hairline-r {
+    border-right: 1px solid var(--color-muted);
+  }
+
+  /* Vertical text */
+  .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  /* Swiss tag styles */
+  .tag-orange {
+    background-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+    padding: 0.15rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .tag-black {
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .dark .tag-black {
+    background-color: #FFFFFF;
+    color: #000000;
+  }
+
+  /* Grid lines background */
+  .grid-lines {
+    background-image:
+      linear-gradient(var(--color-muted) 1px, transparent 1px),
       linear-gradient(90deg, var(--color-muted) 1px, transparent 1px);
-    background-size: 40px 40px;
+    background-size: 80px 80px;
     background-position: center center;
+    opacity: 0.3;
   }
 }
 
@@ -166,5 +208,41 @@
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Editorial heading scale - tight tracking for display, looser for body */
+  h1, h2 {
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+  }
+
+  h3, h4, h5, h6 {
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+
+  /* Focus indicators */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  a, button {
+    transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
   }
 }

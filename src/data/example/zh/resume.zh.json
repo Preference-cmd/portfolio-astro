@@ -1,66 +1,81 @@
 {
   "personalInfo": {
-    "name": "单林",
-    "title": "AI/Web 开发者",
-    "subtitle": "全栈开发者 & AI 爱好者"
+    "name": "陈亚历",
+    "title": "全栈 · 开源 · 设计系统",
+    "subtitle": "软件工程师 & UI 爱好者"
   },
   "contact": {
-    "website": "pref2rence.inceptae.com",
-    "email": "noreply@example.com",
-    "phone": "+86 REDACTED",
-    "location": "REDACTED",
-    "github": "github.com/Preference-cmd"
+    "website": "alex-chen.dev",
+    "email": "hello@alex-chen.dev",
+    "phone": "+1 (555) 123-4567",
+    "location": "美国加利福尼亚州旧金山",
+    "github": "github.com/alex-chen"
   },
   "skills": [
-    "AI/ML 集成",
-    "数据分析",
-    "系统架构",
-    "计算机视觉",
-    "RPA"
+    "系统设计",
+    "性能优化",
+    "开发者工具",
+    "UI 架构",
+    "开源"
   ],
   "tools": [
-    "Rust",
-    "Python",
     "TypeScript",
-    "Docker",
-    "CI/CD"
+    "Rust",
+    "Go",
+    "React",
+    "Next.js",
+    "PostgreSQL",
+    "Docker"
   ],
   "languages": [
-    "中文（母语）",
-    "英语（CET6）"
+    "英语（母语）",
+    "中文（会话）"
   ],
   "workExperience": [
     {
-      "company": "重庆市江津区美图农业专业合作社",
-      "position": "信息分析工程师",
-      "period": "2024年9月 - 2025年4月",
+      "company": "TechCorp Inc.",
+      "position": "高级软件工程师",
+      "period": "2022年1月 - 至今",
       "responsibilities": [
-        "使用RPA工具管理工作流程",
-        "使用目标检测方法收集数据"
+        "主导单体架构向微服务迁移，部署时间减少 60%",
+        "构建内部设计系统，被 12 个产品团队使用，包含 50+ 组件",
+        "指导初级工程师，完成 30+ 技术面试"
       ]
-    }
-  ],
-  "keyProjects": [
+    },
     {
-      "name": "Rust Axum/Python FastAPI 微服务后端",
-      "period": "2025年5月 - 至今",
-      "description": [
-        "高性能微服务后端"
+      "company": "StartupXYZ",
+      "position": "全栈开发工程师",
+      "period": "2019年6月 - 2021年12月",
+      "responsibilities": [
+        "开发面向客户的仪表盘，日活跃用户 10k+",
+        "实现 CI/CD 流水线，构建失败率降低 40%",
+        "优化数据库查询，API 响应时间提升 3 倍"
+      ]
+    },
+    {
+      "company": "Digital Agency Co.",
+      "position": "前端开发工程师",
+      "period": "2017年9月 - 2019年5月",
+      "responsibilities": [
+        "为金融科技和医疗行业客户构建响应式 Web 应用",
+        "与设计师协作实现像素级精准的 UI 组件",
+        "引入自动化测试，代码覆盖率从 20% 提升至 75%"
       ]
     }
   ],
+  "keyProjects": ["ecommerce-platform", "data-visualization-dashboard", "cli-toolkit"],
   "education": [
     {
-      "institution": "桂林航天工业学院",
-      "degree": "学士学位 机器人工程",
-      "period": "2019年9月 - 2023年6月",
+      "institution": "加州大学伯克利分校",
+      "degree": "学士学位 计算机科学",
+      "period": "2013年9月 - 2017年5月",
       "description": []
     }
   ],
   "hero": {
-    "greeting": "你好，我是单林",
-    "title": "AI/WEB 开发者",
-    "subtitle": "使用现代技术构建可扩展的AI与Web应用程序",
+    "greeting": "你好，我是陈亚历",
+    "title": "全栈 · 开源 · 设计系统",
+    "subtitle": "构建开发者喜爱的工具和界面。",
     "cta": "查看我的项目",
     "contactMe": "联系我"
   },
@@ -69,26 +84,23 @@
     "skillsTitle": "我使用的技术",
     "skillCategories": [
       {
-        "name": "language",
+        "name": "前端",
         "skills": [
-          "Python",
-          "Rust",
-          "TypeScript"
-        ]
-      },
-      {
-        "name": "web",
-        "skills": [
+          "TypeScript",
+          "React",
           "Next.js",
           "Tailwind CSS",
-          "FastAPI"
+          "D3.js"
         ]
       },
       {
-        "name": "ai",
+        "name": "后端与工具",
         "skills": [
-          "LangChain",
-          "计算机视觉"
+          "Rust",
+          "Go",
+          "Node.js",
+          "PostgreSQL",
+          "Docker"
         ]
       }
     ]

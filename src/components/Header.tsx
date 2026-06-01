@@ -1,10 +1,9 @@
 import * as React from "react";
-import { Menu, X, Terminal } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { ColorBar } from "@/components/ui/color-bar";
 import { cn } from "@/lib/utils";
 import { getTranslations, type Locale } from "@/i18n";
-import { getResume } from "@/data";
 
 interface HeaderProps {
   locale: Locale;
@@ -20,23 +19,27 @@ const navItems = [
 
 export function Header({ locale }: HeaderProps) {
   const t = getTranslations(locale);
-  const resumeEn = getResume("en");
-  const logo = resumeEn.personalInfo?.logo || "SL";
-  const brand = resumeEn.personalInfo?.brand || "SYSTEM";
   const [isOpen, setIsOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
   const [activeSection, setActiveSection] = React.useState<string>("");
+  const [hidden, setHidden] = React.useState(false);
+  const lastScrollY = React.useRef(0);
 
   React.useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const currentY = window.scrollY;
+      setScrolled(currentY > 20);
+      if (currentY < 100) setActiveSection("");
 
-      // Clear active section if scrolled to the very top
-      if (window.scrollY < 100) {
-        setActiveSection("");
+      // Hide on scroll down, show on scroll up
+      if (currentY > lastScrollY.current && currentY > 80) {
+        setHidden(true);
+      } else {
+        setHidden(false);
       }
+      lastScrollY.current = currentY;
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -49,16 +52,13 @@ export function Header({ locale }: HeaderProps) {
           }
         });
       },
-      {
-        rootMargin: "-20% 0px -70% 0px", // Trigger when the section reaches top 20%-30% of viewport
-      }
+      { rootMargin: "-20% 0px -70% 0px" }
     );
 
-    const sectionIds = navItems.filter(item => item.sectionId).map(item => `#${item.sectionId}`);
-    if (sectionIds.length === 0) return;
-
-    const sections = document.querySelectorAll(sectionIds.join(", "));
-    sections.forEach((section) => observer.observe(section));
+    navItems.filter((i) => i.sectionId).forEach((item) => {
+      const el = document.getElementById(item.sectionId!);
+      if (el) observer.observe(el);
+    });
 
     return () => observer.disconnect();
   }, []);
@@ -68,16 +68,24 @@ export function Header({ locale }: HeaderProps) {
     return nav?.[key.replace('navigation.', '')] || key;
   };
 
-  const isNavActive = (item: typeof navItems[0]) => {
-    if (item.href === "/" && !activeSection) return true;
-    return item.sectionId === activeSection;
-  };
-
   const getHref = (item: typeof navItems[0]) => {
     if (item.href === "/") {
       return locale === "zh" ? "/zh" : "/";
     }
     return locale === "zh" ? `/zh${item.href}` : item.href;
+  };
+
+  const [pathname, setPathname] = React.useState("");
+
+  React.useEffect(() => {
+    setPathname(window.location.pathname);
+  }, []);
+
+  const isNavActive = (item: typeof navItems[0]) => {
+    const isHomePage = pathname === '/' || pathname === '/zh' || pathname === '/zh/';
+    if (!isHomePage) return false;
+    if (item.href === "/") return !activeSection;
+    return activeSection === item.sectionId;
   };
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
@@ -99,98 +107,91 @@ export function Header({ locale }: HeaderProps) {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-muted",
-        scrolled
-          ? "bg-background/95 backdrop-blur-sm shadow-[0_4px_0_0_rgba(0,0,0,1)] dark:shadow-[0_4px_0_0_rgba(255,255,255,0.05)]"
-          : "bg-background"
+        "fixed top-0 left-0 right-0 z-50 transition-transform duration-300",
+        hidden ? "-translate-y-full" : "translate-y-0"
       )}
     >
-      <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-        <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
-          <a href={`/${locale === "zh" ? "zh" : ""}`} className="text-2xl font-black tracking-normal uppercase relative group flex items-center">
-            <Terminal className="w-6 h-6 mr-3 text-primary" />
-            <span className="bg-primary text-primary-foreground px-2 py-1 mr-2 grid-bg">
-              {logo}
-            </span>
-            <span className="hidden sm:inline-block">/ {brand}</span>
-          </a>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-2">
-            {navItems.map((item) => {
-              const active = isNavActive(item);
-              return (
-                <a
-                  key={item.key}
-                  href={getHref(item)}
-                  onClick={(e) => handleNavClick(e, item)}
-                  className={cn(
-                    "text-xs font-mono uppercase tracking-widest px-4 py-2 transition-all border-b-2",
-                    active
-                      ? "border-primary text-primary font-bold"
-                      : "border-transparent text-muted-foreground hover:border-muted/50 hover:text-foreground"
-                  )}
-                >
-                  {active ? getNavLabel(item.key) : getNavLabel(item.key)}
-                </a>
-              );
-            })}
-          </nav>
-
-          {/* Right side - Theme & Language */}
-          <div className="flex items-center gap-2 md:gap-3">
-            <ThemeToggle />
-
-            {/* Language Toggle */}
-            <a
-              href={locale === "en" ? "/zh" : "/"}
-              className="hidden sm:inline-block text-xs font-mono uppercase tracking-widest px-3 py-2 border border-muted hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors cursor-crosshair font-bold"
-            >
-              {locale === "en" ? "中/EN" : "EN/中"}
+      <ColorBar />
+      <div className="border-b border-muted bg-background">
+        <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+          <div className="flex h-[54px] items-center justify-between">
+            {/* Logo */}
+            <a href={`/${locale === "zh" ? "zh" : ""}`} className="text-sm font-semibold tracking-tight uppercase">
+              SL / SYSTEM
             </a>
 
-            {/* Mobile Menu Button */}
-            <Button
-              variant="outline"
-              size="icon"
-              className="md:hidden rounded-none border-muted hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-8">
+              {navItems.map((item) => {
+                const active = isNavActive(item);
+                return (
+                  <a
+                    key={item.key}
+                    href={getHref(item)}
+                    onClick={(e) => handleNavClick(e, item)}
+                    className={cn(
+                      "text-xs font-mono uppercase tracking-widest transition-colors",
+                      active
+                        ? "text-foreground border-b-2 border-primary pb-1"
+                        : "text-muted-foreground hover:text-foreground"
+                    )}
+                  >
+                    {getNavLabel(item.key)}
+                  </a>
+                );
+              })}
+            </nav>
+
+            {/* Right side */}
+            <div className="flex items-center gap-4">
+              <ThemeToggle />
+              <a
+                href={locale === "en" ? "/zh" : "/"}
+                className="hidden sm:inline-block text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {locale === "en" ? "中/EN" : "EN/中"}
+              </a>
+
+              {/* Mobile Menu Button */}
+              <button
+                className="md:hidden p-2 text-muted-foreground hover:text-foreground transition-colors"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+              </button>
+            </div>
           </div>
-        </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <nav className="md:hidden py-4 border-t border-muted bg-background grid grid-cols-1 divide-y divide-muted">
-            {navItems.map((item) => {
-              const active = isNavActive(item);
-              return (
-                <a
-                  key={item.key}
-                  href={getHref(item)}
-                  className={cn(
-                    "block py-4 px-4 text-xs font-mono uppercase tracking-widest transition-colors",
-                    active
-                      ? "bg-primary text-primary-foreground font-bold"
-                      : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
-                  )}
-                  onClick={(e) => handleNavClick(e, item)}
-                >
-                  {active ? `> ${getNavLabel(item.key)}` : getNavLabel(item.key)}
-                </a>
-              );
-            })}
-            <a
-              href={locale === "en" ? "/zh" : "/"}
-              className="block py-4 px-4 text-xs font-mono uppercase tracking-widest transition-colors text-muted-foreground hover:bg-muted/50 hover:text-foreground sm:hidden"
-            >
-              Language: {locale === "en" ? "中文 / ZH" : "English / EN"}
-            </a>
-          </nav>
-        )}
+          {/* Mobile Navigation */}
+          {isOpen && (
+            <nav className="md:hidden py-4 border-t border-muted bg-background">
+              {navItems.map((item) => {
+                const active = isNavActive(item);
+                return (
+                  <a
+                    key={item.key}
+                    href={getHref(item)}
+                    className={cn(
+                      "block py-3 px-4 text-xs font-mono uppercase tracking-widest transition-colors",
+                      active
+                        ? "text-foreground bg-primary/10"
+                        : "text-muted-foreground hover:text-foreground"
+                    )}
+                    onClick={(e) => handleNavClick(e, item)}
+                  >
+                    {getNavLabel(item.key)}
+                  </a>
+                );
+              })}
+              <a
+                href={locale === "en" ? "/zh" : "/"}
+                className="block py-3 px-4 text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors sm:hidden"
+              >
+                {locale === "en" ? "中文 / ZH" : "English / EN"}
+              </a>
+            </nav>
+          )}
+        </div>
       </div>
     </header>
   );

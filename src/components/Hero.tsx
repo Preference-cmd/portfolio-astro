@@ -1,14 +1,7 @@
 import * as React from "react";
-import { MoveRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowDown } from "lucide-react";
 import { getTranslations, type Locale } from "@/i18n";
 import { getResume } from "@/data";
-
-// Assuming we process through Vite/Astro we need to import or specify explicit path if it's in public.
-// However, standard Astro / React integration often allows importing the image:
-// import coverImage from "@/images/cover.jpg";
-// To avoid build errors if alias isn't setup for images, we use relative:
-import coverImage from "../images/cover.jpg";
 
 interface HeroProps {
   locale: Locale;
@@ -17,67 +10,73 @@ interface HeroProps {
 export function Hero({ locale }: HeroProps) {
   const t = getTranslations(locale);
   const resume = getResume(locale);
-
-  // Prefer KV data, fallback to i18n translations
   const heroContent = resume.hero || (t.hero as { greeting: string; title: string; subtitle: string; cta: string; contactMe: string });
 
   return (
-    <section className="w-full relative flex flex-col bg-background">
-      {/* Background Image Layer (Full Screen) */}
-      <div
-        className="absolute inset-0 z-0 opacity-40 bg-cover bg-center bg-no-repeat pointer-events-none"
-        style={{ backgroundImage: `url(${coverImage.src || coverImage})` }}
-      />
-      {/* Dark overlay for better text readability against image */}
-      <div className="absolute inset-0 z-0 bg-background/80 mix-blend-multiply pointer-events-none" />
-      <div className="absolute inset-0 z-0 grid-bg opacity-30 mix-blend-overlay pointer-events-none"></div>
-
-      {/* Main Content Area */}
-      <div className="pt-24 flex flex-col w-full min-h-screen relative z-10">
-        <div className="w-full px-4 md:px-8 flex-1 flex flex-col">
-
-          {/* Main Container Wrapper */}
-          <div className="relative w-full flex-1 flex flex-col overflow-hidden backdrop-blur-[2px]">
-
-            {/* 01 Nav / Section Numbering */}
-            <div className="absolute -top-8 left-0 text-muted-foreground font-mono text-xs uppercase tracking-widest hidden md:block">
-              01 / Introduction
+    <section className="w-full relative bg-background pt-28 pb-16 md:pt-36 md:pb-24">
+      <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+        {/* Top meta row */}
+        <div className="flex justify-between items-start mb-16 md:mb-24">
+          <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+            01 / {locale === "en" ? "Introduction" : "简介"}
+          </div>
+          <div className="text-right">
+            <div className="text-xs font-mono uppercase tracking-widest text-foreground">
+              AI <span className="text-primary">&amp;</span> INNOVATION
             </div>
+            <div className="text-[10px] font-mono text-muted-foreground mt-1">
+              {locale === "en" ? "For human beings to maintain normal" : "为了人类保持正常"}
+            </div>
+          </div>
+        </div>
 
-            {/* Content Container */}
-            <div className="p-8 md:p-14 lg:p-20 flex flex-col justify-center relative z-10 flex-1">
+        {/* Main editorial layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-end">
+          {/* Left: Giant name */}
+          <div className="lg:col-span-7">
+            {(() => {
+              const nameParts = (resume.personalInfo?.name || "Shan Lin").split(" ").filter(Boolean);
+              return (
+                <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] xl:text-[12rem] font-heading leading-[0.85] text-foreground">
+                  {nameParts.map((part, i) => (
+                    <span key={i} className="block">
+                      {part}
+                    </span>
+                  ))}
+                </h1>
+              );
+            })()}
+            <div className="mt-6 flex items-center gap-4">
+              <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                {resume.personalInfo?.title || heroContent.title}
+              </span>
+              <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                {resume.personalInfo?.subtitle || ""}
+              </span>
+            </div>
+          </div>
 
-              {/* Greeting */}
-              <p className="text-muted-foreground font-mono text-sm mb-6 uppercase tracking-widest">
-                [ {heroContent.greeting} ]
-              </p>
-
-              <h1 className="flex flex-col leading-[0.85] mb-8">
-                <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-heading font-black text-foreground tracking-tight">
-                  AI/
+          {/* Right: Description block */}
+          <div className="lg:col-span-5 lg:pl-8 lg:border-l border-muted">
+            <p className="text-sm md:text-base leading-relaxed text-foreground max-w-md mb-8">
+              {heroContent.subtitle}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href="#projects"
+                className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-foreground hover:text-primary transition-colors group"
+              >
+                <span className="w-8 h-8 border border-muted flex items-center justify-center group-hover:border-primary transition-colors">
+                  <ArrowDown className="h-4 w-4" />
                 </span>
-                <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl font-heading font-extralight text-muted-foreground tracking-tight">
-                  Fullstack Developer
-                </span>
-              </h1>
-
-              {/* Subtitle */}
-              <p className="text-base sm:text-lg md:text-xl text-secondary font-medium tracking-normal max-w-2xl mb-16">
-                {heroContent.subtitle}
-              </p>
-
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                <Button asChild size="lg" variant="secondary" className="text-base group w-full sm:w-auto">
-                  <a href="#projects">
-                    {heroContent.cta}
-                    <MoveRight className="ml-3 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </a>
-                </Button>
-                <Button asChild variant="ghost" size="lg" className="text-base group w-full sm:w-auto text-foreground hover:bg-transparent hover:underline underline-offset-4">
-                  <a href="#contact">{heroContent.contactMe}</a>
-                </Button>
-              </div>
+                {heroContent.cta}
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {heroContent.contactMe}
+              </a>
             </div>
           </div>
         </div>

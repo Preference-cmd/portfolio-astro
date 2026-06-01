@@ -5,15 +5,9 @@ export function ThemeToggle() {
   const [theme, setTheme] = React.useState<"light" | "dark">("light");
 
   React.useEffect(() => {
-    // Get initial theme from localStorage or system preference
-    const stored = localStorage.getItem("theme");
-    if (stored === "dark") {
-      setTheme("dark");
-      document.documentElement.classList.add("dark");
-    } else if (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setTheme("dark");
-      document.documentElement.classList.add("dark");
-    }
+    // Sync with DOM state set by Layout.astro inline script
+    const isDark = document.documentElement.classList.contains("dark");
+    setTheme(isDark ? "dark" : "light");
   }, []);
 
   const toggleTheme = React.useCallback(() => {
@@ -31,7 +25,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="inline-flex items-center justify-center rounded-none border border-muted bg-background text-sm font-medium transition-colors hover:bg-primary hover:text-primary-foreground hover:border-primary h-[34px] w-[34px] cursor-crosshair"
+      className="inline-flex items-center justify-center rounded-none border border-muted bg-background text-sm font-medium transition-colors hover:bg-primary hover:text-primary-foreground hover:border-primary h-7 w-7"
       aria-label="Toggle theme"
     >
       {theme === "light" ? (
