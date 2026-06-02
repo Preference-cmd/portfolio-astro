@@ -11,7 +11,8 @@
     "title": "Full Stack Developer",
     "subtitle": "Building elegant solutions with modern technologies. Specializing in React, Node.js, and cloud architecture.",
     "cta": "View Projects",
-    "contactMe": "Contact Me"
+    "contactMe": "Contact Me",
+    "useTemplate": "Deploy this template"
   },
   "about": {
     "title": "About Me",

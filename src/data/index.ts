@@ -61,6 +61,7 @@ export interface ResumeData {
     subtitle: string;
     cta: string;
     contactMe: string;
+    useTemplate?: string;
   };
   aboutContent?: {
     title: string;

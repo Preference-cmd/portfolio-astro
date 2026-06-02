@@ -11,7 +11,8 @@
     "title": "全栈工程师",
     "subtitle": "使用现代技术构建优雅的解决方案。专注于 React、Node.js 和云架构。",
     "cta": "查看项目",
-    "contactMe": "联系我"
+    "contactMe": "联系我",
+    "useTemplate": "部署此模板"
   },
   "about": {
     "title": "关于我",
