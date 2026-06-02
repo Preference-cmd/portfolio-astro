@@ -37,6 +37,7 @@ export interface ResumeData {
     phone: string;
     location: string;
     github: string;
+    linkedin?: string;
   };
   skills: string[];
   tools: string[];
@@ -106,7 +107,7 @@ export function getResume(locale: Locale): ResumeData {
   if (!data) {
     return {
       personalInfo: { name: '', logo: '', brand: '', title: '', subtitle: '' },
-      contact: { website: '', email: '', phone: '', location: '', github: '' },
+      contact: { website: '', email: '', phone: '', location: '', github: '', linkedin: '' },
       skills: [],
       tools: [],
       languages: [],

@@ -11,7 +11,8 @@
     "email": "hello@alex-chen.dev",
     "phone": "+1 (555) 123-4567",
     "location": "San Francisco, CA",
-    "github": "github.com/alex-chen"
+    "github": "github.com/alex-chen",
+    "linkedin": "linkedin.com/in/your-handle"
   },
   "skills": [
     "System Design",

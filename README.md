@@ -1,187 +1,207 @@
-# Portfolio Website Template (Astro)
+# portfolio-astro
 
-A modern personal portfolio website template built with Astro, React, and Tailwind CSS. Fork this repo and customize it with your own information!
+A **Swiss-editorial** portfolio template built with Astro + React + Tailwind v4,
+deployable to Cloudflare Workers. Bilingual (EN / 中文) out of the box,
+Cloudflare KV-backed for remote content, fork-and-customize in under
+ten minutes.
 
-## Features
+> For AI-agent or contributor contracts (data flow rules, editing
+> constraints, PII protocol), see [`AGENTS.md`](./AGENTS.md). This
+> README is for humans.
 
-- **Astro** - Static site generator for optimal performance
-- **React** - Interactive UI components with client-side hydration
-- **Tailwind CSS 4** - Utility-first CSS framework
-- **shadcn/ui style components** - Reusable UI components
-- **Dark/Light Theme** - Theme toggle with system preference detection
-- **Internationalization (i18n)** - Support for English and Chinese (local files)
-- **Cloudflare KV** - Remote data storage (optional, falls back to local example data)
-- **Responsive Design** - Mobile-first approach
-- **GitHub Actions** - Automatic deployment to Cloudflare Workers
+## Stack
 
-## Quick Start
+- **Astro 5** + **React 19** (client islands)
+- **Tailwind CSS v4** with `@theme` tokens in `src/styles/global.css`
+- **Inter** (self-hosted variable font) + **Instrument Serif** for
+  editorial accent
+- **Cloudflare Workers** for deploy, **Cloudflare KV** for remote
+  resume / project data
+- **TypeScript** end-to-end, **pnpm** for package management
 
-### 1. Fork this repository
-
-Click the "Fork" button on GitHub to create your own copy.
-
-### 2. Customize your data
-
-Edit the example data files:
-
-- `src/data/example/projects.json` - Your projects data
-- `src/data/example/en/resume.json` - Your resume data (English)
-- `src/data/example/zh/resume.zh.json` - Your resume data (Chinese)
-- `src/i18n/en.json` - English translations
-- `src/i18n/zh.json` - Chinese translations
-
-### 3. Run locally
+## Quick start
 
 ```bash
-# Install dependencies
+# 1. Use this template on GitHub (or fork), then clone
+git clone <your-fork-url> portfolio-astro
+cd portfolio-astro
+
+# 2. Install + run
 pnpm install
-
-# Start development server
-pnpm dev
+pnpm dev          # → http://localhost:4321
 ```
 
-Open [http://localhost:4321](http://localhost:4321) to view the site.
+That's the whole local loop. The dev server reads from
+`src/data/example/*` so it works without any Cloudflare setup.
 
-### 4. Deploy to Cloudflare Workers
+To deploy to your own Cloudflare Workers, see [Deploy](#deploy)
+below.
 
-1. Create a Cloudflare account if you don't have one
-2. Set up GitHub Secrets:
-   - `CLOUDFLARE_API_TOKEN` - Your Cloudflare API token (with KV write permissions)
-   - `CLOUDFLARE_ACCOUNT_ID` - Your Cloudflare account ID
-   - `CLOUDFLARE_KV_NAMESPACE_ID` - Your KV namespace ID
+## What you get
 
-The site will automatically deploy on push to main branch.
+- **Editorial layout** — 12-col grid, hairline borders, mono labels,
+  mixed grotesk + italic serif (see `Hero.tsx`, the right column of
+  `Contact.tsx`, and the project list in `Projects.tsx` for the
+  cadence)
+- **Theme toggle** in the header with system-preference detection
+  and `localStorage` persistence
+- **Bilingual** routing — `/` is English, `/zh` is Chinese, both
+  `/resume` routes render to a printable resume view
+- **Scroll-anchored sections** with active-section highlighting in
+  the header (`#/about`, `#/projects`, etc.)
+- **Sticky project panel** — the left list scrolls, the right detail
+  panel updates as each project enters the viewport
+- **KV-backed content** (optional) — `pnpm build:with-kv` fetches
+  live data from Cloudflare KV; without it, `pnpm build` falls
+  back to local JSON
 
-## Data Architecture
+## Customization
+
+Most forks only touch these files:
+
+| What | Where |
+|---|---|
+| Name, contact, work history, projects | `src/data/example/en/resume.json`, `src/data/example/zh/resume.zh.json`, `src/data/example/en/projects.json`, `src/data/example/zh/projects.json` |
+| Hero greeting, section subtitles | `src/i18n/en.json`, `src/i18n/zh.json` |
+| Color palette | `src/styles/global.css` (`@theme` block) |
+| "Deploy this template" button target | `TEMPLATE_REPO_URL` at the top of `src/components/Hero.tsx` |
+| Cloudflare project name | `name` in `wrangler.toml` |
+
+The example data ships as `Alex Chen` / `陈亚历` with
+`hello@alex-chen.dev` and `+1 (555) 123-4567` so the template
+demonstrates the data shape without shipping anyone's real contact
+info.
+
+If you want to wire Cloudflare KV as your live data source, see
+[Data architecture](#data-architecture) below.
+
+## Data architecture
 
 ```
-src/data/
-├── index.ts          # Data access with fallback logic
-├── kv/               # KV data (gitignored, fetched during build)
-│   ├── projects.json
-│   ├── resume.json   # (en)
-│   └── resume.zh.json # (zh)
-└── example/          # Example data (tracked in git)
-    ├── projects.json
-    ├── en/resume.json
-    └── zh/resume.zh.json
+┌────────────────┐
+│ src/i18n/      │  Always read first. UI strings, "Available For"
+│ en.json        │  list, section labels, button text. Both locales
+│ zh.json        │  required for any new visible string.
+└───────┬────────┘
+        │
+        ▼
+┌────────────────┐
+│ src/data/kv/   │  Cloudflare KV mirror. Gitignored.
+│ en/resume.json │  Fetched at build by `scripts/fetch-kv-data.ts`.
+│ zh/...         │  Use this for content that changes often
+└───────┬────────┘  (resume, projects, hero copy).
+        │              ↓ missing at build time
+        ▼
+┌────────────────┐
+│ src/data/      │  Local fallback. Tracked in git.
+│ example/       │  Same shape as the KV data; the dev server
+│ en/...         │  and `pnpm build` use this when no KV fetch
+│ zh/...         │  has happened.
+└────────────────┘
 ```
 
-- **Local development**: Uses example data from `src/data/example/`
-- **GitHub Actions build**: Fetches data from your KV namespace, overwrites `src/data/kv/`
-- **Fallback**: If KV fetch fails, falls back to example data
+The merge pattern (used in `Hero.tsx` and `Contact.tsx`) is the
+canonical way to add a new field:
 
-### Build Commands
+```ts
+const merged = {
+  ...i18nDefaults,   // i18n is the source of truth
+  ...resumeOverride, // KV may override individual fields
+};
+```
+
+i18n provides the field's default value, KV overrides when present.
+If a field is meant to be i18n-only, keep it under `t.*` and don't
+read it from KV. If a field is meant to be live-editable, route
+it through `resume.*` and merge.
+
+## Deploy
+
+The included `.github/workflows/deploy.yml` deploys to Cloudflare
+Workers on every push to `main`. It needs three GitHub repository
+secrets (Settings → Secrets and variables → Actions):
+
+| Secret | Where to get it |
+|---|---|
+| `CLOUDFLARE_API_TOKEN` | Cloudflare dashboard → My Profile → API Tokens → Create Token → "Edit Cloudflare Workers" template |
+| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare dashboard → right sidebar of any Workers page |
+| `CLOUDFLARE_KV_NAMESPACE_ID` | `wrangler kv namespace create PORTFOLIO_KV` outputs this ID |
+
+To enable KV-backed content:
 
 ```bash
-# Local build (uses example data)
-pnpm build
+# 1. Create the namespace once
+pnpm exec wrangler kv namespace create PORTFOLIO_KV
 
-# Build with KV data (for deployment)
-pnpm build:with-kv
+# 2. Edit the example data files to your real content, then push
+#    the same files to KV with `pnpm seed:kv` (or wrangler kv key put).
 
-# Seed your data to KV
-pnpm seed:kv
+# 3. From then on, `pnpm build:with-kv` (or push to main) will
+#    fetch from KV at build time.
 ```
 
-### Setting Up KV Data
+The deploy workflow then runs `pnpm build:with-kv` and calls
+`wrangler deploy`. Live data → live site, automatically.
 
-1. Create a KV namespace in Cloudflare Dashboard
-2. Get your KV namespace ID and add to GitHub Secrets
-3. Run `pnpm seed:kv` to populate KV with your data (requires `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_KV_NAMESPACE_ID`)
+If you'd rather not use GitHub Actions, `pnpm build:with-kv` and
+`pnpm exec wrangler deploy` work fine from your laptop.
 
-## Tech Stack
-
-- **Framework**: Astro 5.x
-- **UI Library**: React 19
-- **Styling**: Tailwind CSS 4
-- **Components**: Radix UI + custom shadcn/ui-style components
-- **Icons**: Lucide React
-- **Language**: TypeScript
-- **Package Manager**: pnpm
-- **Deployment**: Cloudflare Workers
-- **Remote Data**: Cloudflare KV
-
-## Project Structure
+## Project structure
 
 ```
-portfolio-astro/
-├── src/
-│   ├── components/       # React components
-│   │   ├── ui/          # shadcn/ui-style components
-│   │   ├── Header.tsx
-│   │   ├── Footer.tsx
-│   │   ├── Hero.tsx
-│   │   ├── About.tsx
-│   │   ├── Projects.tsx
-│   │   ├── Contact.tsx
-│   │   ├── Resume.tsx
-│   │   └── PortfolioContent.tsx
-│   ├── i18n/            # Internationalization (local files)
-│   │   ├── en.json
-│   │   ├── zh.json
-│   │   └── index.ts
-│   ├── layouts/         # Astro layouts
-│   │   └── Layout.astro
-│   ├── lib/             # Utilities
-│   │   └── utils.ts
-│   ├── pages/           # Astro pages
-│   │   ├── index.astro
-│   │   ├── resume.astro
-│   │   └── zh/
-│   │       ├── index.astro
-│   │       └── resume.astro
-│   └── data/            # Data with fallback
-│       ├── index.ts     # Data access functions
-│       ├── kv/          # KV data (gitignored)
-│       └── example/     # Example data (tracked)
-├── scripts/
-│   ├── fetch-kv-data.ts # Fetch from KV
-│   └── seed-kv.ts      # Seed to KV
-├── .github/
-│   └── workflows/
-│       └── deploy.yml   # GitHub Actions deployment
-├── wrangler.toml        # Cloudflare configuration
-└── astro.config.mjs     # Astro configuration
+src/
+├── components/
+│   ├── ui/               # Reusable shadcn-style primitives
+│   ├── Hero.tsx          # Editorial intro + CTA
+│   ├── About.tsx         # Skills grid (intersection-observed fade-in)
+│   ├── Experience.tsx    # Work history timeline
+│   ├── Projects.tsx      # Sticky-detail project list
+│   ├── Contact.tsx       # Channels + "Available For" + CTA
+│   ├── Header.tsx        # Nav with active-section tracking
+│   ├── Footer.tsx        # Logo + social
+│   └── PortfolioContent.tsx
+├── i18n/                 # en.json, zh.json (always read first)
+├── data/
+│   ├── index.ts          # getProjects() / getResume() / merge helpers
+│   ├── example/          # Tracked template placeholders
+│   └── kv/               # Gitignored; populated by fetch-kv-data.ts
+├── layouts/Layout.astro  # <head> + theme init + skip link
+├── pages/
+│   ├── index.astro       # /
+│   ├── resume.astro      # /resume
+│   └── zh/
+│       ├── index.astro   # /zh
+│       └── resume.astro  # /zh/resume
+├── lib/utils.ts          # cn() (clsx + tailwind-merge)
+└── styles/global.css     # @theme tokens; the design source of truth
 ```
 
 ## Pages
 
-| Route | Description |
-|-------|-------------|
-| `/` | English homepage |
-| `/zh` | Chinese homepage |
-| `/resume` | English resume |
-| `/zh/resume` | Chinese resume |
+| Route | Notes |
+|---|---|
+| `/` | English homepage with hero, about, experience, projects, contact |
+| `/zh` | Chinese homepage, same sections |
+| `/resume` | English printable resume |
+| `/zh/resume` | Chinese printable resume |
 
-## Theme
+## Contributing
 
-The site supports light and dark themes. The theme is stored in localStorage and respects system preferences by default.
-
-## Internationalization
-
-Translations are stored in `src/i18n/` as JSON files:
-- `en.json` - English
-- `zh.json` - Chinese (Simplified)
-
-The locale is determined by the URL path. Switching between locales is done through the language toggle in the header.
-
-## Design System
-
-The design follows the shadcn/ui style with:
-- OKLCH color system
-- Smooth transitions (0.2s cubic-bezier)
-- Backdrop blur effects
-- Mobile-first responsive design
-
-### Color Palette
-
-| Token | Light | Dark |
-|-------|-------|------|
-| Background | oklch(1 0 0) | oklch(0.145 0 0) |
-| Foreground | oklch(0.145 0 0) | oklch(0.985 0 0) |
-| Primary | oklch(0.205 0 0) | oklch(0.922 0 0) |
+This is a personal template published as open source. If you fork
+it, you don't need to PR back — go build your site. The one thing
+worth keeping in mind: **never commit personal data to tracked
+files**. The example data ships with obviously-fake contact info;
+live data lives in `src/data/kv/` (gitignored) or in your Cloudflare
+KV namespace. If you accidentally commit a real email / phone /
+address, run `git filter-repo` to scrub history *before* your
+first public push. The `AGENTS.md` PII protocol section has the
+exact command.
 
 ## License
 
-MIT - Feel free to use this template for your own portfolio!
+MIT — see [`LICENSE`](./LICENSE). Use it, fork it, ship your site.
+
+---
+
+Built with Astro 5 · React 19 · Tailwind 4 · deployed on
+Cloudflare Workers. Inter typeface licensed under the SIL OFL.

@@ -1,24 +1,71 @@
 ---
 import "@/styles/global.css";
+import { getResume } from "@/data";
 
 interface Props {
   title: string;
+  description?: string;
   locale?: "en" | "zh";
 }
 
-const { title, locale = "en" } = Astro.props;
+const {
+  title,
+  description = "AI/Fullstack Developer Portfolio",
+  locale = "en",
+} = Astro.props;
+
+// Pull from KV (resolved at build time via static imports). The GitHub
+// Actions workflow runs `pnpm build:with-kv` so this reflects the
+// live data on every deploy; local `pnpm dev` / `pnpm build` use
+// the same source files.
+const resume = getResume(locale);
+
+// Normalise a LinkedIn handle from the data: the user may store it
+// as "linkedin.com/in/x", "www.linkedin.com/in/x", or the full
+// "https://www.linkedin.com/in/x". LinkedIn's servers accept any
+// of these, but LinkedIn's link-unfurler / preview card parser
+// will 404 on a double-"www.www." so we have to get this right.
+function normalizeLinkedin(raw: string | undefined): string | null {
+  if (!raw) return null;
+  const trimmed = raw.replace(/^\/+/, "").trim();
+  if (!trimmed) return null;
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return `https://${trimmed}`;
+}
+const linkedinHref = normalizeLinkedin(resume.contact?.linkedin);
+const ogLocale = locale === "zh" ? "zh_CN" : "en_US";
+const ogLocaleAlt = locale === "zh" ? "en_US" : "zh_CN";
+const canonicalUrl = Astro.url.href;
 ---
 
 <!doctype html>
 <html lang={locale}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="AI/Fullstack Developer Portfolio" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <!-- Swiss Style: Helvetica Neue stack via system fonts, no external font loading needed -->
-    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary meta -->
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph (LinkedIn, X, Facebook, Slack, etc.) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogLocaleAlt} />
+    {linkedinHref && <meta property="og:see_also" content={linkedinHref} />}
+
+    <!-- Twitter / X (falls back to og:* when omitted) -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
     <script is:inline>
       // Initialize theme before page renders to prevent flash
       // Default to light theme (Swiss editorial style)
@@ -33,6 +80,12 @@ const { title, locale = "en" } = Astro.props;
     </script>
   </head>
   <body class="min-h-screen bg-background font-sans antialiased text-foreground selection:bg-primary selection:text-primary-foreground">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:bg-foreground focus:text-background focus:font-mono focus:text-xs focus:uppercase focus:tracking-widest"
+    >
+      Skip to content
+    </a>
     <div class="relative z-10">
       <slot />
     </div>
