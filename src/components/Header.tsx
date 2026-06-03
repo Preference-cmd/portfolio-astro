@@ -4,6 +4,7 @@ import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { ColorBar } from "@/components/ui/color-bar";
 import { cn } from "@/lib/utils";
 import { getTranslations, type Locale } from "@/i18n";
+import { getResume } from "@/data";
 
 interface HeaderProps {
   locale: Locale;
@@ -19,6 +20,9 @@ const navItems = [
 
 export function Header({ locale }: HeaderProps) {
   const t = getTranslations(locale);
+  const resume = getResume(locale);
+  const logo = resume.personalInfo?.logo || "SL";
+  const brand = resume.personalInfo?.brand || "SYSTEM";
   const [isOpen, setIsOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
   const [activeSection, setActiveSection] = React.useState<string>("");
@@ -116,8 +120,8 @@ export function Header({ locale }: HeaderProps) {
         <div className="container mx-auto px-4 md:px-8 max-w-7xl">
           <div className="flex h-[54px] items-center justify-between">
             {/* Logo */}
-            <a href={`/${locale === "zh" ? "zh" : ""}`} className="text-sm font-semibold tracking-tight uppercase">
-              SL / SYSTEM
+            <a href={`/${locale === "zh" ? "zh" : ""}`} className="text-sm font-semibold tracking-tight">
+              {logo} / {brand}
             </a>
 
             {/* Desktop Navigation */}
